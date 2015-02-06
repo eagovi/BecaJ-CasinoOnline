@@ -1,0 +1,51 @@
+@CHARSET "ISO-8859-1";
+
+body {
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+	background-image : url(../Img/Fondo_index/fondo_index_tapete.png);
+ 	background-repeat : repeat;
+ 	background-attachment : fixed;
+}
+
+#envoltorio {
+	margin-top: 20%;
+	text-align: center;
+	border-radius: 6px;
+	padding: 10px;
+}
+
+#envoltorio table {
+	margin: 0 auto;
+	text-align: center;	
+	background-color: #ffffff; 	
+	border: 1px black solid; 	
+	border-radius: 5px;
+	border-collapse: collapse;
+}
+
+#envoltorio table tr{
+	border-bottom: 1px black solid;
+}
+
+#envoltorio table th{
+	font-size: 16px;
+	padding: 8px;
+	color: #ffffff;
+	background-color: #003500; 
+}
+
+#envoltorio table td {
+	
+	padding: 8px;
+	background-color: #ffffff; 	
+	color: #004080;
+	border-bottom: 1px black solid;
+	 	
+}
+#envoltorio table td img{
+	width: 120px;
+	height: 120px;
+}
+
