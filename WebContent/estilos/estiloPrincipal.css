@@ -1,0 +1,30 @@
+@CHARSET "ISO-8859-1";
+@font-face {
+   font-family: october;
+   font-style: normal;
+   font-weight: normal;
+   src: url('../fuentes/Red October-Regular.ttf');
+}
+
+body {
+	background-image:url('../imagenes/arstotzka.jpg');
+	background-size:cover;
+	background-repeat:no-repeat;
+	background-attachment:scroll;
+	background-position:center;
+	font-family:october;
+	color:rgba(82,18,18,1);
+	height:1000px;
+}
+
+h1{
+	font-size:50px;
+}
+
+.centrado{
+	position:absolute;
+	top:20%;
+	left:50%;
+	margin:0;
+	transform:translate(-50%, -50%);
+}
