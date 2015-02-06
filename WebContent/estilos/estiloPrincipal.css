@@ -5,6 +5,13 @@
    src: url('../fuentes/Red October-Regular.ttf');
 }
 
+@font-face {
+   font-family: casino;
+   font-style: normal;
+   font-weight: normal;
+   src: url('../fuentes/Casino.ttf');
+}
+
 body {
 	background-image:url('../imagenes/arstotzka.jpg');
 	background-size:cover;
@@ -85,4 +92,19 @@ h1{
 
 .inp {
 	width:100%;
+}
+
+.boton{
+	font-family:october;
+}
+
+.pie{
+	position:absolute;
+	left:50%;
+	top:700px;
+	margin:0;
+	font-family:casino;
+	color:rgba(82,18,18,1);
+	transform:translate(-50%, 0);
+	font-size:40px;
 }
