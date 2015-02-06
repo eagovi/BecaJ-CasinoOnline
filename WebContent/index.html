@@ -7,6 +7,38 @@
 	</head>
 	
 	<body>
-		<h1 class="centrado">Casino Arstotzka</h1>
+		<div class="contenedor">
+		<div class="navegacion">
+			<h3 class="botonTop">REGISTRAR</h3><h3 class="botonTop">LOG IN</h3>
+		</div>
+			<h1 class="centrado">Casino Arstotzka</h1>
+			<div class="formulario">
+				<form action="Registro" method="POST">
+				<table>
+					<tr>
+						<td class="celda_izquierda">Nombre:</td><td class="celda_derecha"><input class="inp" type="text" name="nombre"/></td>
+					</tr>
+					<tr>
+						<td class="celda_izquierda">Apellido:</td><td class="celda_derecha"><input class="inp" type="text" name="apellido"/></td>
+					</tr>
+					<tr>
+						<td class="celda_izquierda">Nombre de usuario:</td><td class="celda_derecha"><input class="inp" type="text" name="usuario"/></td>
+					</tr>
+					<tr>
+						<td class="celda_izquierda">Clave:</td><td class="celda_derecha"><input class="inp" type="password" name="password"/></td>
+					</tr>
+					<tr>
+						<td class="celda_izquierda">Fecha de nacimiento:</td><td class="celda_derecha"><input class="inp" type="date" name="fecha_nacimiento"/></td>
+					</tr>
+					<tr>
+						<td class="celda_izquierda">Email:</td><td class="celda_derecha"><input class="inp" type="email" name="email"/></td>
+					</tr>
+					<tr>
+						<td class="celda_izquierda boton_enviar"><input type="submit" name="enviar" value="Enviar"/></td><td class="celda_derecha"><input type="reset" name="borrar" value="Borrar"/></td>
+					</tr>					
+				</table>
+				</form>
+			</div>
+		</div>
 	</body>
 </html>
