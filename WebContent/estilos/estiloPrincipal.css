@@ -13,7 +13,7 @@ body {
 	background-position:center;
 	font-family:october;
 	color:rgba(82,18,18,1);
-	height:1000px;
+	height:890px;
 }
 
 h1{
@@ -33,12 +33,20 @@ h1{
 	top:20px;
 	left:75%;
 }
-.botonTop{
+.navegacion h3{
+	font-size: 20px;
+	color:rgba(82,18,18,1);
+	text-decoration:none;
+	cursor:pointer;
+}
+
+.botonTop {
 	float:left;
 	margin-left:30px;
 }
 
-.formulario{
+.formularioInvisible {
+	visibility: hidden;
 	font-size:18px;
 	color:rgba(200,200,200,1);
 	position:absolute;
@@ -48,7 +56,19 @@ h1{
 	transform:translate(-50%, -50%);
 	background-color:rgba(0,0,0,.7);
 	border-radius:10px;	
-	/*visibility:hidden;*/
+
+}
+
+.formularioVisible {
+	font-size:18px;
+	color:rgba(200,200,200,1);
+	position:absolute;
+	top:52%;
+	left:50%;
+	padding:50px;
+	transform:translate(-50%, -50%);
+	background-color:rgba(0,0,0,.7);
+	border-radius:10px;
 }
 
 .celda_izquierda {
