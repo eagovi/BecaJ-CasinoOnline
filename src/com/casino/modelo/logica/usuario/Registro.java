@@ -1,6 +1,7 @@
 package com.casino.modelo.logica.usuario;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -44,9 +45,11 @@ public class Registro extends HttpServlet {
 		
 		Statement oStmt = null;
 		String sSQL = null;
-		
+		Connection miConexion=null;
 		try {
-			oStmt = instancia.getConexion().createStatement();
+			miConexion= instancia.getConexion();
+			oStmt =miConexion.createStatement();
+			miConexion.setAutoCommit(false);
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -59,40 +62,34 @@ public class Registro extends HttpServlet {
 		String fecha_nacimiento = request.getParameter("fecha_nacimiento");
 		String email = request.getParameter("email");
 		
-		sSQL = "INSERT INTO Usuario " +
-				"(login, pass, tipo_user) " +
-				"VALUES ('"+login+"', '"+password+"', 1)"; //Tipo usuario 1, es el cliente normal
-		
 		try {
+			sSQL = "INSERT INTO Usuario " +
+					"(login, pass, tipo_user) " +
+					"VALUES ('"+login+"', '"+password+"', 1)"; //Tipo usuario 1, es el cliente normal
 			oStmt.executeUpdate(sSQL);
+		
+			sSQL = "INSERT INTO Cliente " +
+					"(login, nombre, apellido, mail, fecha_nac) " +
+					"VALUES ('"+login+"', '"+nombre+"', '"+apellido+"', '"+email+"', to_date('"+fecha_nacimiento+"', 'yyyy/mm/dd'))";
+			oStmt.executeUpdate(sSQL);
+	
+			sSQL = "INSERT INTO Cuenta " +
+					"(login, puntos, tipo_cuenta) " +
+					"VALUES ('"+login+"', "+500+", "+1+")";
+			oStmt.executeUpdate(sSQL);
+			
+			request.getRequestDispatcher("/paginas/indexExito.html").forward(request, response);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		
-		sSQL = "INSERT INTO Cliente " +
-				"(login, nombre, apellido, mail, fecha_nac) " +
-				"VALUES ('"+login+"', '"+nombre+"', '"+apellido+"', '"+email+"', to_date('"+fecha_nacimiento+"', 'yyyy/mm/dd'))";
-		
-		try {
-			oStmt.executeUpdate(sSQL);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		sSQL = "INSERT INTO Cuenta " +
-				"(login, puntos, tipo_cuenta) " +
-				"VALUES ('"+login+"', "+500+", "+1+")";
-		
-		
-		try {
-			oStmt.executeUpdate(sSQL);
-		} catch (SQLException e) {
-			e.printStackTrace();
+			try {
+				miConexion.rollback();
+				miConexion.close();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 			request.getRequestDispatcher("/paginas/indexError.html").forward(request, response);
-		}
-		
-		request.getRequestDispatcher("/paginas/indexExito.html").forward(request, response);
-		
+		} 	
 	}
 
 }

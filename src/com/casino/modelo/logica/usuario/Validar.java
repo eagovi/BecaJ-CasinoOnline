@@ -70,6 +70,7 @@ public class Validar extends HttpServlet {
 			}
 			
 		} catch (SQLException e) {
+			response.sendRedirect("paginas/indexError.html");
 			e.printStackTrace();
 		}
 		
