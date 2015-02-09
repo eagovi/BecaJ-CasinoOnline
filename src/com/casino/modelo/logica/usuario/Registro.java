@@ -1,19 +1,16 @@
 package com.casino.modelo.logica.usuario;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
+
+import com.casino.dataService.DameConexion;
 
 /**
  * Servlet implementation class Registro
@@ -43,23 +40,17 @@ public class Registro extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		DataSource miDS = null;
-		//pedimos el contexto de nuestro servidor
-		Context ic = null;
-		Connection conexion=null;
+		DameConexion instancia = DameConexion.getInstancia();
+		
 		Statement oStmt = null;
 		String sSQL = null;
 		
 		try {
-			ic = new InitialContext();
-			miDS = (DataSource) ic.lookup("java:comp/env/jdbc/DataSourceLocal1");
-			conexion=miDS.getConnection();
-			oStmt = conexion.createStatement();
-		} catch (NamingException e1) {
-			e1.printStackTrace();
+			oStmt = instancia.getConexion().createStatement();
 		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		} 
+		}
 		
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");
@@ -78,8 +69,6 @@ public class Registro extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		
-		System.out.println(fecha_nacimiento);
 		sSQL = "INSERT INTO Cliente " +
 				"(login, nombre, apellido, mail, fecha_nac) " +
 				"VALUES ('"+login+"', '"+nombre+"', '"+apellido+"', '"+email+"', to_date('"+fecha_nacimiento+"', 'yyyy/mm/dd'))";
@@ -90,7 +79,19 @@ public class Registro extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		request.getRequestDispatcher("/pagina").forward(request, response);
+		sSQL = "INSERT INTO Cuenta " +
+				"(login, puntos, tipo_cuenta) " +
+				"VALUES ('"+login+"', "+500+", "+1+")";
+		
+		
+		try {
+			oStmt.executeUpdate(sSQL);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			request.getRequestDispatcher("/paginas/indexError.html").forward(request, response);
+		}
+		
+		request.getRequestDispatcher("/paginas/indexExito.html").forward(request, response);
 		
 	}
 
