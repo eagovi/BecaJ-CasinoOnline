@@ -20,25 +20,22 @@
 			</div><!-- FIN CABECERA-->
 			<div class="menu">
 			<ul class="listaMenuAdmin">
-				<a class="enlace" href="homeAdmin.jsp"><li>Home</li></a>
+				<a class="enlace" href="/FrontControllerAdmin?accion=homeAdmin"><li>Home</li></a>
 				<a class="enlace_marcado" href="#"><li  class="marcado">Clientes</li></a>
-				<a class="enlace" href="#"><li>Noticias</li></a>
+				<a class="enlace" href="/FrontControllerAdmin?accion=noticiasAdmin""><li>Noticias</li></a>
 				<a class="enlace" href="#"><li>Log out</li></a>
 			</ul>
 			</div>
 			<div class="informacion">
-				<table>
-						<tr>
-							<th>Clientes</th>
-						</tr>
-						<tr>
-							<td>Imagen</td>
-							<td>Nombre</td>
-							<td>Apellido</td>
-							<td>Fecha de nacimiento</td>
-							<td>Mail</td>
-							<td>Puntos</td>
-							<td>Tipo de cuenta</td>
+				<table class="tablaDatos">
+						<tr class="">
+							<td class="tablaTop">Imagen</td>
+							<td class="tablaTop">Nombre</td>
+							<td class="tablaTop">Apellido</td>
+							<td class="tablaTop">Fecha de nacimiento</td>
+							<td class="tablaTop">Mail</td>
+							<td class="tablaTop">Puntos</td>
+							<td class="tablaTop">Tipo de cuenta</td>
 						</tr>
 						<%
 						DameConexion instancia = DameConexion.getInstancia();
@@ -65,6 +62,9 @@
 							</tr>
 						<%} %>	
 				</table>
+			</div>
+			<div class="pie">
+				<img class="pieImagen" src="../imagenes/pie.png">
 			</div>
 		</div><!--FIN CONTENEDOR-->
 	</body>
