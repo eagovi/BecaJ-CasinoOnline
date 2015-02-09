@@ -10,7 +10,7 @@
 	</head>
 		<meta charset="ISO-8859-1">
 		<title>Home</title>
-		<link rel="StyleSheet" type="text/css" href="estilos/estiloHome.css"/>
+		<link rel="StyleSheet" type="text/css" href="/estilos/estiloHome.css"/>
 	</head>
 	<body>
 		<div class="contenedor">
