@@ -1,6 +1,7 @@
 package com.casino.modelo.logica.usuario;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -47,22 +48,24 @@ public class Validar extends HttpServlet {
 		String pass = request.getParameter("password");
 		
 		ResultSet rs = null;
-
+		Connection conexion = instancia.getConexion();
+		
 		try {
-			Statement oStmt = instancia.getConexion().createStatement();
-			rs = oStmt.executeQuery("SELECT * FROM Usuario WHERE login='"+login+"' AND pass="+pass);
-			HttpSession session = request.getSession();
-			session.setAttribute("nombre", request.getParameter("usuario"));
+			Statement oStmt = conexion.createStatement();
+			rs = oStmt.executeQuery("SELECT * FROM Usuario WHERE login='"+login+"' AND pass='"+pass+"'");
 			
 			if(rs.next()) {
 				int tipo = Integer.valueOf(rs.getString("tipo_user"));
+				HttpSession session = request.getSession();
+				session.setAttribute("nombre", request.getParameter("usuario"));
 				//User normal
 				if(tipo == 1) {
 					request.getRequestDispatcher("/paginas/homeCliente.jsp").forward(request, response);
 				}
 				//User admin
 				else {
-					request.getRequestDispatcher("/paginas/homeAdmin.jsp").forward(request, response);
+					//request.getRequestDispatcher("/paginas/homeAdmin.jsp").forward(request, response);
+					request.getRequestDispatcher("/WEB-INF/homeAdmin.jsp").forward(request, response);
 				}
 			}
 			else {
@@ -72,7 +75,7 @@ public class Validar extends HttpServlet {
 		} catch (SQLException e) {
 			response.sendRedirect("paginas/indexError.html");
 			e.printStackTrace();
-		}
+		} 
 		
 	}
 
