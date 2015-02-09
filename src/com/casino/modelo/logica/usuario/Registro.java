@@ -49,7 +49,6 @@ public class Registro extends HttpServlet {
 		try {
 			miConexion= instancia.getConexion();
 			oStmt =miConexion.createStatement();
-			miConexion.setAutoCommit(false);
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -61,7 +60,7 @@ public class Registro extends HttpServlet {
 		String password = request.getParameter("password");
 		String fecha_nacimiento = request.getParameter("fecha_nacimiento");
 		String email = request.getParameter("email");
-		
+		String imagenDefecto = "http://b.thumbs.redditmedia.com/glxbKxKAbhICwzmg.png";
 		try {
 			sSQL = "INSERT INTO Usuario " +
 					"(login, pass, tipo_user) " +
@@ -69,8 +68,9 @@ public class Registro extends HttpServlet {
 			oStmt.executeUpdate(sSQL);
 		
 			sSQL = "INSERT INTO Cliente " +
-					"(login, nombre, apellido, mail, fecha_nac) " +
-					"VALUES ('"+login+"', '"+nombre+"', '"+apellido+"', '"+email+"', to_date('"+fecha_nacimiento+"', 'yyyy/mm/dd'))";
+					"(login, nombre, apellido, mail, fecha_nac, imagen) " +
+					"VALUES ('"+login+"', '"+nombre+"', '"+apellido+"', '"+email+"', "
+							+ "to_date('"+fecha_nacimiento+"', 'yyyy/mm/dd'), '"+imagenDefecto+"')";
 			oStmt.executeUpdate(sSQL);
 	
 			sSQL = "INSERT INTO Cuenta " +
@@ -78,17 +78,18 @@ public class Registro extends HttpServlet {
 					"VALUES ('"+login+"', "+500+", "+1+")";
 			oStmt.executeUpdate(sSQL);
 			
+			
 			request.getRequestDispatcher("/paginas/indexExito.html").forward(request, response);
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			/*
 			try {
 				miConexion.rollback();
-				miConexion.close();
+				
 			} catch (SQLException e1) {
 				e1.printStackTrace();
-			}
-			request.getRequestDispatcher("/paginas/indexError.html").forward(request, response);
+			}*/
+			request.getRequestDispatcher("/paginas/indexErrorRegistro.html").forward(request, response);
 		} 	
 	}
 

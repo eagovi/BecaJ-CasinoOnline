@@ -60,11 +60,10 @@ public class Validar extends HttpServlet {
 				session.setAttribute("nombre", request.getParameter("usuario"));
 				//User normal
 				if(tipo == 1) {
-					request.getRequestDispatcher("/paginas/homeCliente.jsp").forward(request, response);
+					request.getRequestDispatcher("/WEB-INF/homeCliente.jsp").forward(request, response);
 				}
 				//User admin
 				else {
-					//request.getRequestDispatcher("/paginas/homeAdmin.jsp").forward(request, response);
 					request.getRequestDispatcher("/WEB-INF/homeAdmin.jsp").forward(request, response);
 				}
 			}

@@ -27,22 +27,23 @@ public class FrontControllerCliente extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String accion = request.getParameter("Controlador");
+		
+		String accion = request.getParameter("accion");
 		switch (accion) {
-		case "Home":
-			request.getRequestDispatcher("/").forward(request, response);
+		case "homeCliente":
+			request.getRequestDispatcher("/WEB-INF/homeCliente.jsp").forward(request, response);
 		break;
-		case "Jugar": 
-			request.getRequestDispatcher("/").forward(request, response);
+		case "jugarCliente": 
+			request.getRequestDispatcher("/WEB-INF/jugarCliente.jsp").forward(request, response);
 		break;
-		case "Promociones":
-			request.getRequestDispatcher("/").forward(request, response);
+		case "tiendaCliente":
+			request.getRequestDispatcher("/WEB-INF/tiendaCliente.jsp").forward(request, response);
 		break;
-		case "Cuenta":
-			request.getRequestDispatcher("/").forward(request, response);
+		case "promocionesCliente":
+			request.getRequestDispatcher("/WEB-INF/promocionesCliente.jsp").forward(request, response);
 		break;
-		case "Atencion":
-			request.getRequestDispatcher("/").forward(request, response);
+		case "atencionCliente":
+			request.getRequestDispatcher("/WEB-INF/atencionCliente.jsp").forward(request, response);
 		break;
 		default:
 			System.out.println("Accion no definida");
