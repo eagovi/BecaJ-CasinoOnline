@@ -20,8 +20,8 @@
 			</div><!-- FIN CABECERA-->
 			<div class="menu">
 			<ul class="listaMenuAdmin">
-				<a class="enlace_marcado" href="homeAdmin.jsp"><li class="marcado">Home</li></a>
-				<a class="enlace" href="clientes.jsp"><li>Clientes</li></a>
+				<a class="enlace_marcado" href="/FrontControllerAdmin?accion=homeAdmin"><li class="marcado">Home</li></a>
+				<a class="enlace" href="FrontControllerAdmin?accion=clientesAdmin"><li>Clientes</li></a>
 				<a class="enlace" href="#"><li>Noticias</li></a>
 				<a class="enlace" href="#"><li>Log out</li></a>
 			</ul>
