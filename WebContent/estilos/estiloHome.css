@@ -21,6 +21,7 @@ body {
 	font-family:october;
 	color:rgba(82,18,18,1);
 	margin:0;
+	overflow-x:hidden;
 }
 
 .cabecera p{
@@ -30,6 +31,11 @@ body {
 	line-height:auto;
 	vertical-align:center;
 	text-align:center;
+}
+
+.contenedor{
+	width:100%;
+	height:auto;
 }
 
 .cabecera{
@@ -105,7 +111,6 @@ body {
 
 
 .menu ul{
-	width:100%;
 	height:40px;
 	text-align:center;
 }
@@ -169,8 +174,7 @@ body {
 }
 
 .tablaDatos{
-	width:80%;
-	margin-left:10%;
+	width:100%;
 	border:2px solid rgba(82,18,18,1);
 	border-collapse:collapse;
 	line-height:24px;
@@ -203,4 +207,29 @@ body {
 .imgUser{
 	height:80px;
 	width:80px;
+}
+
+.pieImagen{
+	width:100%;
+}
+
+.pieCentrado{
+	width:100%;
+	position:absolute;
+	top:720px;
+	left:50%;
+	margin:0;
+	transform:translate(-50%,0);
+}
+
+.informacion{
+	overflow:scroll;
+	overflow-x:hidden;
+	height:380px;
+	width:90%;
+	position:absolute;
+	left:50%;
+	top:475px;
+	transform:translate(-50%,-50%);
+	margin:0;
 }

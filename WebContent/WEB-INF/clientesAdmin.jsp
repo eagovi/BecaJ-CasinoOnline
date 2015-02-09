@@ -28,7 +28,7 @@
 			</div>
 			<div class="informacion">
 				<table class="tablaDatos">
-						<tr class="">
+						<tr>
 							<td class="tablaTop">Imagen</td>
 							<td class="tablaTop">Nombre</td>
 							<td class="tablaTop">Apellido</td>
@@ -53,7 +53,7 @@
 							rsPuntos.next();%>
 							<tr>
 								<td><img class="imgUser" src="<%=rs.getString("imagen")%>"/></td>
-								<td><%=rs.getString("nombre")%></td>
+								<td><a title="ver informacion" href="VerClienteAdmin?nombre=<%=rs.getString("login")%>"><%=rs.getString("nombre")%></a></td>
 								<td><%=rs.getString("apellido")%></td>
 								<td><%=rs.getString("fecha_nac")%></td>
 								<td><%=rs.getString("mail")%></td>
@@ -63,8 +63,8 @@
 						<%} %>	
 				</table>
 			</div>
-			<div class="pie">
-				<img class="pieImagen" src="imagenes/pie.png">
+			<div class="pieCentrado">
+				<img class="pieImagen" src="imagenes/pie.png" alt="pie"/>
 			</div>
 		</div><!--FIN CONTENEDOR-->
 	</body>
