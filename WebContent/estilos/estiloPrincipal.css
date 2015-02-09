@@ -12,6 +12,10 @@
    src: url('../fuentes/Casino.ttf');
 }
 
+html{
+	height:100%;
+}
+
 body {
 	background-image:url('../imagenes/arstotzka.jpg');
 	background-size:cover;
@@ -20,7 +24,6 @@ body {
 	background-position:center;
 	font-family:october;
 	color:rgba(82,18,18,1);
-	height:890px;
 }
 
 h1{
@@ -109,16 +112,37 @@ h1{
 	font-size:40px;
 }
 
-.pieMensaje{
+.mensajeError{
+	width:610px;
+	height:348px;
+	position:absolute;
+	left:50%;
+	top:50%;
+	margin:0;
+	font-family:october;
+	color:rgba(82,18,18,1);
+	transform:translate(-50%, -50%);
+	font-size:24px;
+	color:rgba(82,18,18,1);
+	background-color:rgba(0,0,0,.7);
+	border-radius:10px;
+}
+
+.pieMensaje {
 	position:absolute;
 	left:50%;
 	top:700px;
 	margin:0;
 	font-family:october;
 	color:rgba(82,18,18,1);
-	transform:translate(-50%, 0);
-	font-size:24px;
+	transform:translate(-50%,0);
 	color:rgba(55,62,64,1);
+}
+
+.mensajeError h2{
+	text-align:center;
+	color:rgba(55,62,64,1);
+	margin-top:18%;
 }
 
 .enlace {
