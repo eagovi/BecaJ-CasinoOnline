@@ -10,12 +10,12 @@
 	</head>
 		<meta charset="ISO-8859-1">
 		<title>Home</title>
-		<link rel="StyleSheet" type="text/css" href="../estilos/estiloHome.css"/>
+		<link rel="StyleSheet" type="text/css" href="estilos/estiloHome.css"/>
 	</head>
 	<body>
 		<div class="contenedor">
 			<div class="cabecera">
-				<a href="home.html"><img class="logo" src="../imagenes/logo.png" alt="logo"/></a>
+				<a href="home.html"><img class="logo" src="imagenes/logo.png" alt="logo"/></a>
 					<p>Bienvenido</p>
 			</div><!-- FIN CABECERA-->
 			<div class="menu">
@@ -28,7 +28,7 @@
 			</div>
 			
 			<div class="pie">
-				<img class="pieImagen" src="../imagenes/pie.png">
+				<img class="pieImagen" src="imagenes/pie.png">
 			</div>
 			
 		</div><!--FIN CONTENEDOR-->

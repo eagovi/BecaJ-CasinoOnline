@@ -52,7 +52,7 @@
 							rsPuntos = oStmtPuntos.executeQuery("SELECT puntos, tipo_cuenta FROM Cuenta WHERE login='"+login+"'");
 							rsPuntos.next();%>
 							<tr>
-								<td><%=rs.getString("imagen")%></td>
+								<td><img class="imgUser" src="<%=rs.getString("imagen")%>"/></td>
 								<td><%=rs.getString("nombre")%></td>
 								<td><%=rs.getString("apellido")%></td>
 								<td><%=rs.getString("fecha_nac")%></td>
@@ -64,7 +64,7 @@
 				</table>
 			</div>
 			<div class="pie">
-				<img class="pieImagen" src="../imagenes/pie.png">
+				<img class="pieImagen" src="imagenes/pie.png">
 			</div>
 		</div><!--FIN CONTENEDOR-->
 	</body>

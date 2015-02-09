@@ -29,7 +29,6 @@ public class FrontControllerAdmin extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String accion = request.getParameter("accion");
-		System.out.println("aqui estoy jaja");
 		switch (accion) {
 		case "homeAdmin":
 			request.getRequestDispatcher("/WEB-INF/homeAdmin.jsp").forward(request, response);
