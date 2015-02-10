@@ -138,12 +138,6 @@ body {
 	transition:all .5s;
 }
 
-.listaMenu a li:hover{
-	background-color:rgba(0,0,0,1);
-	color:rgba(55,62,64,1);
-	transition:all .5s;
-}
-
 .listaMenuAdmin{
 	width:100%;
 	background-color:rgba(55,62,64,1);
@@ -186,9 +180,6 @@ body {
 	font-family:arial;
 	color:rgba(0,0,0,1);
 	text-align:center;
-}
-
-.tablaDatos td{
 	background-color:rgba(186,186,186,1);
 }
 
@@ -252,9 +243,58 @@ body {
 
 .informacionNoticias {
 	position:absolute;
-	top:50%;
+	top:475px;
 	width:40%;
 	left:50%;
 	transform:translate(-50%,-50%);
 	margin:0;
+}
+
+.informacionCliente{
+	position:absolute;
+	width:100%;
+	left:50%;
+	top:475px;
+	transform:translate(-50%,-50%);
+	margin:0;
+}
+
+.tablaDatosCliente{
+	float:left;
+	padding:20px;
+	margin-left:5%;
+	width:27%;
+	font-family:arial;
+	color:rgba(0,0,0,1);
+	background-color:rgba(186,186,186,1);
+	line-height:30px;
+	vertical-align:center;
+}
+
+.tablaPuntos{
+	float:left;
+	padding:20px;
+	margin-left:5%;
+	margin-right:5%;
+	width:27%;
+	font-family:arial;
+	color:rgba(0,0,0,1);
+	background-color:rgba(186,186,186,1);
+	line-height:30px;
+	vertical-align:center;
+}
+
+.tablaEstadisticas{
+	padding:20px;
+	margin-right:5%;
+	width:27%;
+	font-family:arial;
+	color:rgba(0,0,0,1);
+	background-color:rgba(186,186,186,1);
+	line-height:30px;
+	vertical-align:center;
+}
+
+.derechaTabla{
+	font-weight:400;
 }

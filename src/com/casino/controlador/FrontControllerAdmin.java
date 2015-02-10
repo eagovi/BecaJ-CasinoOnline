@@ -42,7 +42,6 @@ public class FrontControllerAdmin extends HttpServlet {
 		case "infoClienteAdmin":
 			String nombre = request.getParameter("nombre");
 			request.setAttribute("loginCliente", nombre);
-			System.out.println(nombre);
 			request.getRequestDispatcher("/WEB-INF/infoClienteAdmin.jsp").forward(request, response);
 		break;
 		default:

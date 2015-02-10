@@ -50,6 +50,8 @@
 						ResultSet rsPuntos = null;
 						
 						while(rs.next()) {
+							
+							
 							//String fecha=rs.getString("fecha_nac");
 							//SimpleDateFormat formato = new SimpleDateFormat("dd/mm/yyyy");
 							//Date fnacimiento = formato.parse(fecha);
