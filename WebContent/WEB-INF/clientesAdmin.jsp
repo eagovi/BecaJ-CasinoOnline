@@ -20,10 +20,10 @@
 			</div><!-- FIN CABECERA-->
 			<div class="menu">
 			<ul class="listaMenuAdmin">
-				<a class="enlace" href="/FrontControllerAdmin?accion=homeAdmin"><li>Home</li></a>
+				<a class="enlace" href="FrontControllerAdmin?accion=homeAdmin"><li>Home</li></a>
 				<a class="enlace_marcado" href="#"><li  class="marcado">Clientes</li></a>
-				<a class="enlace" href="/FrontControllerAdmin?accion=noticiasAdmin""><li>Noticias</li></a>
-				<a class="enlace" href="#"><li>Log out</li></a>
+				<a class="enlace" href="FrontControllerAdmin?accion=noticiasAdmin"><li>Noticias</li></a>
+				<a class="enlace" href="Salir"><li>Log out</li></a>
 			</ul>
 			</div>
 			<div class="informacion">

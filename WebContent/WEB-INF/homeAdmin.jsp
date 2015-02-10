@@ -23,7 +23,7 @@
 				<a class="enlace_marcado" href="#"><li class="marcado">Home</li></a>
 				<a class="enlace" href="FrontControllerAdmin?accion=clientesAdmin"><li>Clientes</li></a>
 				<a class="enlace" href="FrontControllerAdmin?accion=noticiasAdmin"><li>Noticias</li></a>
-				<a class="enlace" href="#"><li>Log out</li></a>
+				<a class="enlace" href="Salir"><li>Log out</li></a>
 			</ul>
 			</div>
 			

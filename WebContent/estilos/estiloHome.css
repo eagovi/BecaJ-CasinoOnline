@@ -233,3 +233,29 @@ body {
 	transform:translate(-50%,-50%);
 	margin:0;
 }
+
+.boton_enviar{
+	text-align:right;
+	
+}
+
+.boton{
+	font-family:october;
+}
+
+.tablaNoticias{
+	position:relative;
+	top:50%;
+	left:50%;
+	margin:0;
+	transform:translate(-50%, -50%);
+}
+
+.informacionNoticias{
+	width:60%;
+	position:absolute;
+	margin:0;
+	top:50%;
+	left:50%;
+	transform:translate(-50%, -50%);
+}
