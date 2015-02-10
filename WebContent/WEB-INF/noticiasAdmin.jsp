@@ -21,7 +21,7 @@
 			</div>
 			<div class="informacionNoticias">
 				<table class="tablaNoticias">
-					<form action="" method="POST">
+					<form action="Noticias" method="POST">
 						<tr>
 							<td class="celda_izq">Titular:</td>
 							<td class="celda_der"><input type="text" maxlength="40" size="38" name="titularNoticia"/></td>
