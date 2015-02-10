@@ -1,0 +1,26 @@
+@CHARSET "ISO-8859-1";
+
+.informacionCliente{
+	height:380px;
+	width:90%;
+	position:absolute;
+	left:50%;
+	top:475px;
+	transform:translate(-50%,-50%);
+	margin:0;
+}
+
+.tablaDatosCliente{
+	width:100%;
+	border:2px solid rgba(82,18,18,1);
+	border-collapse:collapse;
+	line-height:24px;
+	vertical-align:center;
+	font-family:arial;
+	color:rgba(0,0,0,1);
+	text-align:center;
+}
+
+.tablaDatosCliente td{
+	background-color:rgba(186,186,186,1);
+}

@@ -11,6 +11,7 @@
 		<meta charset="ISO-8859-1">
 		<title>Home</title>
 		<link rel="StyleSheet" type="text/css" href="estilos/estiloHome.css"/>
+		<link rel="StyleSheet" type="text/css" href="estilos/pruebas.css"/>
 	</head>
 	<body>
 		<div class="contenedor">
@@ -29,7 +30,8 @@
 			</div>
 		</div><!--FIN CONTENEDOR-->
 		
-		<div>
+		<div class="informacionCliente">
+				
 			<%
 				DameConexion instancia = DameConexion.getInstancia();
 				Connection conexion = instancia.getConexion();
@@ -52,7 +54,7 @@
 															"FROM Tipo WHERE tipo_cuenta='"+rsPuntos.getString("tipo_cuenta")+"'");
 				rsTipo.next();										
 				%>
-				<table style="border: 1px solid red;">
+				<table class="tablaDatosCliente">
 					<tr>
 						<td rowspan="2"><img src="<%=rs.getString("imagen")%>"></td>
 						<td><%=rs.getString("nombre")%></td>
@@ -63,7 +65,7 @@
 					
 				</table>
 				
-				<table>		
+				<table class="tablaDatos">	
 					<tr>
 						<td>Puntos: </td>
 						<td><%=rsPuntos.getString("puntos")%></td>

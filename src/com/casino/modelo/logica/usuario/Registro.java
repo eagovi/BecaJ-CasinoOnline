@@ -78,6 +78,11 @@ public class Registro extends HttpServlet {
 					"VALUES ('"+login+"', "+500+", "+1+")";
 			oStmt.executeUpdate(sSQL);
 			
+			sSQL = "INSERT INTO Caja " +
+					"(login, id_banco, id_transaccion, id_balance) " +
+					"VALUES ('"+login+"', 1, TRANSACC.nextval, ID_BALANCE.nextval)";
+			oStmt.executeUpdate(sSQL);
+			
 			
 			request.getRequestDispatcher("/paginas/indexExito.html").forward(request, response);
 			
