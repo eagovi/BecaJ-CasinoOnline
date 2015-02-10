@@ -295,6 +295,6 @@ body {
 	vertical-align:center;
 }
 
-.derechaTabla{
-	font-weight:400;
+.izquierdaTabla{
+	text-decoration:underline;
 }
