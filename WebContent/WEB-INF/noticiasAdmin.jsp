@@ -23,20 +23,20 @@
 				<table class="tablaNoticias">
 					<form action="" method="POST">
 						<tr>
-							<td class="tablaTop">Titular:</td>
-							<td><input type="text" maxlength="40" name="titularNoticia"/></td>
+							<td class="celda_izq">Titular:</td>
+							<td class="celda_der"><input type="text" maxlength="40" size="38" name="titularNoticia"/></td>
 						</tr>
 						<tr>
-							<td class="tablaTop">URL de imagen:</td>
-							<td><input type="text" maxlength="150" name="imagenNoticia"/></td>
+							<td class="celda_izq">URL de imagen:</td>
+							<td class="celda_der"><input type="text" maxlength="150" size="38" name="imagenNoticia"/></td>
 						</tr>
 						<tr>
-							<td class="tablaTop">Contenido:</td> 
-							<td><textarea cols="40" rows="8" name="contenidoNoticia"></textarea></td>
+							<td class="celda_izq">Contenido:</td> 
+							<td class="celda_der"><textarea cols="40" rows="6" name="contenidoNoticia"></textarea></td>
 						</tr>
 						<tr>
-							<td><input class="boton boton_enviar" type="submit" name="enviar" value="Enviar"/></td> 
-							<td><input class="boton" type="reset" name="borrar" value="borrar"/></td>
+							<td class="celda_izq boton_enviar"><input class="boton" type="submit" name="enviar" value="Enviar"/></td> 
+							<td class="celda_der"><input class="boton" type="reset" name="borrar" value="borrar"/></td>
 						</tr>
 					</form>
 				</table>
