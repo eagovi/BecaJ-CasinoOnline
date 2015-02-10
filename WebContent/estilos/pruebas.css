@@ -5,7 +5,7 @@
 	width:90%;
 	position:absolute;
 	left:50%;
-	top:475px;
+	top: 604px;
 	transform:translate(-50%,-50%);
 	margin:0;
 }
@@ -23,4 +23,10 @@
 
 .tablaDatosCliente td{
 	background-color:rgba(186,186,186,1);
+}
+
+#gifcliente{
+	position: relative;
+	left: 20%;
+	margin: 0 auto;
 }

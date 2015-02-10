@@ -14,7 +14,7 @@
 		<link rel="StyleSheet" type="text/css" href="estilos/pruebas.css"/>
 	</head>
 	<body>
-		<div class="contenedor">
+		<div class="contenedor"><!-- Inicio del contenedor-->
 			<div class="cabecera">
 				<a href="home.html"><img class="logo" src="imagenes/logo.png" alt="logo"/></a>
 					<p>Bienvenido</p>
@@ -28,51 +28,54 @@
 				<a class="enlace" href="Salir"><li>Log out</li></a>
 			</ul>
 			</div>
-		</div><!--FIN CONTENEDOR-->
-		
-		<div class="informacionCliente">
+				<div id="gifcliente">
+					<img class="gifcliente" src="imagenes/ImgCliente.gif" alt="GIF"/>
+				</div>
 				
-			<%
-				DameConexion instancia = DameConexion.getInstancia();
-				Connection conexion = instancia.getConexion();
-				
-				Statement oStmt = conexion.createStatement();
-				Statement oStmtPuntos = conexion.createStatement();
-				Statement oStmtTipo = conexion.createStatement();
-				session = request.getSession();
-				String login = (String) session.getAttribute("nombre");
-			
-				ResultSet rs = oStmt.executeQuery("SELECT login, nombre, apellido, fecha_nac, mail, imagen "+ 
-															"FROM Cliente WHERE login='"+login+"'");
-				ResultSet rsPuntos = oStmtPuntos.executeQuery("SELECT puntos, tipo_cuenta "+
-															"FROM Cuenta WHERE login='"+login+"'");
-				
-				rs.next();
-				rsPuntos.next();
-				
-				ResultSet rsTipo = oStmtTipo.executeQuery("SELECT nombre "+
-															"FROM Tipo WHERE tipo_cuenta='"+rsPuntos.getString("tipo_cuenta")+"'");
-				rsTipo.next();										
-				%>
-				<table class="tablaDatosCliente">
-					<tr>
-						<td rowspan="2"><img src="<%=rs.getString("imagen")%>"></td>
-						<td><%=rs.getString("nombre")%></td>
-					</tr>
-					<tr>
-						<td><%=rs.getString("apellido")%></td>
-					</tr>
+				<div class="informacionCliente">
+						
+					<%
+						DameConexion instancia = DameConexion.getInstancia();
+						Connection conexion = instancia.getConexion();
+						
+						Statement oStmt = conexion.createStatement();
+						Statement oStmtPuntos = conexion.createStatement();
+						Statement oStmtTipo = conexion.createStatement();
+						session = request.getSession();
+						String login = (String) session.getAttribute("nombre");
 					
-				</table>
-				
-				<table class="tablaDatos">	
-					<tr>
-						<td>Puntos: </td>
-						<td><%=rsPuntos.getString("puntos")%></td>
-						<td>Tipo de cuenta: </td>
-						<td><%=rsTipo.getString("nombre")%></td>
-					</tr>
-				</table>
-		</div>
+						ResultSet rs = oStmt.executeQuery("SELECT login, nombre, apellido, fecha_nac, mail, imagen "+ 
+																	"FROM Cliente WHERE login='"+login+"'");
+						ResultSet rsPuntos = oStmtPuntos.executeQuery("SELECT puntos, tipo_cuenta "+
+																	"FROM Cuenta WHERE login='"+login+"'");
+						
+						rs.next();
+						rsPuntos.next();
+						
+						ResultSet rsTipo = oStmtTipo.executeQuery("SELECT nombre "+
+																	"FROM Tipo WHERE tipo_cuenta='"+rsPuntos.getString("tipo_cuenta")+"'");
+						rsTipo.next();										
+						%>
+						<table class="tablaDatosCliente">
+							<tr>
+								<td rowspan="2"><img src="<%=rs.getString("imagen")%>"></td>
+								<td><%=rs.getString("nombre")%></td>
+							</tr>
+							<tr>
+								<td><%=rs.getString("apellido")%></td>
+							</tr>
+							
+						</table>
+						
+						<table class="tablaDatos">	
+							<tr>
+								<td>Puntos: </td>
+								<td><%=rsPuntos.getString("puntos")%></td>
+								<td>Tipo de cuenta: </td>
+								<td><%=rsTipo.getString("nombre")%></td>
+							</tr>
+						</table>
+				</div>
+		</div><!--FIN CONTENEDOR-->
 	</body>
 </html>
