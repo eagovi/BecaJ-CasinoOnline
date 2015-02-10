@@ -44,31 +44,27 @@
 						Connection conexion = instancia.getConexion();
 						
 						
-						String login = request.getParameter("accion");
-						
+						String login = (String)request.getAttribute("loginCliente");
+						out.println(login);
 						Statement oStmt = conexion.createStatement();
 						Statement oStmtPuntos = conexion.createStatement();
 						
-						ResultSet rs = oStmt.executeQuery("SELECT login, nombre, apellido, fecha_nac, mail, imagen FROM Cliente WHERE login = "+login+";");
-						ResultSet rsPuntos = null;
+						ResultSet rs = oStmt.executeQuery("SELECT login, nombre, apellido, fecha_nac, mail, imagen FROM Cliente WHERE login = '"+login+"'");
+					
 						
-						//while(rs.next()) {
-							//String fecha=rs.getString("fecha_nac");
-							//SimpleDateFormat formato = new SimpleDateFormat("dd/mm/yyyy");
-							//Date fnacimiento = formato.parse(fecha);
-							//String login = rs.getString("login");
-							//rsPuntos = oStmtPuntos.executeQuery("SELECT puntos, tipo_cuenta FROM Cuenta WHERE login='"+login+"'");
-							//rsPuntos.next();%>
+						if(rs.next()) {
+						%>
 							<tr>
 								<td><img class="imgUser" src="<%=rs.getString("imagen")%>"/></td>
 								<td><%=rs.getString("nombre")%></td>
 								<td><%=rs.getString("apellido")%></td>
 								<td><%=rs.getString("fecha_nac")%></td>
 								<td><%=rs.getString("mail")%></td>
-								<td><%=rsPuntos.getString("puntos")%></td>
-								<td><%=rsPuntos.getString("tipo_cuenta")%></td>
 							</tr>
-						<%//} %>	
+						<%}
+						else {
+							out.println("jose lleva bragas");
+						}%>
 				</table>
 			</div>
 			<div class="pieCentrado">

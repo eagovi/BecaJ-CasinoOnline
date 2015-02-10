@@ -58,7 +58,7 @@
 							rsPuntos.next();%>
 							<tr>
 								<td><img class="imgUser" src="<%=rs.getString("imagen")%>"/></td>
-								<td><a title="ver informacion" href="VerClienteAdmin?nombre=<%=rs.getString("login")%>"><%=rs.getString("nombre")%></a></td>
+								<td><a title="ver informacion" href="FrontControllerAdmin?accion=infoClienteAdmin&nombre=<%=rs.getString("login")%>"><%=rs.getString("nombre")%></a></td>
 								<td><%=rs.getString("apellido")%></td>
 								<td><%=rs.getString("fecha_nac")%></td>
 								<td><%=rs.getString("mail")%></td>

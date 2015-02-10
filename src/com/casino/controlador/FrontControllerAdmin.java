@@ -28,6 +28,7 @@ public class FrontControllerAdmin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String accion = request.getParameter("accion");
+		
 		switch (accion) {
 		case "homeAdmin":
 			request.getRequestDispatcher("/WEB-INF/homeAdmin.jsp").forward(request, response);
@@ -37,6 +38,12 @@ public class FrontControllerAdmin extends HttpServlet {
 		break;
 		case "noticiasAdmin":
 			request.getRequestDispatcher("/WEB-INF/noticiasAdmin.jsp").forward(request, response);
+		break;
+		case "infoClienteAdmin":
+			String nombre = request.getParameter("nombre");
+			request.setAttribute("loginCliente", nombre);
+			System.out.println(nombre);
+			request.getRequestDispatcher("/WEB-INF/infoClienteAdmin.jsp").forward(request, response);
 		break;
 		default:
 			System.out.println("Accion no definida");
