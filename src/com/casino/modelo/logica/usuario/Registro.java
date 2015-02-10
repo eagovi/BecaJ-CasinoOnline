@@ -63,8 +63,8 @@ public class Registro extends HttpServlet {
 		String imagenDefecto = "http://b.thumbs.redditmedia.com/glxbKxKAbhICwzmg.png";
 		try {
 			sSQL = "INSERT INTO Usuario " +
-					"(login, pass, tipo_user) " +
-					"VALUES ('"+login+"', '"+password+"', 1)"; //Tipo usuario 1, es el cliente normal
+					"(login, pass, tipo_user, borrar, fecha_creacion) " +
+					"VALUES ('"+login+"', '"+password+"', 1, 0, sysdate)"; //Tipo usuario 1, es el cliente normal
 			oStmt.executeUpdate(sSQL);
 		
 			sSQL = "INSERT INTO Cliente " +

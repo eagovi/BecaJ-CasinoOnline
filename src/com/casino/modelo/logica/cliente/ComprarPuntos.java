@@ -55,7 +55,7 @@ public class ComprarPuntos extends HttpServlet {
 			Connection miConexion=null;
 			ResultSet rs = null;
 			int id_compra = 0;
-			String puntos = request.getParameter("puntos");
+			String puntosComprados = request.getParameter("puntos");
 			
 			sSQLIdCompra = "SELECT id_transaccion FROM Caja WHERE login = '"+login+"'";
 			
@@ -69,13 +69,21 @@ public class ComprarPuntos extends HttpServlet {
 				
 				sSQL = "INSERT INTO Compra_Puntos " +
 						"(id_transaccion, fecha, puntos) " +
-						"VALUES ("+id_compra+", sysdate, "+puntos+")";
+						"VALUES ("+id_compra+", sysdate, "+puntosComprados+")";
+				
+				oStmt.executeUpdate(sSQL);
+				
+				sSQL = "UPDATE Cuenta " +
+						"SET puntos = puntos + "+puntosComprados +
+						"WHERE login = '"+login+"'";
 				
 				oStmt.executeUpdate(sSQL);
 				
 			} catch (SQLException e1) {
 				e1.printStackTrace();
-			}					
+			}		
+			
+			request.getRequestDispatcher("/WEB-INF/homeCliente.jsp").forward(request, response);
 		}
 	}
 

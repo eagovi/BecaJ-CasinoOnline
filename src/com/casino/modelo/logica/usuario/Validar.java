@@ -56,15 +56,21 @@ public class Validar extends HttpServlet {
 			
 			if(rs.next()) {
 				int tipo = Integer.valueOf(rs.getString("tipo_user"));
-				HttpSession session = request.getSession();
-				session.setAttribute("nombre", request.getParameter("usuario"));
-				//User normal
-				if(tipo == 1) {
-					request.getRequestDispatcher("/WEB-INF/homeCliente.jsp").forward(request, response);
+				int borrado = Integer.valueOf(rs.getString("borrar"));
+				if(borrado == 0) {
+					HttpSession session = request.getSession();
+					session.setAttribute("nombre", request.getParameter("usuario"));
+					//User normal
+					if(tipo == 1) {
+						request.getRequestDispatcher("/WEB-INF/homeCliente.jsp").forward(request, response);
+					}
+					//User admin
+					else {
+						request.getRequestDispatcher("/WEB-INF/homeAdmin.jsp").forward(request, response);
+					}
 				}
-				//User admin
 				else {
-					request.getRequestDispatcher("/WEB-INF/homeAdmin.jsp").forward(request, response);
+					response.sendRedirect("paginas/indexErrorBorrado.html");
 				}
 			}
 			else {

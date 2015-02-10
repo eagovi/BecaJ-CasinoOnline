@@ -27,6 +27,34 @@
 				<a class="enlace" href="Salir"><li>Log out</li></a>
 			</ul>
 			</div>
+			
+			
+			<div class = "informacion">
+				<table class = "tablaDatos">
+					<tr>
+						<td>Juegos</td>
+						<td>Descripcion</td>
+					</tr>
+					<%
+					
+					DameConexion instancia = DameConexion.getInstancia();
+					Connection conexion = instancia.getConexion();
+					
+					Statement oStmt = conexion.createStatement();
+					Statement oStmtPuntos = conexion.createStatement();
+					
+					ResultSet rs = oStmt.executeQuery("SELECT nombre, descripcion FROM Juego");
+					
+					while(rs.next()) {%>
+						<tr>
+							<td><a title="jugar" href="<%=rs.getString("nombre")%>Servlet"><%=rs.getString("nombre")%></a></td>
+							<td><%=rs.getString("descripcion")%></td>
+						</tr>
+						
+					<%}%>					
+				</table>
+			</div>	
+		
 		</div><!--FIN CONTENEDOR-->
 </body>
 </html>
