@@ -62,7 +62,7 @@ public class Noticias extends HttpServlet {
 		
 		Calendar c = Calendar.getInstance(); 
 		int dia = c.get(Calendar.DAY_OF_MONTH); 
-		int mes = c.get(Calendar.MONTH); 
+		int mes = c.get(Calendar.MONTH)+1; 
 		int anyo = c.get(Calendar.YEAR);
 		
 		String fecha = Integer.toString(dia)+Integer.toString(mes)+Integer.toString(anyo);
