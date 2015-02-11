@@ -75,6 +75,30 @@
 								<td><%=rsTipo.getString("nombre")%></td>
 							</tr>
 						</table>
+						
+						<%
+						//int id = Integer.parseInt((String) session.getAttribute("id_noticias"));
+						//String fecha = (String) session.getAttribute("fecha");
+						
+						ResultSet rsnoticias = oStmt.executeQuery("SELECT id_noticias, titular, imagen, contenido, fecha FROM Noticias order by fecha desc");					
+						rsnoticias.next();									
+						%>
+						
+						<table class="tablaNoticias">
+							<tr>
+								<td rowspan="2"><img src="<%=rsnoticias.getString("imagen")%>"></td>
+							</tr>
+							<tr>
+								<td><%=rsnoticias.getString("fecha")%></td>
+							</tr>
+							<tr>
+								<td><%=rsnoticias.getString("titular")%></td>
+							</tr>
+							<tr>
+								<td><%=rsnoticias.getString("contenido")%></td>
+							</tr>
+							
+						</table>
 				</div>
 		</div><!--FIN CONTENEDOR-->
 	</body>

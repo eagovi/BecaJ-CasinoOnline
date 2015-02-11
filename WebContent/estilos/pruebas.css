@@ -11,14 +11,12 @@
 }
 
 .tablaDatosCliente{
-	width:100%;
-	border:2px solid rgba(82,18,18,1);
-	border-collapse:collapse;
-	line-height:24px;
-	vertical-align:center;
-	font-family:arial;
-	color:rgba(0,0,0,1);
-	text-align:center;
+border: 2px solid rgba(82,18,18,1);
+border-collapse: collapse;
+line-height: 24px;
+vertical-align: center;
+font-family: arial;
+color: rgba(0,0,0,1);
 }
 
 .tablaDatosCliente td{
