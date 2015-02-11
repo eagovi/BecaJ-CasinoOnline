@@ -26,7 +26,7 @@ public class HighestcardServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Carta mas alta");
+		request.setAttribute("jugado", "no");
 		request.getRequestDispatcher("/WEB-INF/juegos/Highestcard.jsp").forward(request, response);
 	}
 
