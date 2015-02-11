@@ -77,8 +77,6 @@
 						</table>
 						
 						<%
-						//int id = Integer.parseInt((String) session.getAttribute("id_noticias"));
-						//String fecha = (String) session.getAttribute("fecha");
 						
 						ResultSet rsnoticias = oStmt.executeQuery("SELECT id_noticias, titular, imagen, contenido, fecha FROM Noticias order by fecha desc");					
 						rsnoticias.next();									
