@@ -57,44 +57,48 @@
 							<td colspan="2" class="cabezaTabla">DATOS CLIENTE</td>
 						</tr>
 						<tr>
-							<td class="derechaTabla">Nombre usuario</td>
+							<td class="izquierdaTabla">Nombre usuario</td>
 							<td><%=login%></td>
 						</tr>
 						<tr>
-							<td class="derechaTabla">Imagen</td>
+							<td class="izquierdaTabla">Imagen</td>
 							<td><img class="imgUser" src="<%=rs.getString("imagen")%>"/></td>
 						</tr>
 						<tr>
-							<td class="derechaTabla">Nombre</td>
+							<td class="izquierdaTabla">Nombre</td>
 							<td><%=rs.getString("nombre")%></td>
 						</tr>
 						<tr>
-							<td class="derechaTabla">Apellido</td>
+							<td class="izquierdaTabla">Apellido</td>
 							<td><%=rs.getString("apellido")%></td>
 						</tr>
 						<tr>
-							<td class="derechaTabla">Fecha de nacimiento</td>
+							<td class="izquierdaTabla">Fecha de nacimiento</td>
 							<td><%=rs.getString("fecha_nac")%></td>
 						</tr>
 						<tr>
-							<td class="derechaTabla">Mail</td>
+							<td class="izquierdaTabla">Mail</td>
 							<td><%=rs.getString("mail")%></td>
 						</tr>
 						<tr>
-							<td class="derechaTabla">Puntos</td>
+							<td class="izquierdaTabla">Puntos</td>
 							<td><%=rsPuntos.getString("puntos")%></td>
 						</tr>
 						<tr>
-							<td class="derechaTabla">Tipo de cuenta</td>
+							<td class="izquierdaTabla">Tipo de cuenta</td>
 							<td><%=tipoCuenta%></td>
 						</tr>
 						<tr>
-							<form action="Borrar" method="GET">
-								<td class="boton_enviar"><input type="submit" name="borrar" value="Borrar usuario"/></td>
-							</form>
-							<form action="Premium" method="GET">
-								<td><input type="submit" name="premium" value="Hacer premium"/></td>
-							</form>
+							<td>
+								<form action="Borrar" method="GET">
+									<td class="boton_enviar"><input type="submit" name="borrar" value="Borrar usuario"/></td>
+								</form>
+							</td>
+							<td>
+								<form action="Premium" method="GET">
+									<td><input type="submit" name="premium" value="Hacer premium"/></td>
+								</form>
+							</td>
 						</tr>
 						<%}
 							else {
@@ -103,9 +107,74 @@
 				</table><!--FIN TABLA DATOS-->
 				
 				<table class="tablaPuntos">
+				
+				<%
+					Statement oStmtCaja = conexion.createStatement();
+					Statement oStmtCompraPuntos = conexion.createStatement();
+					Statement oStmtVentaPuntos = conexion.createStatement();
+					ResultSet rsCompraPuntos = null;
+					ResultSet rsVentaPuntos = null;
+					ResultSet rsClienteCaja = null;
+					
+					rsClienteCaja = oStmtCaja.executeQuery("SELECT id_transaccion FROM caja WHERE login='"+login+"'");
+					rsClienteCaja.next();
+					int idTransaccion = Integer.parseInt(rsClienteCaja.getString("id_transaccion"));
+					
+					rsCompraPuntos = oStmtCompraPuntos.executeQuery("SELECT fecha, puntos FROM compra_puntos WHERE id_transaccion="+idTransaccion);
+					rsVentaPuntos = oStmtVentaPuntos.executeQuery("SELECT fecha, puntos FROM venta_puntos WHERE id_transaccion="+idTransaccion);
+					
+					
+					%>
 					<tr>
-						<td colspan="2" class="cabezaTabla">HISTORIAL DE PUNTOS</td>
+						<td class="cabezaTabla">HISTORIAL DE PUNTOS</td>
 					</tr>
+					<tr>
+						<td>
+							<table class="tablaPuntosComprados">
+								<tr>
+									<td class="cabezaTabla" colspan="2">Comprados</td>
+								</tr>
+								<tr>
+									<td>Fecha</td>
+									<td>Puntos</td>
+								</tr>
+								<%
+								while(rsCompraPuntos.next()){
+								 %>
+								<tr>
+									<td><%=rsCompraPuntos.getString("fecha") %></td>
+									<td><%=rsCompraPuntos.getString("puntos") %></td>
+								</tr>
+							<%} %>
+							</table>
+						</td>
+					</tr>
+					
+					
+					<tr>
+						<td>
+							<table class="tablaPuntosVendidos">
+								<tr>
+									<td class="cabezaTabla" colspan="2">Vendidos</td>
+								</tr>
+								<tr>
+									<td>Fecha</td>
+									<td>Puntos</td>
+								</tr>
+							<%
+							while(rsVentaPuntos.next()){
+							%>
+								<tr>
+									<td><%=rsVentaPuntos.getString("fecha") %></td>
+									<td><%=rsVentaPuntos.getString("puntos") %></td>
+								</tr>
+							<%}%>
+							</table>
+						</td>
+					</tr>
+					
+					
+					
 				</table>
 				
 				<table class="tablaEstadisticas">
