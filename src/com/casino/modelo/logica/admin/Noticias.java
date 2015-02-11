@@ -1,7 +1,5 @@
 package com.casino.modelo.logica.admin;
 
-import java.util.Calendar;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -12,8 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
 
 import com.casino.dataService.DameConexion;
 
@@ -60,15 +56,8 @@ public class Noticias extends HttpServlet {
 		String imagen = request.getParameter("imagenNoticia");
 		String contenido = request.getParameter("contenidoNoticia");
 		
-		Calendar c = Calendar.getInstance(); 
-		int dia = c.get(Calendar.DAY_OF_MONTH); 
-		int mes = c.get(Calendar.MONTH)+1; 
-		int anyo = c.get(Calendar.YEAR);
-		
-		String fecha = Integer.toString(dia)+Integer.toString(mes)+Integer.toString(anyo);
-		
 		try {
-			sSQL = "INSERT INTO Noticias (id_noticias, titular, imagen, contenido, fecha) VALUES (ID_NOTICIA.NEXTVAL, '"+titular+"', '"+imagen+"', '"+contenido+"', to_date(lpad('"+fecha+"',8,'0'),'ddmmyyyy'))";
+			sSQL = "INSERT INTO Noticias (id_noticias, titular, imagen, contenido, fecha) VALUES (ID_NOTICIA.NEXTVAL, '"+titular+"', '"+imagen+"', '"+contenido+"', sysdate,'ddmmyyyy'))";
 			System.out.println(sSQL);
 			oStmt.executeUpdate(sSQL);
 			System.out.println("NOTICIA ENVIADA, CABRONAZO.");
