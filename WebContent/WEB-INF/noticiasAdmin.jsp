@@ -8,17 +8,18 @@
 	<body>
 		<div class="contenedor">
 			<div class="cabecera">
-				<a href="home.html"><img class="logo" src="imagenes/logo.png" alt="logo"/></a>
+					<a href="home.html"><img class="logo" src="imagenes/logo.png" alt="logo"/></a>
 					<p>Bienvenido</p>
-			</div><!-- FIN CABECERA-->
+			</div><!-- FIN CABECERA-->	
 			<div class="menu">
-			<ul class="listaMenuAdmin">
-				<a class="enlace" href="FrontControllerAdmin?accion=homeAdmin"><li>Home</li></a>
-				<a class="enlace" href="FrontControllerAdmin?accion=clientesAdmin"><li>Clientes</li></a>
-				<a class="enlace_marcado" href="#"><li class="marcado">Noticias</li></a>
-				<a class="enlace" href="Salir"><li>Log out</li></a>
-			</ul>
+				<ul class="listaMenuAdmin">
+					<a class="enlace" href="FrontControllerAdmin?accion=homeAdmin"><li>Home</li></a>
+					<a class="enlace" href="FrontControllerAdmin?accion=clientesAdmin"><li>Clientes</li></a>
+					<a class="enlace_marcado" href="#"><li class="marcado">Noticias</li></a>
+					<a class="enlace" href="Salir"><li>Log out</li></a>
+				</ul>
 			</div>
+			
 			<div class="informacion">
 				<table class="tablaNoticias">
 					<form action="Noticias" method="POST">
