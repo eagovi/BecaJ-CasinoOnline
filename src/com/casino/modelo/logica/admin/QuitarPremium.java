@@ -14,16 +14,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.casino.dataService.DameConexion;
 
 /**
- * Servlet implementation class Noticias
+ * Servlet implementation class QuitarPremium
  */
-@WebServlet("/Noticias")
-public class Noticias extends HttpServlet {
+@WebServlet("/QuitarPremium")
+public class QuitarPremium extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Noticias() {
+    public QuitarPremium() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,45 +32,25 @@ public class Noticias extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DameConexion instancia = DameConexion.getInstancia();
-		
+		String login = (String) request.getParameter("usuarioNormal");
 		Statement oStmt = null;
-		String sSQL = null;
 		Connection miConexion=null;
 		try {
 			miConexion= instancia.getConexion();
 			oStmt =miConexion.createStatement();
+			oStmt.executeUpdate("UPDATE cuenta SET tipo_cuenta=1 WHERE login='"+login+"'");
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
-		String titular = request.getParameter("titularNoticia");
-		String imagen = request.getParameter("imagenNoticia");
-		String contenido = request.getParameter("contenidoNoticia");
-		
-		try {
-			sSQL = "INSERT INTO Noticias (id_noticias, titular, imagen, contenido, fecha) VALUES (ID_NOTICIA.NEXTVAL, '"+titular+"', '"+imagen+"', '"+contenido+"', sysdate,'ddmmyyyy'))";
-			System.out.println(sSQL);
-			oStmt.executeUpdate(sSQL);
-			
-		} catch (SQLException e) {
-			/*
-			try {
-				miConexion.rollback();
-				
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}*/
-			e.printStackTrace();
-		} 
+	request.getRequestDispatcher("/WEB-INF/clientesAdmin.jsp").forward(request, response);
+	}
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 	}
 
 }

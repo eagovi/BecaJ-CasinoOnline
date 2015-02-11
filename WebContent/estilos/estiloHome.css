@@ -152,6 +152,10 @@ body {
 	color:rgba(82,18,18,1);
 }
 
+.subrayado{
+	text-decoration:underline;
+}
+
 /*CLASES DE TABLAS*/
 
 .tablaDatos{
@@ -240,6 +244,7 @@ body {
 	background-color:rgba(186,186,186,1);
 }
 
-.izquierdaTabla{
-	text-decoration:underline;
+.tablaEstadisticas td{
+	width:50%;
+	
 }

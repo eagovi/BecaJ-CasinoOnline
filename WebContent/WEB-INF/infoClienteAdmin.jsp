@@ -43,15 +43,11 @@
 							
 							ResultSet rsPuntos = null;
 							ResultSet rs = oStmt.executeQuery("SELECT login, nombre, apellido, fecha_nac, mail, imagen FROM Cliente WHERE login = '"+login+"'");
-							rsPuntos = oStmtPuntos.executeQuery("SELECT puntos, tipo_cuenta FROM Cuenta WHERE login='"+login+"'");
+							rsPuntos = oStmtPuntos.executeQuery("SELECT c.puntos, c.tipo_cuenta, t.nombre FROM Cuenta c, tipo t WHERE c.tipo_cuenta=t.tipo_cuenta AND login='"+login+"'");
 							rsPuntos.next();
 							
-							String tipoCuenta;
-							int tipo = Integer.valueOf(rsPuntos.getString("tipo_cuenta"));
-							if(tipo==2)
-								tipoCuenta="Premium";
-							else
-								tipoCuenta="Normal";
+							String tipoCuenta = rsPuntos.getString("nombre");
+							
 							
 							Statement oStmtBorrado = conexion.createStatement();
 							
@@ -108,11 +104,21 @@
 										<input type="hidden" name="usuarioBorrar" value="<%=login %>"/>
 									</form>
 								</td>
+							<%if(tipoCuenta.equals("normal")){ %>
 								<td>
-									<form action="Premium" method="GET">
+									<form action="HacerPremium" method="GET">
 										<input type="submit" name="premium" value="Hacer premium"/>
+										<input type="hidden" name="usuarioPremium" value="<%=login %>"/>
 									</form>
 								</td>
+								<%} else{ %>
+								<td>
+									<form action="QuitarPremium" method="GET">
+										<input type="submit" name="premium" value="Quitar premium"/>
+										<input type="hidden" name="usuarioNormal" value="<%=login %>"/>
+									</form>
+								</td>
+								<%} %>
 							</tr>
 							<%}
 							else {%>
