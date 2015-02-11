@@ -70,7 +70,7 @@
 						<%} %>	
 				</table>
 			</div>
-			<div class="pieCentrado">
+			<div class="pie">
 				<img class="pieImagen" src="imagenes/pie.png" alt="pie"/>
 			</div>
 		</div><!--FIN CONTENEDOR-->

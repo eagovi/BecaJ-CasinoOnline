@@ -28,7 +28,7 @@
 				<a class="enlace" href="Salir"><li>Log out</li></a>
 			</ul>
 			</div>
-			<div class="informacionCliente">
+			<div class="informacion">
 				<table class="tablaDatosCliente">
 					<%
 						DameConexion instancia = DameConexion.getInstancia();
@@ -185,7 +185,7 @@
 				
 				
 			</div>
-			<div class="pieCentrado">
+			<div class="pie">
 				<img class="pieImagen" src="imagenes/pie.png" alt="pie"/>
 			</div>
 		</div><!--FIN CONTENEDOR-->

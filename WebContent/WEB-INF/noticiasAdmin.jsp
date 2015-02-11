@@ -19,7 +19,7 @@
 				<a class="enlace" href="Salir"><li>Log out</li></a>
 			</ul>
 			</div>
-			<div class="informacionNoticias">
+			<div class="informacion">
 				<table class="tablaNoticias">
 					<form action="Noticias" method="POST">
 						<tr>
@@ -41,7 +41,7 @@
 					</form>
 				</table>
 			</div>
-			<div class="pieCentrado">
+			<div class="pie">
 				<img class="pieImagen" src="imagenes/pie.png" alt="pie"/>
 			</div>
 		</div><!--FIN CONTENEDOR-->
