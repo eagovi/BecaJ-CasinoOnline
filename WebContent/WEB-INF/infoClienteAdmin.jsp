@@ -53,47 +53,59 @@
 							else
 								tipoCuenta="Normal";
 							
+							Statement oStmtBorrado = conexion.createStatement();
+							
+							ResultSet rsBorrado = oStmtBorrado.executeQuery("SELECT borrar FROM Usuario WHERE login='"+login+"'");
+							
+							rsBorrado.next();
+							
+							String borrado = rsBorrado.getString("borrar");
+							
 							if(rs.next()) {
 						%>
 							<tr>
 								<td colspan="2" class="cabezaTabla">DATOS CLIENTE</td>
 							</tr>
 							<tr>
-								<td class="izquierdaTabla">Nombre usuario</td>
+								<td class="subrayado">Nombre usuario</td>
 								<td><%=login%></td>
 							</tr>
 							<tr>
-								<td class="izquierdaTabla">Imagen</td>
+								<td class="subrayado">Imagen</td>
 								<td><img class="imgUser" src="<%=rs.getString("imagen")%>"/></td>
 							</tr>
 							<tr>
-								<td class="izquierdaTabla">Nombre</td>
+								<td class="subrayado">Nombre</td>
 								<td><%=rs.getString("nombre")%></td>
 							</tr>
 							<tr>
-								<td class="izquierdaTabla">Apellido</td>
+								<td class="subrayado">Apellido</td>
 								<td><%=rs.getString("apellido")%></td>
 							</tr>
 							<tr>
-								<td class="izquierdaTabla">Fecha de nacimiento</td>
+								<td class="subrayado">Fecha de nacimiento</td>
 								<td><%=rs.getString("fecha_nac")%></td>
 							</tr>
 							<tr>
-								<td class="izquierdaTabla">Mail</td>
+								<td class="subrayado">Mail</td>
 								<td><%=rs.getString("mail")%></td>
 							</tr>
 							<tr>
-								<td class="izquierdaTabla">Puntos</td>
+								<td class="subrayado">Puntos</td>
 								<td><%=rsPuntos.getString("puntos")%></td>
 							</tr>
 							<tr>
-								<td class="izquierdaTabla">Tipo de cuenta</td>
+								<td class="subrayado">Tipo de cuenta</td>
 								<td><%=tipoCuenta%></td>
 							</tr>
+							<%
+							if(borrado.equals("0")){
+							%>
 							<tr>
 								<td class="boton_enviar">
-									<form action="Borrar" method="GET">
+									<form action="BorrarCliente" method="GET">
 										<input type="submit" name="borrar" value="Borrar usuario"/>
+										<input type="hidden" name="usuarioBorrar" value="<%=login %>"/>
 									</form>
 								</td>
 								<td>
@@ -103,10 +115,19 @@
 								</td>
 							</tr>
 							<%}
-								else {
-									out.println("jose lleva bragas");
-								}%>
-					</table><!--FIN TABLA DATOS CLIENTE-->
+							else {%>
+							<tr>
+								<td colspan="2" style="text-align:center;">
+									<form action="ReactivarCliente" method="GET">
+										<input type="submit" name="reactivar" value="Reactivar usuario"/>
+										<input type="hidden" name="usuarioReactivar" value="<%=login %>"/>
+									</form>
+								</td>
+							</tr>
+							<%}
+							}
+							%>
+							</table><!--FIN TABLA DATOS CLIENTE-->
 				</div><!--cierro el div tresTablas-->
 				
 				<div class="tresTablas">
@@ -138,8 +159,8 @@
 										<td class="cabezaTabla" colspan="2">Comprados</td>
 									</tr>
 									<tr>
-										<td>Fecha</td>
-										<td>Puntos</td>
+										<td class="subrayado">Fecha</td>
+										<td class="subrayado">Puntos</td>
 									</tr>
 									<%
 									while(rsCompraPuntos.next()){
@@ -157,8 +178,8 @@
 										<td class="cabezaTabla" colspan="2">Vendidos</td>
 									</tr>
 									<tr>
-										<td>Fecha</td>
-										<td>Puntos</td>
+										<td class="subrayado">Fecha</td>
+										<td class="subrayado">Puntos</td>
 									</tr>
 									<%
 									while(rsVentaPuntos.next()){
@@ -195,19 +216,19 @@
 						while(rsBalance.next()){
 						%>
 						<tr>
-							<td>Puntos</td>
+							<td class="subrayado">Puntos</td>
 							<td><%=rsBalance.getString("puntos")%></td>
 						</tr>
 						<tr>
-							<td>Fecha</td>
+							<td class="subrayado">Fecha</td>
 							<td><%=rsBalance.getString("fecha")%></td>
 						</tr>
 						<tr>
-							<td>Juego</td>
+							<td class="subrayado">Juego</td>
 							<td><%=rsBalance.getString("id_juego")%></td>
 						</tr>
 						<tr>
-							<td></td>
+							<td><br></td>
 						</tr>						
 						<%} %>
 					</table>	
