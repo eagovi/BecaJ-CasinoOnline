@@ -16,7 +16,7 @@
 		<div class="contenedor"><!-- Inicio del contenedor-->
 			<div class="cabecera">
 				<a href="./homeCliente.jsp"><img class="logo" src="imagenes/logo.png" alt="logo"/></a>
-					<p>Bienvenido</p>
+					<img class="gif" src="imagenes/ImgCliente.gif" alt="GIF"/>
 			</div><!-- FIN CABECERA-->
 			<div class="menu">
 				<ul class="listaMenuCliente">
@@ -27,11 +27,7 @@
 					<a class="enlace" href="Salir"><li>Log out</li></a>
 				</ul>
 			</div>
-				
-			<div class="gifcliente">
-				<img class="gif" src="imagenes/ImgCliente.gif" alt="GIF"/>
-			</div>
-				
+			
 			<div class="informacion">
 						
 					<%
