@@ -15,7 +15,7 @@
 	<body>
 		<div class="contenedor"><!-- Inicio del contenedor-->
 			<div class="cabecera">
-				<a href="home.html"><img class="logo" src="imagenes/logo.png" alt="logo"/></a>
+				<a href="./homeCliente.jsp"><img class="logo" src="imagenes/logo.png" alt="logo"/></a>
 					<p>Bienvenido</p>
 			</div><!-- FIN CABECERA-->
 			<div class="menu">
@@ -56,8 +56,9 @@
 																	"FROM Tipo WHERE tipo_cuenta='"+rsPuntos.getString("tipo_cuenta")+"'");
 						rsTipo.next();										
 						%>
+				<form action="CambiarImagen" method="GET">
 				<table class="tablaDatosCliente">
-					<tr class="cabezaTabla">
+					<tr class="cabezaTabla" style="font-family:october;">
 						<td colspan="2">Tu cuenta</td>
 					</tr>
 					<tr>
@@ -65,27 +66,37 @@
 						<td><%=rs.getString("nombre")%> <%=rs.getString("apellido")%></td>
 					</tr>
 					<tr>
-						<td>Puntos: </td>
+						<td class="subrayado">Cambiar mi imagen:</td>
+						<td><input type="text" name="urlimagen"/><input type="submit" name="cambioImagen" value="Cambiar"/></td>
+					</tr>
+					<tr>
+						<td class="subrayado">Puntos: </td>
 						<td><%=rsPuntos.getString("puntos")%></td>
 					</tr>
 					<tr>
-						<td>Tipo de cuenta: </td>
+						<td class="subrayado">Tipo de cuenta: </td>
 						<td><%=rsTipo.getString("nombre")%></td>
 					</tr>
 				</table> <!--FIN TABLA DATOS CLIENTE-->
+				</form>
 						
 				<%
 				
-				ResultSet rsnoticias = oStmt.executeQuery("SELECT id_noticias, titular, imagen, contenido, fecha FROM Noticias order by fecha desc");					
-				rsnoticias.next();									
+				ResultSet rsnoticias = oStmt.executeQuery("SELECT id_noticias, titular, imagen, contenido, fecha FROM Noticias order by id_noticias desc");					
+												
 				%>
 						
 				<div class="noticiaFresca">
 					<div><h2>NOTICIAS</h2></div>
-					<div><img class="imgNoticia" src="<%=rsnoticias.getString("imagen")%>"></div>
-					<div><h3 class="titularNoticia"><%=rsnoticias.getString("titular")%></h3></div>
-					<div><p class="fechaNoticia"><%=rsnoticias.getString("fecha")%></p></div>
-					<div><p class="textoContenido"><%=rsnoticias.getString("contenido")%></p></div>
+					<%while(rsnoticias.next()){ %>
+					<div class="cadaNoticia">
+						<div><img class="imgNoticia" src="<%=rsnoticias.getString("imagen")%>"></div>
+						<div><h3 class="titularNoticia"><%=rsnoticias.getString("titular")%></h3></div>
+						<div><p class="fechaNoticia"><%=rsnoticias.getString("fecha")%></p></div>
+						<div><p class="textoContenido"><%=rsnoticias.getString("contenido")%></p></div>
+						<div><p><br></p></div>
+					</div>
+					<%} %>
 				</div>
 				
 			</div>

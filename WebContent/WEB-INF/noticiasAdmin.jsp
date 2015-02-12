@@ -21,8 +21,8 @@
 			</div>
 			
 			<div class="informacion">
+			<form action="Noticias" method="POST">
 				<table class="tablaNoticias">
-					<form action="Noticias" method="POST">
 						<tr>
 							<td class="celda_izq">Titular:</td>
 							<td class="celda_der"><input type="text" maxlength="40" size="38" name="titularNoticia"/></td>
@@ -39,8 +39,8 @@
 							<td class="celda_izq boton_enviar"><input class="boton" type="submit" name="enviar" value="Enviar"/></td> 
 							<td class="celda_der"><input class="boton" type="reset" name="borrar" value="borrar"/></td>
 						</tr>
-					</form>
 				</table>
+			</form>
 			</div>
 			<div class="pie">
 				<img class="pieImagen" src="imagenes/pie.png" alt="pie"/>

@@ -15,7 +15,7 @@
 <body>
 		<div class="contenedor">
 			<div class="cabecera">
-				<a href="home.html"><img class="logo" src="imagenes/logo.png" alt="logo"/></a>
+				<a href="WEB-INF/homeCliente.jsp"><img class="logo" src="imagenes/logo.png" alt="logo"/></a>
 					<p>Bienvenido</p>
 			</div><!-- FIN CABECERA-->
 			<div class="menu">

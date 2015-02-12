@@ -241,6 +241,7 @@ body {
 	padding:20px;
 	background-color:rgba(186,186,186,1);
 	float:left;
+	font-family:arial;
 }
 
 .tablaEstadisticas{
@@ -272,12 +273,18 @@ body {
 	margin-bottom:40px;
 }
 
+.cadaNoticia{
+	clear:both;
+}
+
 .noticiaFresca h2{
 	 text-align:center;
 	 color:rgba(0,0,0,1);
+	 border:1px solid black;
 }
 
 .imgNoticia{
+	margin-top:25px;
 	position:relative;
 	width:30%;
 	height:30%;
@@ -286,7 +293,6 @@ body {
 .titularNoticia{
 	position:relative;
 	color:rgba(82,18,18,1);
-	text-decoration:underline;
 	width:66%;
 	float:right;
 	padding-left:20px;
@@ -299,6 +305,7 @@ body {
 	text-decoration:underline;
 	width:66%;
 	color:rgba(0,0,0,1);
+	font-size:12px;
 }
 
 .textoContenido{

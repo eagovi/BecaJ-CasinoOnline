@@ -57,7 +57,7 @@ public class Noticias extends HttpServlet {
 		String contenido = request.getParameter("contenidoNoticia");
 		
 		try {
-			sSQL = "INSERT INTO Noticias (id_noticias, titular, imagen, contenido, fecha) VALUES (ID_NOTICIA.NEXTVAL, '"+titular+"', '"+imagen+"', '"+contenido+"', sysdate,'ddmmyyyy'))";
+			sSQL = "INSERT INTO Noticias (id_noticias, titular, imagen, contenido, fecha) VALUES (ID_NOTICIA.NEXTVAL, '"+titular+"', '"+imagen+"', '"+contenido+"', sysdate)";
 			System.out.println(sSQL);
 			oStmt.executeUpdate(sSQL);
 			
@@ -71,6 +71,7 @@ public class Noticias extends HttpServlet {
 			}*/
 			e.printStackTrace();
 		} 
+		request.getRequestDispatcher("/WEB-INF/noticiasAdmin.jsp").forward(request, response);
 	}
 
 }

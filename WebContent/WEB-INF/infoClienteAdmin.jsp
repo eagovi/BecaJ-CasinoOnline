@@ -44,10 +44,11 @@
 							ResultSet rsPuntos = null;
 							ResultSet rs = oStmt.executeQuery("SELECT login, nombre, apellido, fecha_nac, mail, imagen FROM Cliente WHERE login = '"+login+"'");
 							rsPuntos = oStmtPuntos.executeQuery("SELECT c.puntos, c.tipo_cuenta, t.nombre FROM Cuenta c, tipo t WHERE c.tipo_cuenta=t.tipo_cuenta AND login='"+login+"'");
+						
 							rsPuntos.next();
 							
 							String tipoCuenta = rsPuntos.getString("nombre");
-							
+							 
 							
 							Statement oStmtBorrado = conexion.createStatement();
 							
@@ -209,14 +210,21 @@
 					<%
 						Statement oStmtBalance = conexion.createStatement();
 						Statement oStmtEstadisticas = conexion.createStatement();
+						Statement oStmtTipoJuego = conexion.createStatement();
+						
 						
 						ResultSet rsBalance = null;
 						ResultSet rsEstadisticas = null;
+						ResultSet rsTipoJuego;
 						
 						rsClienteCaja = oStmtCaja.executeQuery("SELECT id_balance FROM caja WHERE login='"+login+"'");
 						rsClienteCaja.next();
 						String idBalance = rsClienteCaja.getString("id_balance");
 						rsBalance = oStmtBalance.executeQuery("SELECT puntos, fecha, id_juego FROM balance WHERE id_balance="+idBalance);
+						
+						rsTipoJuego = oStmtTipoJuego.executeQuery("SELECT j.nombre FROM balance b, juego j WHERE b.id_juego = j.id_juego");
+						rsTipoJuego.next();
+						String nombreJuego = rsTipoJuego.getString("nombre");
 						
 						
 						while(rsBalance.next()){
@@ -231,7 +239,7 @@
 						</tr>
 						<tr>
 							<td class="subrayado">Juego</td>
-							<td><%=rsBalance.getString("id_juego")%></td>
+							<td><%=nombreJuego %></td>
 						</tr>
 						<tr>
 							<td><br></td>
