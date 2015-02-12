@@ -209,23 +209,24 @@
 						</tr>
 					<%
 						Statement oStmtBalance = conexion.createStatement();
+						Statement oStmtBalance2 = conexion.createStatement();
 						Statement oStmtEstadisticas = conexion.createStatement();
-						Statement oStmtTipoJuego = conexion.createStatement();
-						
-						
+												
 						ResultSet rsBalance = null;
+						ResultSet rsBalance2 = null;
 						ResultSet rsEstadisticas = null;
-						ResultSet rsTipoJuego;
+						
 						
 						rsClienteCaja = oStmtCaja.executeQuery("SELECT id_balance FROM caja WHERE login='"+login+"'");
 						rsClienteCaja.next();
 						String idBalance = rsClienteCaja.getString("id_balance");
 						rsBalance = oStmtBalance.executeQuery("SELECT puntos, fecha, id_juego FROM balance WHERE id_balance="+idBalance);
+						rsBalance2 = oStmtBalance2.executeQuery("SELECT b.puntos, b.fecha, b.id_juego, j.nombre FROM balance b, juego j WHERE b.id_juego=j.id_juego AND id_balance="+idBalance);
 						
-						rsTipoJuego = oStmtTipoJuego.executeQuery("SELECT j.nombre FROM balance b, juego j WHERE b.id_juego = j.id_juego");
-						rsTipoJuego.next();
-						String nombreJuego = rsTipoJuego.getString("nombre");
+						if(rsBalance2.next()){
+							String nombreJuego = rsBalance2.getString("nombre");
 						
+															
 						
 						while(rsBalance.next()){
 						%>
@@ -244,7 +245,13 @@
 						<tr>
 							<td><br></td>
 						</tr>						
-						<%} %>
+						<%}
+						}
+						else{%>
+						<tr>
+							<td colspan="2" style="text-align:center;">No hay partidas jugadas</td>
+						</tr>
+						<%}%>
 					</table>	
 				</div><!--cierro el div tresTablas-->
 				<div class="enlaceVolver">

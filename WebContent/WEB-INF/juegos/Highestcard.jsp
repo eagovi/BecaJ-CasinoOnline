@@ -20,20 +20,20 @@
 				<p>HighestCard</p>
 		</div>
 		<div class="mesaJuego">
-			<img class="baraja" alt="mazo" src="imagenes/juegos/mazo1.png">
-			<img class="mano" alt="mano" src="imagenes/juegos/mano.png">
-			<table class="cartas">
-				<tr>
-					<th>Nuestra carta</th>
-					<th>Tu carta</th>
-				</tr>
-				<tr>
-					<%
+			<div class="mazo">
+				<img class="baraja" alt="mazo" src="imagenes/juegos/mazo1.png">
+			</div>
+			<%
 					String jugado = (String) request.getAttribute("jugado");
 					if(jugado.equals("no")) {
 					%>
-						<td><img alt="carta_casino" src="imagenes/juegos/mazo1.png"></td>
-						<td><img alt="tu_carta" src="imagenes/juegos/mazo1.png"></td>
+			<div class="cartasBocaAbajo">
+				<p>Nuestra carta</p>
+						<img alt="carta_casino" src="imagenes/juegos/mazo1.png">
+				<p>Tu carta</p>
+						<img alt="tu_carta" src="imagenes/juegos/mazo1.png">
+			</div>
+			
 					<%} else if(jugado.equals("si")) {
 						int cartaCasino = (Integer) request.getAttribute("cartaCasino");
 						int cartaCliente = (Integer) request.getAttribute("cartaCliente");
@@ -43,33 +43,35 @@
 						String rutaCartaCasino = baraja.getMazo(paloCasino).get(cartaCasino);
 						String rutaCartaCliente = baraja.getMazo(paloCliente).get(cartaCliente);
 					%>
-						<td><img alt="carta_casino" src="<%=rutaCartaCasino%>"></td>
-						<td><img alt="tu_casino" src="<%=rutaCartaCliente%>"></td>
-						
-					<%}%>
-				</tr>
-				<tr>
-					<%if(jugado.equals("si")) {
-						%>
-						<th colspan="2"><%=request.getAttribute("mensajeFinalCartaAlta")%></th>
-					<%}%>
-				</tr>	
-			</table>
 			
-			<table class="botones">
-				<tr>
-					<td>
-						<form action="JugarHighestcard" method="post">
-							<select name="apuesta"> 
-								<option selected value = 100> 100 puntos
-								<option  value=200> 200 puntos
-								<option value=500> 500 puntos
-							</select> 
-							<input type="submit" value="Jugar">
-						</form>
-					</td>
-				</tr>
-			</table>
+				<img alt="carta_casino" src="<%=rutaCartaCasino%>">
+			</div>
+			
+			<div class="cartaCliente">
+				
+				<img alt="tu_casino" src="<%=rutaCartaCliente%>">
+			</div>
+						
+					<%}
+					if(jugado.equals("si")) {
+					request.getAttribute("mensajeFinalCartaAlta");%>
+					<%}%>
+			<div class="botonesApuesta">		
+				<table class="botones">
+					<tr>
+						<td>
+							<form action="JugarHighestcard" method="post">
+								<select name="apuesta"> 
+									<option selected value = 100> 100 puntos
+									<option  value=200> 200 puntos
+									<option value=500> 500 puntos
+								</select> 
+								<input type="submit" value="Jugar">
+							</form>
+						</td>
+					</tr>
+				</table>
+			</div>
 			<%
 				DameConexion instancia = DameConexion.getInstancia();
 				Connection conexion = instancia.getConexion();
@@ -87,15 +89,17 @@
 				rs.next();
 				rsPuntos.next();
 			%>
-			<table class="infoCliente">
-				<tr>
-					<td rowspan="2"><img src="<%=rs.getString("imagen")%>"></td>
-					<td><%=rs.getString("nombre")%></td>
-				</tr>
-				<tr>
-					<td><%=rsPuntos.getString("puntos")%> puntos</td>
-				</tr>	
-			</table>
+			<div class="informacionCliente">
+				<table class="infoCliente">
+					<tr>
+						<td rowspan="2"><img src="<%=rs.getString("imagen")%>"></td>
+						<td><%=rs.getString("nombre")%></td>
+					</tr>
+					<tr>
+						<td><%=rsPuntos.getString("puntos")%> puntos</td>
+					</tr>	
+				</table>
+			</div>
 		</div>
 		
 		<div class="enlaceVolver">
