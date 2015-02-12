@@ -10,8 +10,7 @@
 	</head>
 		<meta charset="ISO-8859-1">
 		<title>Home</title>
-		<link rel="StyleSheet" type="text/css" href="estilos/estiloHome.css"/>
-		<link rel="StyleSheet" type="text/css" href="estilos/pruebas.css"/>
+		<link rel="StyleSheet" type="text/css" href="estilos/estiloCliente.css"/>
 	</head>
 	<body>
 		<div class="contenedor"><!-- Inicio del contenedor-->
@@ -20,19 +19,20 @@
 					<p>Bienvenido</p>
 			</div><!-- FIN CABECERA-->
 			<div class="menu">
-			<ul class="listaMenu">
-				<a class="enlace" href="#"><li>Home</li></a>
-				<a class="enlace" href="FrontControllerCliente?accion=jugarCliente"><li>Jugar</li></a>
-				<a class="enlace" href="FrontControllerCliente?accion=tiendaCliente"><li>Tienda</li></a>
-				<a class="enlace" href="FrontControllerCliente?accion=promocionesCliente"><li>Promociones</li></a>
-				<a class="enlace" href="Salir"><li>Log out</li></a>
-			</ul>
+				<ul class="listaMenuCliente">
+					<a class="enlace" href="#"><li>Home</li></a>
+					<a class="enlace" href="FrontControllerCliente?accion=jugarCliente"><li>Jugar</li></a>
+					<a class="enlace" href="FrontControllerCliente?accion=tiendaCliente"><li>Tienda</li></a>
+					<a class="enlace" href="FrontControllerCliente?accion=promocionesCliente"><li>Promociones</li></a>
+					<a class="enlace" href="Salir"><li>Log out</li></a>
+				</ul>
 			</div>
-				<div id="gifcliente">
-					<img class="gifcliente" src="imagenes/ImgCliente.gif" alt="GIF"/>
-				</div>
 				
-				<div class="informacionCliente">
+			<div class="gifcliente">
+				<img class="gif" src="imagenes/ImgCliente.gif" alt="GIF"/>
+			</div>
+				
+			<div class="informacion">
 						
 					<%
 						DameConexion instancia = DameConexion.getInstancia();
@@ -56,48 +56,43 @@
 																	"FROM Tipo WHERE tipo_cuenta='"+rsPuntos.getString("tipo_cuenta")+"'");
 						rsTipo.next();										
 						%>
-						<table class="tablaDatosCliente">
-							<tr>
-								<td rowspan="2"><img src="<%=rs.getString("imagen")%>"></td>
-								<td><%=rs.getString("nombre")%></td>
-							</tr>
-							<tr>
-								<td><%=rs.getString("apellido")%></td>
-							</tr>
-							
-						</table>
+				<table class="tablaDatosCliente">
+					<tr class="cabezaTabla">
+						<td colspan="2">Tu cuenta</td>
+					</tr>
+					<tr>
+						<td><img class="clienteImagen" src="<%=rs.getString("imagen")%>"></td>
+						<td><%=rs.getString("nombre")%> <%=rs.getString("apellido")%></td>
+					</tr>
+					<tr>
+						<td>Puntos: </td>
+						<td><%=rsPuntos.getString("puntos")%></td>
+					</tr>
+					<tr>
+						<td>Tipo de cuenta: </td>
+						<td><%=rsTipo.getString("nombre")%></td>
+					</tr>
+				</table> <!--FIN TABLA DATOS CLIENTE-->
 						
-						<table class="tablaDatos">	
-							<tr>
-								<td>Puntos: </td>
-								<td><%=rsPuntos.getString("puntos")%></td>
-								<td>Tipo de cuenta: </td>
-								<td><%=rsTipo.getString("nombre")%></td>
-							</tr>
-						</table>
+				<%
+				
+				ResultSet rsnoticias = oStmt.executeQuery("SELECT id_noticias, titular, imagen, contenido, fecha FROM Noticias order by fecha desc");					
+				rsnoticias.next();									
+				%>
 						
-						<%
-						
-						ResultSet rsnoticias = oStmt.executeQuery("SELECT id_noticias, titular, imagen, contenido, fecha FROM Noticias order by fecha desc");					
-						rsnoticias.next();									
-						%>
-						
-						<table class="tablaNoticias">
-							<tr>
-								<td rowspan="2"><img src="<%=rsnoticias.getString("imagen")%>"></td>
-							</tr>
-							<tr>
-								<td><%=rsnoticias.getString("fecha")%></td>
-							</tr>
-							<tr>
-								<td><%=rsnoticias.getString("titular")%></td>
-							</tr>
-							<tr>
-								<td><%=rsnoticias.getString("contenido")%></td>
-							</tr>
-							
-						</table>
+				<div class="noticiaFresca">
+					<div><h2>NOTICIAS</h2></div>
+					<div><img class="imgNoticia" src="<%=rsnoticias.getString("imagen")%>"></div>
+					<div><h3 class="titularNoticia"><%=rsnoticias.getString("titular")%></h3></div>
+					<div><p class="fechaNoticia"><%=rsnoticias.getString("fecha")%></p></div>
+					<div><p class="textoContenido"><%=rsnoticias.getString("contenido")%></p></div>
 				</div>
+				
+			</div>
+			
+			<div class="pie">
+				<img class="pieImagen" src="imagenes/pie.png">
+			</div>
 		</div><!--FIN CONTENEDOR-->
 	</body>
 </html>
