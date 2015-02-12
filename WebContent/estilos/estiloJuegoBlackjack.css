@@ -1,0 +1,130 @@
+@CHARSET "ISO-8859-1";
+
+/*FUENTES*/
+
+@font-face {
+   font-family: october;
+   font-style: normal;
+   font-weight: normal;
+   src: url('../fuentes/Red October-Regular.ttf');
+}
+
+@font-face {
+   font-family: casino;
+   font-style: normal;
+   font-weight: normal;
+   src: url('../fuentes/Casino.ttf');
+}
+
+/*CLASES DE ESTRUCTURA*/
+
+html{
+	height:100%;
+}
+
+body {
+	background-color:rgba(0,0,0,1);
+	font-family:october;
+	color:rgba(82,18,18,1);
+	margin:0;
+	overflow-x:hidden;
+	height:100%;
+}
+
+.contenedor{
+	position:absolute;
+	height:100%;
+	width:100%;
+}
+
+.cabecera{
+	margin-top:10px;
+	position:relative;
+	width:100%;
+	height:20%;
+}
+
+.cabecera p{
+	float:left;
+	margin-left:20px;
+	font-size:48px;
+	line-height:auto;
+	vertical-align:center;
+	text-align:center;
+}
+
+.logo{
+	height:80%;
+	margin-top:25px;
+	float:left;
+	margin-left:25px;
+}
+
+.logo img{
+	height:100%;
+}
+
+.mesaJuego {
+	margin: 0 auto;
+	width: 90%;
+	height: 70%;
+	background-image : url(../imagenes/juegos/fondo_mesa2.png);
+ 	background-repeat : repeat;
+ 	background-attachment : fixed;
+ 	border-radius: 10px;
+}
+
+.cartasCrupier {
+	position:absolute;
+	margin-top: 50px;
+	margin-left: 800px;
+	font-family: arial;
+	color: #ffffff;
+	text-align: center;
+}
+
+.cartasCrupier th{
+	width: 100px;
+}
+
+.cartasCrupier td img{
+	width: 100px;
+	height: 150px;
+}
+
+.cartasCliente {
+	position:absolute;
+	margin-top: 360px;
+	margin-left: 800px;
+	font-family: arial;
+	color: #ffffff;
+	text-align: center;
+}
+
+.cartasCliente th{
+	width: 100px;
+}
+
+.cartasCliente td img{
+	width: 100px;
+	height: 150px;
+}
+
+.botones {
+	position:absolute;
+	margin-left: 950px;
+	margin-top: 380px;
+	text-align: center;
+}
+
+.infoCliente {
+	position:absolute;
+	margin-left: 50px;
+	margin-top: 400px;
+	font-family: arial;
+	color: #ffffff;
+	
+	background-color: #000000;
+	border-radius: 5px;
+	opacity: 0.9;
+}

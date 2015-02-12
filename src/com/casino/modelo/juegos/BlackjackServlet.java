@@ -27,7 +27,7 @@ public class BlackjackServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("21");
+		request.setAttribute("jugado", "no");
 		request.getRequestDispatcher("/WEB-INF/juegos/Blackjack.jsp").forward(request, response);
 	}
 
