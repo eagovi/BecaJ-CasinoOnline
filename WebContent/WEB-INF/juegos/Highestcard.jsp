@@ -17,7 +17,7 @@
 <body>
 	<div class="contenedor">
 		<div class="cabecera">
-				<a href="home.html"><img class="logo" src="imagenes/logo.png" alt="logo"/></a>
+				<a href="#"><img class="logo" src="imagenes/logo.png" alt="logo"/></a>
 				<p>HighestCard</p>
 		</div>
 		<div class="mesaJuego">
@@ -46,8 +46,15 @@
 					%>
 						<td><img alt="carta_casino" src="<%=rutaCartaCasino%>"></td>
 						<td><img alt="tu_casino" src="<%=rutaCartaCliente%>"></td>
+						
 					<%}%>
 				</tr>
+				<tr>
+					<%if(jugado.equals("si")) {
+						%>
+						<th colspan="2"><%=request.getAttribute("mensajeFinalCartaAlta")%></th>
+					<%}%>
+				</tr>	
 			</table>
 			
 			<table class="botones">
@@ -90,6 +97,10 @@
 					<td><%=rsPuntos.getString("puntos")%> puntos</td>
 				</tr>	
 			</table>
+		</div>
+		
+		<div class="enlaceVolver">
+			<a href="FrontControllerCliente?accion=jugarCliente"><h3>Volver</h3></a>
 		</div>
 	</div>
 </body>

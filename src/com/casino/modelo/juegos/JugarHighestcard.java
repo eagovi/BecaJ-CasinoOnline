@@ -77,7 +77,7 @@ public class JugarHighestcard extends HttpServlet {
 				
 				
 				if(cartaCliente > cartaCasino) {
-					request.setAttribute("mensajeFinalCartaAlta", "Has ganado");
+					request.setAttribute("mensajeFinalCartaAlta", "Has ganado!! :(");
 					oStmt.executeUpdate("INSERT INTO balance(id_balance, puntos, fecha, id_juego) "
 							+"values("+id_balance+", "+(apuesta)+", sysdate, 3)");
 					
@@ -86,7 +86,7 @@ public class JugarHighestcard extends HttpServlet {
 											"WHERE login = '"+login+"'");
 				}
 				else  {
-					request.setAttribute("mensajeFinalCartaAlta", "Has perdido");
+					request.setAttribute("mensajeFinalCartaAlta", "Has perdido!! :)");
 					oStmt.executeUpdate("INSERT INTO balance(id_balance, puntos, fecha, id_juego) "
 							+"values("+id_balance+", "+(apuesta*(-1))+", sysdate, 3)");
 					
