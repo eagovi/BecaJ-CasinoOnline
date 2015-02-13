@@ -9,6 +9,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Random"%>
+<%@page import="com.casino.dao.ConsultasJuego"%>
+<%@page import="java.util.HashMap"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -85,31 +87,27 @@
 					</table>
 					</form>
 					
-					<%
-						DameConexion instancia = DameConexion.getInstancia();
-						Connection conexion = instancia.getConexion();
-						
-						Statement oStmt = conexion.createStatement();
-						Statement oStmtPuntos = conexion.createStatement();
-						Statement oStmtTipo = conexion.createStatement();
-						session = request.getSession();
-						String login = (String) session.getAttribute("nombre");
 					
-						ResultSet rs = oStmt.executeQuery("SELECT nombre, imagen "+ 
-																	"FROM Cliente WHERE login='"+login+"'");
-						ResultSet rsPuntos = oStmtPuntos.executeQuery("SELECT puntos "+
-																	"FROM Cuenta WHERE login='"+login+"'");
-						rs.next();
-						rsPuntos.next();
-					%>
 					<table class="infoCliente">
+						<% String login = (String) session.getAttribute("nombre");
+						HashMap<String, String> cliente = ConsultasJuego.getInstancia().dameInfoCliente(login);
+						%>
 						<tr>
-							<td rowspan="2"><img src="<%=rs.getString("imagen")%>"></td>
-							<td><%=rs.getString("nombre")%></td>
+							<td rowspan="2"><img src="<%=cliente.get("imagen")%>"></td>
+							<td><%=cliente.get("nombre")%></td>
 						</tr>
 						<tr>
-							<td><%=rsPuntos.getString("puntos")%> puntos</td>
-						</tr>	
+							<td><%=cliente.get("puntos")%> puntos</td>
+						</tr>
+					</table>
+					
+					<table class="cantidadEnJuego">
+						<tr>
+							<td>Cantidad en juego:</td>
+						</tr>
+						<tr>
+							<td><%=request.getAttribute("cantidadApostada") %> puntos</td>
+						</tr>
 					</table>
 					
 				<%} else {%>
@@ -127,22 +125,8 @@
 		
 						<form action="JugarBlackjack" method="post">
 							<table class="mensajeFinal">
-							
 								<tr>
-									<%
-									String mensaje;
-									if((Integer) request.getAttribute("cuentaCasino") > 21 && (Integer) request.getAttribute("cuenta") < 21) {
-										mensaje = "Has ganado";
-									}
-									else if((Integer) request.getAttribute("cuentaCasino") > 21 && (Integer) request.getAttribute("cuenta") > 21) {
-										mensaje = "Empate";
-									}
-									else if((Integer) request.getAttribute("cuenta") > (Integer) request.getAttribute("cuentaCasino") ) { 
-										mensaje = "Has ganado!!";
-									} else {
-										mensaje = "Has perdido!!";
-									}%>
-									<td><%=mensaje%></td>
+									<td><%=request.getAttribute("mensajeFin")%></td>
 									<td><input type="submit" name="accion" value="Reiniciar"></td>
 								</tr>
 							</table>
@@ -158,6 +142,18 @@
 								<%}%>
 							</tr>
 							
+						</table>
+						<table class="infoCliente">
+							<% String login = (String) session.getAttribute("nombre");
+							HashMap<String, String> cliente = ConsultasJuego.getInstancia().dameInfoCliente(login);
+							%>
+							<tr>
+								<td rowspan="2"><img src="<%=cliente.get("imagen")%>"></td>
+								<td><%=cliente.get("nombre")%></td>
+							</tr>
+							<tr>
+								<td><%=cliente.get("puntos")%> puntos</td>
+							</tr>
 						</table>
 					<%} %>
 				<%} else {%>

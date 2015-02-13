@@ -119,14 +119,21 @@ body {
 
 .infoCliente {
 	position:absolute;
-	margin-left: 50px;
-	margin-top: 400px;
+	margin-left:15px;
+	margin-top: 550px;
 	font-family: arial;
 	color: #ffffff;
 	
 	background-color: #000000;
 	border-radius: 5px;
 	opacity: 0.9;
+	padding: 10px;
+	text-align: center;
+}
+
+.infoCliente img {
+	width: 150px;
+	height: 100px;
 }
 
 .mensajeFinal {
@@ -149,3 +156,12 @@ body {
   transition: all 3s ease;	
 }
 
+.cantidadEnJuego {
+	position:absolute;
+	margin-top: 270px;
+	margin-left: 320px;
+	font-family: arial;
+	color: #ffffff;
+	font-size: 18px;
+	text-align: center;
+}

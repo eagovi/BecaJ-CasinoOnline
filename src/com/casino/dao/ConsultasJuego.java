@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 
 import com.casino.dataService.DameConexion;
 
@@ -61,4 +62,28 @@ public class ConsultasJuego {
 		}
 	}
 
+	//Devuelve el nombre la imagen y los puntos del cliente
+	public HashMap<String, String> dameInfoCliente(String login) {
+		Statement oStmt;
+		HashMap<String, String> datos = new HashMap<String, String>();
+		try {
+			oStmt = pedirConexion().createStatement();
+			
+			ResultSet rs = oStmt.executeQuery("SELECT c.nombre as nombre, c.imagen as imagen, cu.puntos as puntos "+ 
+					"FROM Cliente c, Cuenta cu WHERE c.login = cu.login AND c.login='"+login+"'");
+			
+			rs.next();
+			
+			datos.put("nombre", rs.getString("nombre"));
+			datos.put("imagen", rs.getString("imagen"));
+			datos.put("puntos", rs.getString("puntos"));
+			
+			return datos;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		}
+		
+		return null;
+	}
 }
