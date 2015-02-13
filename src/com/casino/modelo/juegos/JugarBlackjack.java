@@ -1,10 +1,7 @@
 package com.casino.modelo.juegos;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.servlet.ServletException;
@@ -14,7 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.casino.dataService.DameConexion;
+import com.casino.dao.ConsultasJuego;
+import com.casino.modelo.cartas.Baraja;
 
 /**
  * Servlet implementation class JugarBlackJack
@@ -22,6 +20,12 @@ import com.casino.dataService.DameConexion;
 @WebServlet("/JugarBlackjack")
 public class JugarBlackjack extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private ArrayList<String> listaCartasCliente;
+	private ArrayList<String> listaCartasCasino;
+	private int cuenta;
+	private int cuentaCasino;
+	private int apuesta;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -30,12 +34,21 @@ public class JugarBlackjack extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    
+    @Override
+    public void init() {
+    	listaCartasCliente = new ArrayList<String>();
+    	listaCartasCasino = new ArrayList<String>();
+    	cuenta = 0;
+    	cuentaCasino = 0;
+    	apuesta = 0;
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 	}
 
 	/**
@@ -45,39 +58,123 @@ public class JugarBlackjack extends HttpServlet {
 		HttpSession  session = request.getSession();
 		if(!session.isNew()) {
 			
-			int apuesta = Integer.parseInt(request.getParameter("apuesta"));
-			session = request.getSession();
-			String login = (String) session.getAttribute("nombre");
+			String login = (String) session.getAttribute("nombre");	
 			
-			DameConexion instancia = DameConexion.getInstancia();
-			Connection conexion = instancia.getConexion();
-			
+			//Comprobamos que boton se ha pulsado
 			String accion = request.getParameter("accion");
+			System.out.println(accion);
+			//Accion pedir, todas lasa variables inicializadas se da carta y se controla si se ha pasado de 21
 			
-			try {
 				if(accion.equals("Pedir")) {
-					System.out.println("Pedir");
+					
+					//Generamos una carta aleatoria
+					Random generador = new Random();
+					int cartaCliente = generador.nextInt(13);
+					int paloCliente = generador.nextInt(4);
+					
+					//Añadimos la carta al arraylist
+					Baraja baraja = Baraja.getInstancia();
+					String rutaCartaCliente = baraja.getMazo(paloCliente).get(cartaCliente);
+					listaCartasCliente.add(rutaCartaCliente);
+					request.setAttribute("listaCartasCliente", listaCartasCliente);
+					
+					//Sumamos el valor de la carta a la cuenta
+					cuenta = cuenta + baraja.valor(cartaCliente);
+					request.setAttribute("cuenta", cuenta);
+					System.out.println(cuenta);
+					if(cuenta > 21) {
+						request.setAttribute("final", "si");
+					} else {
+						request.setAttribute("final", "no");
+					}
+					
+					request.setAttribute("plantarse", "no");
+					request.setAttribute("inicio", "no");
+					request.setAttribute("jugadaCasinoTerminada", "no");
+					request.setAttribute("apuesta", "si");
+					
+				}	
+				else if(accion.equals("Reiniciar")) {
+					
+					listaCartasCliente = new ArrayList<String>();
+					listaCartasCasino = new ArrayList<String>();
+			    	cuenta = 0;
+			    	cuentaCasino = 0;
+			    	apuesta = 0;
+			    	request.setAttribute("inicio", "si");
+			    	request.setAttribute("final", "no");
+			    	request.setAttribute("plantarse", "no");
+			    	request.setAttribute("jugadaCasinoTerminada", "no");
+			    	request.setAttribute("apuesta", "no");
+			    	
+				} else if(accion.equals("Plantarse")) {
+					
+					request.setAttribute("plantarse", "si");
+					request.setAttribute("inicio", "no");
+					request.setAttribute("final", "no");
+					request.setAttribute("listaCartasCliente", listaCartasCliente);
+					request.setAttribute("cuenta", cuenta);
+					request.setAttribute("jugadaCasinoTerminada", "no");
+					request.setAttribute("apuesta", "si");
+					
+				} else if(accion.equals("Resolver")) {
+					
+					request.setAttribute("plantarse", "si");
+					request.setAttribute("inicio", "no");
+					request.setAttribute("final", "no");
+					request.setAttribute("listaCartasCliente", listaCartasCliente);
+					request.setAttribute("cuenta", cuenta);
+					request.setAttribute("apuesta", "si");
+					
+					Random generador = new Random();
+					int cartaCasino = generador.nextInt(13);
+					int paloCasino = generador.nextInt(4);
+					Baraja baraja = Baraja.getInstancia();
+					String rutaCartaCasino = baraja.getMazo(paloCasino).get(cartaCasino);
+					listaCartasCasino.add(rutaCartaCasino);
+					request.setAttribute("listaCartasCasino", listaCartasCasino);
+					cuentaCasino = cuentaCasino + baraja.valor(cartaCasino);
+					request.setAttribute("cuentaCasino", cuentaCasino);
+					
+					//Cuando el casino se pase o se plante termina la jugada
+					if(cuentaCasino >= 17) {
+						request.setAttribute("jugadaCasinoTerminada", "si");
+						
+						int id_balance = ConsultasJuego.getInstancia().obtenerBalance(login);
+						
+						//Aqui se actualizan la base de datos de acuerdo con los resultados
+						if(cuentaCasino > 21 && cuenta < 21) {
+							//ganas
+							ConsultasJuego.getInstancia().actualizarPuntosCuenta(id_balance, login, apuesta);
+						}
+						else if(cuentaCasino > 21 && cuenta > 21) {
+							//empate
+							ConsultasJuego.getInstancia().actualizarPuntosCuenta(id_balance, login, 0);
+						}
+						else if(cuenta > cuentaCasino) {
+							//ganas
+							ConsultasJuego.getInstancia().actualizarPuntosCuenta(id_balance, login, apuesta);
+						} else {
+							//pierdes
+							ConsultasJuego.getInstancia().actualizarPuntosCuenta(id_balance, login, -apuesta);
+						}
+					}
+					else {
+						request.setAttribute("jugadaCasinoTerminada", "no");
+					}
+				} else if(accion.equals("Apostar")) {
+					request.setAttribute("inicio", "si");
+					request.setAttribute("final", "no");
+					request.setAttribute("plantarse", "no");
+					request.setAttribute("jugadaCasinoTerminada", "no");
+					request.setAttribute("listaCartaCliente", new ArrayList<String>());
+					request.setAttribute("listaCartaCasino", new ArrayList<String>());
+					request.setAttribute("cuenta", 0);
+					request.setAttribute("cuentaCasino", 0);
+					request.setAttribute("apuesta", "si");
+					apuesta = Integer.parseInt( (String) request.getParameter("apuesta"));
 				}
-				Statement oStmt = conexion.createStatement();
-			
-				ResultSet rs = oStmt.executeQuery("SELECT id_balance "+ 
-												"FROM Caja WHERE login='"+login+"'");
-				rs.next();
-				
-				String id_balance = rs.getString("id_balance");
-				
-				Random generador = new Random();
-				
-				int cartaCliente = generador.nextInt(12);
-				int paloCliente = generador.nextInt(4);
-				
-				request.setAttribute("cartaCliente", cartaCliente);
-				request.setAttribute("paloCliente", paloCliente);
-				
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}		
-			
+					
 			request.getRequestDispatcher("/WEB-INF/juegos/Blackjack.jsp").forward(request, response);
 			
 		}

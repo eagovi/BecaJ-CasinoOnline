@@ -105,5 +105,20 @@ public class Baraja {
 			}
 		}
 	}
+
+	public int valor(int cartaCliente) {
+		switch (cartaCliente) {
+		case 0:
+			return 10;
+		case 10:
+			return 10;
+		case 11:
+			return 10;
+		case 12:
+			return 10;
+		default:
+			return cartaCliente+1;
+		}
+	}
 	
 }

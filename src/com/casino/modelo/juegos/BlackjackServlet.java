@@ -27,7 +27,16 @@ public class BlackjackServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("jugado", "no");
+		//Preparacion de recursos del juego
+		request.setAttribute("inicio", "si");
+		request.setAttribute("final", "no");
+		request.setAttribute("plantarse", "no");
+		request.setAttribute("jugadaCasinoTerminada", "no");
+		request.setAttribute("listaCartaCliente", null);
+		request.setAttribute("listaCartaCasino", null);
+		request.setAttribute("cuenta", 0);
+		request.setAttribute("cuentaCasino", 0);
+		request.setAttribute("apuesta", "no");
 		request.getRequestDispatcher("/WEB-INF/juegos/Blackjack.jsp").forward(request, response);
 	}
 
