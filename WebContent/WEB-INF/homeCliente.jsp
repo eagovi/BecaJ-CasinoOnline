@@ -7,11 +7,12 @@
 <%@page import="com.casino.dataService.DameConexion"%>
 <!DOCTYPE html>
 <html>
-	</head>
+	<head>
 		<meta charset="ISO-8859-1">
 		<title>Home</title>
 		<link rel="StyleSheet" type="text/css" href="estilos/estiloCliente.css"/>
 	</head>
+	
 	<body>
 		<div class="contenedor"><!-- Inicio del contenedor-->
 			<div class="cabecera">

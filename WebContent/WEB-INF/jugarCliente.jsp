@@ -17,7 +17,7 @@
 		<div class="contenedor">
 			<div class="cabecera">
 				<a href="homeCliente.jsp"><img class="logo" src="imagenes/logo.png" alt="logo"/></a>
-					<p>Bienvenido</p>
+				<img class="gif" src="imagenes/gifjuega.gif" alt="GIF"/>
 			</div><!-- FIN CABECERA-->
 			<div class="menu">
 				<ul class="listaMenuCliente">
