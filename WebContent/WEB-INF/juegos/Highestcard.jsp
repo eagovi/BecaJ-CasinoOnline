@@ -49,10 +49,10 @@
 				<p>Tu carta</p>
 					<img alt="tu_casino" src="<%=rutaCartaCliente%>">
 			</div>
+			<%}%>
 			<div class="mensajeFinal">
 				<h1>
-						<%}
-						if(jugado.equals("si")) {%>
+						<%if(jugado.equals("si")) {%>
 						<%=request.getAttribute("mensajeFinalCartaAlta")%>
 						<%}%>
 				</h1>
@@ -102,10 +102,9 @@
 				</table>
 			</div>
 			<div class="enlaceVolver">
-			<a href="FrontControllerCliente?accion=jugarCliente"><h3>Levantarse de la mesa</h3></a>
-		</div>
-		</div>		
-		
-	</div>
+				<a href="FrontControllerCliente?accion=jugarCliente">Levantarse de la mesa</a>
+			</div>
+		</div>	<!-- mesa juego acaba aqui -->	
+	</div> <!-- contenedor acaba aqui -->
 </body>
 </html>
