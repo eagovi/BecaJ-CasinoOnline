@@ -184,6 +184,34 @@ body {
 	background-color:rgba(186,186,186,.8);
 }
 
+.tablaJuegos {
+	width:60%;
+	margin-left:20%;
+	line-height:24px;
+	color:rgba(0,0,0,1);
+	text-align:center;
+	background-color:rgba(186,186,186,.8);
+	border-radius:5px;
+	padding:20px;
+}
+
+.tablaJuegos td{
+	width:250px;
+	margin-top:30px;
+}
+
+.tablaJuegos td a{
+	text-decoration:none;
+	color:rgba(161,37,37,1);
+	font-family:october
+}
+
+.tablaJuegos img{
+	width:200px;
+	height:200px;
+	border-radius:5px;
+}
+
 .cabezaTabla{
 	text-align:center;
 	color:rgba(55,62,64,1);

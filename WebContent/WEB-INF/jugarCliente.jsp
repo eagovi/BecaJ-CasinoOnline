@@ -30,10 +30,10 @@
 			</div>
 
 			<div class = "informacion">
-				<table class = "tablaDatos">
+				<table class = "tablaJuegos">
 					<tr>
-						<td>Juegos</td>
-						<td>Descripcion</td>
+						<td class="cabezaTabla"><h2>Juegos</h2></td>
+						<td class="cabezaTabla"><h2>Descripcion</h2></td>
 					</tr>
 					<%
 					
@@ -43,11 +43,14 @@
 					Statement oStmt = conexion.createStatement();
 					Statement oStmtPuntos = conexion.createStatement();
 					
-					ResultSet rs = oStmt.executeQuery("SELECT nombre, descripcion FROM Juego");
+					ResultSet rs = oStmt.executeQuery("SELECT nombre, descripcion, imagen FROM Juego");
 					
 					while(rs.next()) {%>
 						<tr>
-							<td><a title="jugar" href="<%=rs.getString("nombre")%>Servlet"><%=rs.getString("nombre")%></a></td>
+							<td>
+								<a title="jugar" href="<%=rs.getString("nombre")%>Servlet"><%=rs.getString("nombre")%><br>
+								<img src="<%=rs.getString("imagen")%>"></a>
+							</td>
 							<td><%=rs.getString("descripcion")%></td>
 						</tr>
 						
