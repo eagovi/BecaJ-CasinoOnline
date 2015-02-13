@@ -43,19 +43,20 @@
 						String rutaCartaCasino = baraja.getMazo(paloCasino).get(cartaCasino);
 						String rutaCartaCliente = baraja.getMazo(paloCliente).get(cartaCliente);
 					%>
-			
-				<img alt="carta_casino" src="<%=rutaCartaCasino%>">
+			<div class="cartasBocaArriba">
+				<p>Nuestra carta</p>
+					<img alt="carta_casino" src="<%=rutaCartaCasino%>">
+				<p>Tu carta</p>
+					<img alt="tu_casino" src="<%=rutaCartaCliente%>">
 			</div>
-			
-			<div class="cartaCliente">
-				
-				<img alt="tu_casino" src="<%=rutaCartaCliente%>">
+			<div class="mensajeFinal">
+				<h1>
+						<%}
+						if(jugado.equals("si")) {%>
+						<%=request.getAttribute("mensajeFinalCartaAlta")%>
+						<%}%>
+				</h1>
 			</div>
-						
-					<%}
-					if(jugado.equals("si")) {
-					request.getAttribute("mensajeFinalCartaAlta");%>
-					<%}%>
 			<div class="botonesApuesta">		
 				<table class="botones">
 					<tr>
@@ -100,11 +101,11 @@
 					</tr>	
 				</table>
 			</div>
+			<div class="enlaceVolver">
+			<a href="FrontControllerCliente?accion=jugarCliente"><h3>Levantarse de la mesa</h3></a>
 		</div>
+		</div>		
 		
-		<div class="enlaceVolver">
-			<a href="FrontControllerCliente?accion=jugarCliente"><h3>Volver</h3></a>
-		</div>
 	</div>
 </body>
 </html>
