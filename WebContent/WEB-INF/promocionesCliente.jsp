@@ -23,7 +23,7 @@
 					<a class="enlace" href="FrontControllerCliente?accion=homeCliente"><li>Home</li></a>
 					<a class="enlace" href="FrontControllerCliente?accion=jugarCliente"><li>Jugar</li></a>
 					<a class="enlace" href="FrontControllerCliente?accion=tiendaCliente"><li>Tienda</li></a>
-					<a class="enlace" href="#"><li>Promociones</li></a>
+					<a class="enlace_marcado" href="#"><li class="marcado">Promociones</li></a>
 					<a class="enlace" href="Salir"><li>Log out</li></a>
 				</ul>
 			</div>

@@ -20,7 +20,7 @@
 			</div><!-- FIN CABECERA-->
 			<div class="menu">
 				<ul class="listaMenuCliente">
-					<a class="enlace" href="#"><li>Home</li></a>
+					<a class="enlace_marcado" href="#"><li class="marcado">Home</li></a>
 					<a class="enlace" href="FrontControllerCliente?accion=jugarCliente"><li>Jugar</li></a>
 					<a class="enlace" href="FrontControllerCliente?accion=tiendaCliente"><li>Tienda</li></a>
 					<a class="enlace" href="FrontControllerCliente?accion=promocionesCliente"><li>Promociones</li></a>
@@ -79,12 +79,13 @@
 				<%
 				
 				ResultSet rsnoticias = oStmt.executeQuery("SELECT id_noticias, titular, imagen, contenido, fecha FROM Noticias order by id_noticias desc");					
-												
+				int contadorNoticias=0;						
 				%>
 						
 				<div class="noticiaFresca">
 					<div><h2>NOTICIAS</h2></div>
-					<%while(rsnoticias.next()){ %>
+					<%while(rsnoticias.next()){ 
+						if(contadorNoticias<3){%>
 					<div class="cadaNoticia">
 						<div><img class="imgNoticia" src="<%=rsnoticias.getString("imagen")%>"></div>
 						<div><h3 class="titularNoticia"><%=rsnoticias.getString("titular")%></h3></div>
@@ -92,7 +93,10 @@
 						<div><p class="textoContenido"><%=rsnoticias.getString("contenido")%></p></div>
 						<div><p><br></p></div>
 					</div>
-					<%} %>
+					<%
+					}
+					contadorNoticias++;
+					} %>
 				</div>
 				
 			</div>

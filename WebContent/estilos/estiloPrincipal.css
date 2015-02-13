@@ -23,7 +23,7 @@ body {
 	background-attachment:scroll;
 	background-position:center;
 	font-family:october;
-	color:rgba(82,18,18,1);
+	color:rgba(161,37,37,1);
 }
 
 h1{
@@ -45,7 +45,7 @@ h1{
 }
 .navegacion h3{
 	font-size: 20px;
-	color:rgba(82,18,18,1);
+	color:rgba(161,37,37,1);
 	text-decoration:none;
 	cursor:pointer;
 }
@@ -107,7 +107,7 @@ h1{
 	top:700px;
 	margin:0;
 	font-family:casino;
-	color:rgba(82,18,18,1);
+	color:rgba(161,37,37,1);
 	transform:translate(-50%, 0);
 	font-size:40px;
 }
@@ -120,10 +120,10 @@ h1{
 	top:50%;
 	margin:0;
 	font-family:october;
-	color:rgba(82,18,18,1);
+	color:rgba(161,37,37,1);
 	transform:translate(-50%, -50%);
 	font-size:24px;
-	color:rgba(82,18,18,1);
+	color:rgba(161,37,37,1);
 	background-color:rgba(0,0,0,.7);
 	border-radius:10px;
 }
@@ -134,7 +134,7 @@ h1{
 	top:700px;
 	margin:0;
 	font-family:october;
-	color:rgba(82,18,18,1);
+	color:rgba(161,37,37,1);
 	transform:translate(-50%,0);
 	color:rgba(55,62,64,1);
 }
@@ -148,11 +148,11 @@ h1{
 .enlace {
 	text-decoration:none;
 	text-align:center;
-	color:rgba(82,18,18,1);
+	color:rgba(161,37,37,1);
 }
 
 .titulo{
-	color:rgba(82,18,18,1);
+	color:rgba(161,37,37,1);
 	text-align:center;
 	line-height:35px;
 	vertical-align:center;
