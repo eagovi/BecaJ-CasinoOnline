@@ -58,7 +58,7 @@
 				</h1>
 			</div>
 			<div class="botonesApuesta">		
-				<table class="botones">
+				<table>
 					<tr>
 						<td>
 							<form action="JugarHighestcard" method="post">
@@ -67,7 +67,7 @@
 									<option  value=200> 200 puntos
 									<option value=500> 500 puntos
 								</select> 
-								<input type="submit" value="Jugar">
+								<input type="submit" value="Jugar" class="botonJugar">
 							</form>
 						</td>
 					</tr>
@@ -102,7 +102,7 @@
 				</table>
 			</div>
 			<div class="enlaceVolver">
-				<a href="FrontControllerCliente?accion=jugarCliente">Levantarse de la mesa</a>
+				<a href="FrontControllerCliente?accion=jugarCliente" class="enlaceVolverBoton">Levantarse de la mesa</a>
 			</div>
 		</div>	<!-- mesa juego acaba aqui -->	
 	</div> <!-- contenedor acaba aqui -->

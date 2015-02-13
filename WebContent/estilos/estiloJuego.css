@@ -69,11 +69,10 @@ body {
 .mesaJuego {
 	position: relative;
 	float: left;
-	margin-left: 8%;
+	margin-left: 10%;
 	width: 90%;
 	background-image: url('../imagenes/juegos/mesa.png');
 	background-repeat: no-repeat;
-	border-radius: 10px;
 }
 
 .mazo{
@@ -99,7 +98,21 @@ body {
 	position: relative;
 	float: left;
 	margin-top: 34%;
-	margin-left: 4%;
+	
+}
+
+.botonJugar {
+  	text-shadow: 2px 2px 4px #666666;
+	color: rgba(255,255,255,1);
+	font-size: 16px;
+	padding: 5px;
+	background: #797b7d;
+	text-decoration: none;
+}
+
+.botonJugar:hover {
+  background: #ccc140;
+  text-decoration: none;
 }
 
 
@@ -107,7 +120,7 @@ body {
 	position: relative;
 	width: 26%;
 	clear: both;
-	background-color: rgba(0,0,0,0.3);
+	background-color: rgba(0,0,0,0.6);
 	padding: 5px;
 	border-radius: 10px 10px 10px 0;
 }
@@ -130,6 +143,10 @@ body {
 	text-align:center;
 }
 
+.cartasBocaAbajo p{
+	background-color: rgba(0,0,0,0.6);
+}
+
 .cartasBocaArriba{
 	position: relative;
 	float: left;
@@ -143,6 +160,11 @@ body {
 	clear:both;
 	text-align:center;
 }
+
+.cartasBocaArriba p{
+	background-color: rgba(0,0,0,0.6);
+}
+
 .baraja {
 	position: relative;
 	height: 150px;
@@ -153,7 +175,7 @@ body {
 	float: left;
 	margin-left: -20%;
 	margin-top: 1%;
-	background-color: rgba(0,0,0,0.3);
+	background-color: rgba(0,0,0,0.6);
 	padding: 0 2%;
 }
 
@@ -161,5 +183,19 @@ body {
 	position: relative;
 	float: left;
 	margin-left: 66%;
-	margin-top: -6%;
+	margin-top: -5.1%;
+}
+
+.enlaceVolverBoton {
+  	text-shadow: 2px 2px 4px #666666;
+	color: rgba(255,255,255,1);
+	font-size: 16px;
+	padding: 5px;
+	background: #797b7d;
+	text-decoration: none;
+}
+
+.enlaceVolverBoton:hover {
+  background: #c25b5b;
+  text-decoration: none;
 }
