@@ -32,8 +32,7 @@
 			<div class = "informacion">
 				<table class = "tablaJuegos">
 					<tr>
-						<td class="cabezaTabla"><h2>Juegos</h2></td>
-						<td class="cabezaTabla"><h2>Descripcion</h2></td>
+						<td colspan="3" class="cabezaTabla"><h2>Juegos</h2></td>
 					</tr>
 					<%
 					
@@ -44,17 +43,16 @@
 					Statement oStmtPuntos = conexion.createStatement();
 					
 					ResultSet rs = oStmt.executeQuery("SELECT nombre, descripcion, imagen FROM Juego");
-					
-					while(rs.next()) {%>
-						<tr>
-							<td>
-								<a title="jugar" href="<%=rs.getString("nombre")%>Servlet"><%=rs.getString("nombre")%><br>
-								<img src="<%=rs.getString("imagen")%>"></a>
-							</td>
-							<td><%=rs.getString("descripcion")%></td>
-						</tr>
+					%><tr>
+					<%while(rs.next()) {%>
 						
-					<%}%>					
+							<td>
+								<a title="<%=rs.getString("descripcion")%>" href="<%=rs.getString("nombre")%>Servlet"><%=rs.getString("nombre")%><br>
+								<img src="<%=rs.getString("imagen")%>"></a>
+								
+							</td>
+					<%}%>	
+					</tr>				
 				</table>
 			</div>
 			
