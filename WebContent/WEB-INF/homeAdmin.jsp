@@ -12,6 +12,7 @@
 		<title>Home</title>
 		<link rel="StyleSheet" type="text/css" href="estilos/estiloHome.css"/>
 		<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
+		
 		<script>
 			google.load('visualization', '1', {packages: ['corechart']});
 			google.setOnLoadCallback(graficoTipoCuenta);
@@ -55,6 +56,64 @@
 			    chart.draw(data, options);
 			  }
 		</script>
+		
+		<script>				
+			    google.load('visualization', '1.1', {packages: ['bar']});
+				google.setOnLoadCallback(drawChart);
+
+					function drawChart() {
+						<% 				
+						Statement oStmtPartidasporjuego = conexion.createStatement();
+						
+						ResultSet rs2 = oStmtPartidasporjuego.executeQuery("SELECT count(1) as partidasHighestCard FROM Balance WHERE id_juego=3");
+						rs2.next();
+						int partidasHighestCard = Integer.parseInt((String) rs2.getString("partidasHighestCard"));
+						
+						rs2 = oStmtPartidasporjuego.executeQuery("SELECT count(1) as partidasBlackJack FROM Balance WHERE id_juego=1");
+						rs2.next();
+						int partidasBlackJack = Integer.parseInt((String) rs2.getString("partidasBlackJack"));
+						
+						rs2 = oStmtPartidasporjuego.executeQuery("SELECT count(1) as partidasDados FROM Balance WHERE id_juego=2");
+						rs2.next();
+						int partidasDados = Integer.parseInt((String) rs2.getString("partidasDados"));
+											
+					%>
+					var partidasBlackJack = <%=partidasBlackJack%>
+					var partidasHighestCard = <%=partidasHighestCard%>
+					var partidasDados = <%=partidasDados%>
+					
+					var data = google.visualization.arrayToDataTable([
+						['Juego', 'Partidas'],
+					]);
+					
+					var data = new google.visualization.DataTable();
+					data.addColumn('string', 'Juego');
+					data.addColumn('number', 'Partidas Dados');
+					data.addColumn('number', 'Partidas Blackjack');
+					data.addColumn('number', 'Partidas HighestCard');
+					
+					 
+					data.addRows([
+						['Partidas Jugadas', 1, 2, 3],
+					]);
+
+					  var options = {
+						width: 1000,
+						height: 563,
+						hAxis: {
+						  title: 'Juegos',
+						},
+						vAxis: {
+						  title: 'Numero de partidas'
+						}
+					  };
+
+					  var chart = new google.charts.Bar(document.getElementById('barChart'));
+
+					  chart.draw(data, google.charts.Bar.convertOptions(options));
+					}
+			  }
+		</script>
 	</head>
 	
 	<body>
@@ -88,6 +147,11 @@
 					<tr>
 						<td>
 						 	<div id="piechart" style="width: 900px; height: 500px;"></div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div id="barChart" style="width: 900px; height: 500px;"> </div>
 						</td>
 					</tr>
 				</table>
