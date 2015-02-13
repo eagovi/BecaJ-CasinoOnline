@@ -78,15 +78,22 @@ public class JugarBlackjack extends HttpServlet {
 					listaCartasCliente.add(rutaCartaCliente);
 					request.setAttribute("listaCartasCliente", listaCartasCliente);
 					
-					//Sumamos el valor de la carta a la cuenta
-					cuenta = cuenta + baraja.valor(cartaCliente);
-					request.setAttribute("cuenta", cuenta);
-					if(cuenta > 21) {
-						request.setAttribute("final", "si");
-						int id_balance = ConsultasJuego.getInstancia().obtenerBalance(login);
-						ConsultasJuego.getInstancia().actualizarPuntosCuenta(id_balance, login, -cantidadApostada);
-					} else {
+					if( baraja.valor(cartaCliente) != 0) {
+						//Sumamos el valor de la carta a la cuenta
+						cuenta = cuenta + baraja.valor(cartaCliente);
+						request.setAttribute("cuenta", cuenta);
+						if(cuenta > 21) {
+							request.setAttribute("final", "si");
+							int id_balance = ConsultasJuego.getInstancia().obtenerBalance(login);
+							ConsultasJuego.getInstancia().actualizarPuntosCuenta(id_balance, login, -cantidadApostada);
+						} else {
+							request.setAttribute("final", "no");
+						}
+					}
+					else {
+						request.setAttribute("cuenta", cuenta);
 						request.setAttribute("final", "no");
+						request.setAttribute("eleccion", "si");
 					}
 					
 					request.setAttribute("plantarse", "no");
@@ -191,6 +198,45 @@ public class JugarBlackjack extends HttpServlet {
 						request.setAttribute("apuesta", "no");
 						request.setAttribute("mensajeSinPuntos", "No tienes suficientes puntos, compra mas :)");
 					}
+				} else if(accion.equals("Uno")) {
+					
+					
+					cuenta = cuenta + 1;
+					request.setAttribute("cuenta", cuenta);
+					if(cuenta > 21) {
+						request.setAttribute("final", "si");
+						int id_balance = ConsultasJuego.getInstancia().obtenerBalance(login);
+						ConsultasJuego.getInstancia().actualizarPuntosCuenta(id_balance, login, -cantidadApostada);
+					} else {
+						request.setAttribute("final", "no");
+					}
+					
+					request.setAttribute("listaCartasCliente", listaCartasCliente);
+					request.setAttribute("plantarse", "no");
+					request.setAttribute("inicio", "no");
+					request.setAttribute("jugadaCasinoTerminada", "no");
+					request.setAttribute("apuesta", "si");
+					request.setAttribute("cantidadApostada", cantidadApostada);
+					
+				} else if(accion.equals("Once")) {
+					
+					cuenta = cuenta + 11;
+					request.setAttribute("cuenta", cuenta);
+					if(cuenta > 21) {
+						request.setAttribute("final", "si");
+						int id_balance = ConsultasJuego.getInstancia().obtenerBalance(login);
+						ConsultasJuego.getInstancia().actualizarPuntosCuenta(id_balance, login, -cantidadApostada);
+					} else {
+						request.setAttribute("final", "no");
+					}
+					
+					request.setAttribute("listaCartasCliente", listaCartasCliente);
+					request.setAttribute("plantarse", "no");
+					request.setAttribute("inicio", "no");
+					request.setAttribute("jugadaCasinoTerminada", "no");
+					request.setAttribute("apuesta", "si");
+					request.setAttribute("cantidadApostada", cantidadApostada);
+					
 				}
 					
 			request.getRequestDispatcher("/WEB-INF/juegos/Blackjack.jsp").forward(request, response);

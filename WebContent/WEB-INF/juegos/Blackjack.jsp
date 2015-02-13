@@ -55,11 +55,25 @@
 								<td><img alt="carta" src="imagenes/juegos/mazo1.png"></td>
 							<% }
 							else {
+								if(request.getAttribute("eleccion") == null) {
 									ArrayList<String> lista = (ArrayList<String>) request.getAttribute("listaCartasCliente");
 										%><th>Llevas: <%=request.getAttribute("cuenta")%></th>
 									<%for(int i = 0; i < lista.size(); i++) {%>
 										<td><img alt="tu_carta" src="<%=lista.get(i)%>"></td>
 									<%}%>
+								<%} else {
+									ArrayList<String> lista = (ArrayList<String>) request.getAttribute("listaCartasCliente");%>
+									<th>Llevas: <%=request.getAttribute("cuenta")%></th>
+									<%for(int i = 0; i < lista.size(); i++) {%>
+										<td><img alt="tu_carta" src="<%=lista.get(i)%>"></td>
+									<%}%>
+									<td>
+										<form action="JugarBlackjack" method="post">
+											<input type="submit" name="accion" value="Uno">
+											<input type="submit" name="accion" value="Once">
+										</form>
+									</td>
+								<%}%>
 							<%} %>
 						</tr>
 						
@@ -68,15 +82,16 @@
 					<table class="botones">
 						<% if(request.getAttribute("plantarse").equals("no")) {%>
 							<% if(request.getAttribute("final").equals("no")) {%>
-								<tr>
-									<td>
-										<input type="submit" name="accion" value="Pedir">
-									</td>
-									<td>
-										<input type="submit" name="accion" value="Plantarse">
-									</td>
-								</tr>
-								
+								<% if(request.getAttribute("eleccion") == null) {%>
+									<tr>
+										<td>
+											<input type="submit" name="accion" value="Pedir">
+										</td>
+										<td>
+											<input type="submit" name="accion" value="Plantarse">
+										</td>
+									</tr>
+								<%} %>
 							<%} else { %>
 								<tr>
 									<td>Te has pasado</td>

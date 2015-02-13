@@ -109,7 +109,7 @@ public class Baraja {
 	public int valor(int cartaCliente) {
 		switch (cartaCliente) {
 		case 0:
-			return 10;
+			return 0;
 		case 10:
 			return 10;
 		case 11:
