@@ -75,7 +75,7 @@
 								<td><img class="imgUser" src="<%=rs.getString("imagen")%>"/></td>
 								<td><a title="ver informacion" href="FrontControllerAdmin?accion=infoClienteAdmin&nombre=<%=rs.getString("login")%>"><%=rs.getString("nombre")%></a></td>
 								<td><%=rs.getString("apellido")%></td>
-								<td><%=rs.getString("fecha_nac")%></td>
+								<td><%=rs.getString("fecha_nac").substring(0, 10)%></td>
 								<td><%=rs.getString("mail")%></td>
 								<td><%=rsPuntos.getString("puntos")%></td>
 								<td><%=rsPuntos.getString("tipo_cuenta")%></td>
@@ -111,7 +111,7 @@
 								<td><img class="imgUser" src="<%=rsBorrados.getString("imagen")%>"/></td>
 								<td><a title="ver informacion" href="FrontControllerAdmin?accion=infoClienteAdmin&nombre=<%=rsBorrados.getString("login")%>"><%=rsBorrados.getString("nombre")%></a></td>
 								<td><%=rsBorrados.getString("apellido")%></td>
-								<td><%=rsBorrados.getString("fecha_nac")%></td>
+								<td><%=rsBorrados.getString("fecha_nac").substring(0, 10)%></td>
 								<td><%=rsBorrados.getString("mail")%></td>
 								<td><%=rsPuntos.getString("puntos")%></td>
 								<td><%=rsPuntos.getString("tipo_cuenta")%></td>

@@ -81,7 +81,7 @@
 							</tr>
 							<tr>
 								<td class="subrayado">Fecha de nacimiento</td>
-								<td><%=rs.getString("fecha_nac")%></td>
+								<td><%=rs.getString("fecha_nac").substring(0, 10)%></td>
 							</tr>
 							<tr>
 								<td class="subrayado">Mail</td>
