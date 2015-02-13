@@ -83,6 +83,8 @@ public class JugarBlackjack extends HttpServlet {
 					request.setAttribute("cuenta", cuenta);
 					if(cuenta > 21) {
 						request.setAttribute("final", "si");
+						int id_balance = ConsultasJuego.getInstancia().obtenerBalance(login);
+						ConsultasJuego.getInstancia().actualizarPuntosCuenta(id_balance, login, -cantidadApostada);
 					} else {
 						request.setAttribute("final", "no");
 					}
@@ -177,9 +179,18 @@ public class JugarBlackjack extends HttpServlet {
 					request.setAttribute("listaCartaCasino", new ArrayList<String>());
 					request.setAttribute("cuenta", 0);
 					request.setAttribute("cuentaCasino", 0);
-					request.setAttribute("apuesta", "si");
 					cantidadApostada = Integer.parseInt( (String) request.getParameter("apuesta"));
-					request.setAttribute("cantidadApostada", cantidadApostada);
+					
+					
+					int puntosActuales = ConsultasJuego.getInstancia().damePuntosCliente(login);
+					//Comprobar si no tienes puntos
+					if(puntosActuales >= cantidadApostada) {
+						request.setAttribute("cantidadApostada", cantidadApostada);
+						request.setAttribute("apuesta", "si");
+					} else {
+						request.setAttribute("apuesta", "no");
+						request.setAttribute("mensajeSinPuntos", "No tienes suficientes puntos, compra mas :)");
+					}
 				}
 					
 			request.getRequestDispatcher("/WEB-INF/juegos/Blackjack.jsp").forward(request, response);

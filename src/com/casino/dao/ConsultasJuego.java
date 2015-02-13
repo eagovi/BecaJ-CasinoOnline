@@ -86,4 +86,22 @@ public class ConsultasJuego {
 		
 		return null;
 	}
+
+	public int damePuntosCliente(String login) {
+		Statement oStmt;
+		
+		try {
+			oStmt = pedirConexion().createStatement();
+			ResultSet rs = oStmt.executeQuery("SELECT puntos "+ 
+					"FROM Cuenta WHERE login='"+login+"'");
+			
+			rs.next();
+			return Integer.parseInt(rs.getString("puntos"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		}
+		
+		return -1;
+	}
 }

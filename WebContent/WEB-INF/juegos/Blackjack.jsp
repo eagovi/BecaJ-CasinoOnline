@@ -115,7 +115,6 @@
 						<table class="cartasCrupier">
 							<tr>
 								<%ArrayList<String> listaCasino = (ArrayList<String>) request.getAttribute("listaCartasCasino");%>
-								
 								<th>Llevamos: <%=request.getAttribute("cuentaCasino")%></th>
 								<%for(int i = 0; i < listaCasino.size(); i++) {%>
 									<td><img alt="tu_carta" src="<%=listaCasino.get(i)%>"></td>
@@ -164,17 +163,36 @@
 									<select name="apuesta"> 
 										<option selected value = 100> 100 puntos
 										<option  value=200> 200 puntos
-										<option  value=200> 300 puntos
-										<option  value=200> 400 puntos
+										<option  value=300> 300 puntos
+										<option  value=400> 400 puntos
 										<option value=500> 500 puntos
+										<option value=1000> 1000 puntos
 									</select> 
 								</td>
 								<td>
 									<input type="submit" name="accion" value="Apostar">
 								</td>
+								<%if(request.getAttribute("mensajeSinPuntos") != null) {%>
+									<td>
+										<%=request.getAttribute("mensajeSinPuntos")%>
+									</td>
+								<% }%>
 							</tr>
 						</table>
 					</form>
+					
+					<table class="infoCliente">
+						<% String login = (String) session.getAttribute("nombre");
+						HashMap<String, String> cliente = ConsultasJuego.getInstancia().dameInfoCliente(login);
+						%>
+						<tr>
+							<td rowspan="2"><img src="<%=cliente.get("imagen")%>"></td>
+							<td><%=cliente.get("nombre")%></td>
+						</tr>
+						<tr>
+							<td><%=cliente.get("puntos")%> puntos</td>
+						</tr>
+					</table>
 				
 				<%}%>
 		</div>
