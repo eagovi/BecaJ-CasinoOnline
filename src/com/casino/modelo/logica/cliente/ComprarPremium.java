@@ -2,6 +2,7 @@ package com.casino.modelo.logica.cliente;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.ResultSet;
 //import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -51,15 +52,22 @@ public class ComprarPremium extends HttpServlet {
 			Statement oStmt = null;
 			String sSQL = null;
 			Connection miConexion=null;
-			String comprapremium = request.getParameter("premium");
 			
 			try {
 				miConexion = instancia.getConexion();
 				oStmt = miConexion.createStatement();
 				
+				ResultSet espremium = oStmt.executeQuery("SELECT TIPO_CUENTA FROM CUENTA WHERE LOGIN='"+login+"'");
+				espremium.next();
+				int premium =espremium.getInt("TIPO_CUENTA");
+				if(premium!=2){
+					//TERMINAR SI NO ES PREMIUM O ES PREMIUM
+				}
+				else{
 				sSQL = "UPDATE Cuenta " +
-						"SET puntos = puntos - "+comprapremium +", Tipo_Cuenta = 2 "+
-						"WHERE login = '"+login+"'";
+						"SET puntos = puntos - 100, Tipo_Cuenta = 2 "+
+						"WHERE LOGIN='"+login+'"';
+				}
 				
 				oStmt.executeUpdate(sSQL);
 				

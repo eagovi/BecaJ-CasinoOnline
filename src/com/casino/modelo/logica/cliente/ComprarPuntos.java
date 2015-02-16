@@ -71,7 +71,7 @@ public class ComprarPuntos extends HttpServlet {
 				
 				request.getRequestDispatcher("/WEB-INF/homeCliente.jsp").forward(request, response);
 			} else {
-				System.out.println(respuesta);
+				request.getRequestDispatcher("/paginas/indexError.html").forward(request, response);
 			}
 		}
 	}
