@@ -11,6 +11,58 @@
 		<meta charset="ISO-8859-1">
 		<title>Tienda</title>
 		<link rel="StyleSheet" type="text/css" href="estilos/estiloCliente.css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script>
+		$(document).ready(function() {
+			var imagen = $('.imagenJuego');
+			var descripcion = $('.descripcionJuego');
+			var titulo = $('.tituloJuego');
+			var mostrar0 = false;
+			var mostrar1 = false;
+			var mostrar2 = false;
+			
+			
+			titulo.eq(0).click(function(){
+			if(mostrar0==false){
+					descripcion.eq(0).removeClass('invisible');
+					imagen.eq(0).addClass('invisible');
+					mostrar0=true;
+				}
+			else{
+					descripcion.eq(0).addClass('invisible');
+					imagen.eq(0).removeClass('invisible');
+					mostrar0=false;
+				}
+			});
+			
+			titulo.eq(1).click(function(){
+			if(mostrar1==false){
+					descripcion.eq(1).removeClass('invisible');
+					imagen.eq(1).addClass('invisible');
+					mostrar1=true;
+				}
+			else{
+					descripcion.eq(1).addClass('invisible');
+					imagen.eq(1).removeClass('invisible');
+					mostrar1=false;
+				}
+			});
+			
+			titulo.eq(2).click(function(){
+				if(mostrar2==false){
+					descripcion.eq(2).removeClass('invisible');
+					imagen.eq(2).addClass('invisible');
+					mostrar2=true;
+				}
+			else{
+					descripcion.eq(2).addClass('invisible');
+					imagen.eq(2).removeClass('invisible');
+					mostrar2=false;
+				}
+			});
+			
+		});
+	</script>
 	</head>
 	
 	<body>
@@ -47,9 +99,9 @@
 					<%while(rs.next()) {%>
 						
 							<td>
-								<a title="<%=rs.getString("descripcion")%>" href="<%=rs.getString("nombre")%>Servlet"><%=rs.getString("nombre")%><br>
-								<img src="<%=rs.getString("imagen")%>"></a>
-								
+								<%=rs.getString("nombre")%><span class="tituloJuego"> - Reglas</span><br>
+								<a href="<%=rs.getString("nombre")%>Servlet"><img class="imagenJuego" src="<%=rs.getString("imagen")%>"></a>
+								<div class="descripcionJuego invisible"><p><%=rs.getString("descripcion")%></p></div>								
 							</td>
 					<%}%>	
 					</tr>				

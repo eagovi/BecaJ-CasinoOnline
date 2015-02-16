@@ -18,6 +18,7 @@
 
 html{
 	height:100%;
+	resize:none;
 }
 
 body {
@@ -113,6 +114,10 @@ body {
 
 /*CLASES DE ESTILOS*/
 
+.invisible{
+	visibility:hidden;
+}
+
 .marcado{
 	background-color:rgba(0,0,0,1);
 	color:rgba(161,37,37,1);
@@ -171,6 +176,25 @@ body {
 .gifcliente{
 	position:relative;
 	text-align:center;
+}
+
+.descripcionJuego{
+	width: 250px;
+	height: 250px;
+	border-radius: 5px;
+	position: relative;
+	float: left;
+	margin-top: -75%;
+	margin-left: 15%;
+	opacity:1;
+	font-family:arial;
+	font-size:14px;
+	text-align:justify;
+}
+
+.tituloJuego{
+	cursor:pointer;
+	color:rgba(161,37,37,1);
 }
 
 /*CLASES DE TABLAS*/
