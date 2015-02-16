@@ -15,7 +15,7 @@
 <body>
 		<div class="contenedor">
 			<div class="cabecera">
-				<a href="homeCliente.jsp"><img class="logo" src="imagenes/logo.png" alt="logo"/></a>
+				<a href="FrontControllerCliente?accion=homeCliente"><img class="logo" src="imagenes/logo.png" alt="logo"/></a>
 				<img class="gif" src="imagenes/gifjuega.gif" alt="GIF"/>
 			</div><!-- FIN CABECERA-->
 			<div class="menu">
@@ -28,7 +28,10 @@
 				</ul>
 			</div>
 			
-			<div class="informacion">
+			<div id="promos">
+				<div id="sinpromos">
+					<h1>Sin promociones disponibles aun</h1>
+				</div>
 			</div>
 			
 			<div class="pie">
