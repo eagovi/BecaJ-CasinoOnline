@@ -144,7 +144,17 @@ public class JugarBlackjack extends HttpServlet {
 					String rutaCartaCasino = baraja.getMazo(paloCasino).get(cartaCasino);
 					listaCartasCasino.add(rutaCartaCasino);
 					request.setAttribute("listaCartasCasino", listaCartasCasino);
-					cuentaCasino = cuentaCasino + baraja.valor(cartaCasino);
+					
+					if(baraja.valor(cartaCasino) == 0) {
+						if(cuentaCasino + 11 < 21) {
+							cuentaCasino = cuentaCasino + 11;
+						} else {
+							cuentaCasino = cuentaCasino +1;
+						}
+					} else {
+						cuentaCasino = cuentaCasino + baraja.valor(cartaCasino);
+					}
+					
 					request.setAttribute("cuentaCasino", cuentaCasino);
 					
 					//Cuando el casino se pase o se plante termina la jugada
@@ -154,7 +164,18 @@ public class JugarBlackjack extends HttpServlet {
 						int id_balance = ConsultasJuego.getInstancia().obtenerBalance(login);
 						
 						//Aqui se actualizan la base de datos de acuerdo con los resultados
-						if(cuentaCasino > 21 && cuenta < 21) {
+						if(cuenta == 21 && listaCartasCasino.size() == 2) {
+							//ganas
+							int extra = (int) (cantidadApostada*1.5);
+							ConsultasJuego.getInstancia().actualizarPuntosCuenta(id_balance, login, cantidadApostada+extra);
+							request.setAttribute("mensajeFin", "Tienes black jack!! ganas "+(cantidadApostada+extra)+" puntos");
+						} 
+						else if(cuenta == 21) {
+							//ganas
+							ConsultasJuego.getInstancia().actualizarPuntosCuenta(id_balance, login, cantidadApostada);
+							request.setAttribute("mensajeFin", "Tienes 21! ganas "+cantidadApostada+" puntos");
+						}
+						else if(cuentaCasino > 21 && cuenta < 21) {
 							//ganas
 							ConsultasJuego.getInstancia().actualizarPuntosCuenta(id_balance, login, cantidadApostada);
 							request.setAttribute("mensajeFin", "Has ganado "+cantidadApostada+" puntos");

@@ -42,7 +42,7 @@
 			        ["Element", "Numero", { role: "style" } ],
 			        ["Dados", partidasDados, "grey"],
 			        ["Carta alta", partidasHighestCard, "gold"],
-			        ["BlackJack", partidasBlackJack, "green"],
+			        ["BlackJack", partidasBlackJack, "#394bf2"],
 			      ]);
 			
 			      var view = new google.visualization.DataView(data);
@@ -56,8 +56,8 @@
 			      var options = {
 			        title: "Numero de partidas",
 			        backgroundColor: 'transparent',
-			        width: 600,
-			        height: 400,
+			        width: 450,
+			        height: 300,
 			        bar: {groupWidth: "95%"},
 			        legend: { position: "none" },
 			      };
@@ -95,9 +95,9 @@
 			    var options = {
 			      	title: 'Tipo de cuentas',
 			      	backgroundColor: 'transparent',
-			      	legend: {position: 'top', textStyle: {color: 'white', fontSize: 14}},
-			      	width: 500,
-			      	height: 400
+			      	legend: {position: 'rigth', textStyle: {color: 'white', fontSize: 14}},
+			      	width: 450,
+			      	height: 300
 			    };
 	
 			    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -138,14 +138,14 @@
 				</tr>
 					<tr>
 						<td>
-						 	<div id="piechart" style="width: 900px; height: 500px;"></div>
+						 	<div id="piechart" style="width: 600px; height: 300px;"></div>
 						</td>
 					</tr>
 				</table>
 				<table class="graficoBarras">
 					<tr>
 						<td>
-							<div id="columnchart_values" style="width: 900px; height: 500px;"> </div>
+							<div id="columnchart_values" style="width: 600px; height: 300px;"> </div>
 						</td>
 					</tr>
 				</table>
