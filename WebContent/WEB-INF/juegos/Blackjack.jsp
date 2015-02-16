@@ -21,7 +21,7 @@
 <body>
 	<div class="contenedor">
 		<div class="cabecera">
-				<a href="home.html"><img class="logo" src="imagenes/logo.png" alt="logo"/></a>
+				<img class="logo" src="imagenes/logo.png" alt="logo"/>
 				<p>Blackjack</p>
 		</div>
 		<div class="mesaJuego">

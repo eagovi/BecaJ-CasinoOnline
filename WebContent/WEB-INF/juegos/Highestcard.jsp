@@ -16,7 +16,7 @@
 <body>
 	<div class="contenedor">
 		<div class="cabecera">
-				<a href="#"><img class="logo" src="imagenes/logo.png" alt="logo"/></a>
+				<img class="logo" src="imagenes/logo.png" alt="logo"/>
 				<p>HighestCard</p>
 		</div>
 		<div class="mesaJuego">
