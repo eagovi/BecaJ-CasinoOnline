@@ -168,6 +168,18 @@ body {
 	color:rgba(0,0,0,1);
 }
 
+.enlaceVolver{
+	text-decoration:none;
+	text-align:center;
+	color:rgba(0,0,0,1);
+	transition:all .25s;
+}
+
+.enlaceVolver:hover{
+	color:rgba(161,37,37,1);
+	transition:all .25s;
+}
+
 .marcado{
 	background-color:rgba(0,0,0,1);
 	color:rgba(161,37,37,1);
@@ -338,6 +350,7 @@ body {
 	float:left;
 	font-family:arial;
 	border-radius:5px;
+	color:rgba(0,0,0,1);
 }
 
 .tablaEstadisticas{
@@ -420,6 +433,12 @@ body {
 	position:relative;
 	float:left;
 	margin-left: 2%;
+	background-color:rgba(186,186,186,.8);
+	border-radius:5px;
+	margin-top:2%;
+	width:30%;
+	margin-left:4%;
+	text-align:center;
 }
 
 #promos{
@@ -428,6 +447,7 @@ body {
 	margin-bottom: 25%;
 	width: 100%;
 }
+
 #sinpromos{
 	padding: 1% 2% 1% 2%;
 	background-color: rgba(55,62,64,1);
