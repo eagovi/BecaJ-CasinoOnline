@@ -55,9 +55,13 @@ public class ComprarPuntos extends HttpServlet {
 			WebResource		service	= client.resource(REST_URI);
 			String respuesta;
 			
-			respuesta = service.queryParam("user", login)
-							   .queryParam("pass", "1234")
-							   .queryParam("amount", "40")
+			String usuario = request.getParameter("usuario");
+			String clave = request.getParameter("pass");
+			String cantidad = request.getParameter("puntos");
+			
+			respuesta = service.queryParam("user", usuario)
+							   .queryParam("pass", clave)
+							   .queryParam("amount", cantidad)
 							   .accept(MediaType.TEXT_PLAIN)
 							   .get(String.class);	
 			

@@ -48,13 +48,13 @@
 							</td>
 						</tr>
 						<tr>
-							<td class="celda_izquierda">Usuario:</td><td class="celda_derecha"><input class="inp" type="text" name="tarjeta"/></td>
+							<td class="celda_izquierda">Usuario:</td><td class="celda_derecha"><input class="inp" type="text" name="usuario"/></td>
 						</tr>
 						<tr>
-							<td class="celda_izquierda">Contraseña:</td><td class="celda_derecha"><input class="inp" type="text" name="titular"/></td>
+							<td class="celda_izquierda">Contraseña:</td><td class="celda_derecha"><input class="inp" type="text" name="pass"/></td>
 						</tr>
 						<tr>
-							<td class="celda_izquierda boton_enviar"><input class="boton" type="submit" name="enviar" value="Enviar"/></td><td class="celda_derecha"><input class="boton" type="reset" name="borrar" value="Borrar"/></td>
+							<td class="celda_izquierda boton_enviar"><input class="boton" type="submit" name="enviar" value="Comprar"/></td><td class="celda_derecha"><input class="boton" type="reset" name="borrar" value="Borrar"/></td>
 						</tr>					
 					</table>
 					</form>
@@ -70,17 +70,22 @@
 							<tr>
 								<td class="celda_izquierda">Puntos:</td>
 								<td class="celda_derecha">
-									<input class="inp" type="text" name="puntos"/>		
+									<select name="puntos" multiple> 
+										<option value=100> 100 puntos - 10 Euros</option>
+										<option value=300> 300 puntos - 30 Euros</option>
+										<option selected value=500> 500 puntos - 45 Euros</option>
+										<option value=1000> 1000 puntos - 90 Euros</option>
+									</select> 
 								</td>
 							</tr>
 							<tr>
-								<td class="celda_izquierda">Usuario:</td><td class="celda_derecha"><input class="inp" type="text" name="tarjeta"/></td>
+								<td class="celda_izquierda">Usuario:</td><td class="celda_derecha"><input class="inp" type="text" name="usuario"/></td>
 							</tr>
 							<tr>
-								<td class="celda_izquierda">Contraseña:</td><td class="celda_derecha"><input class="inp" type="text" name="titular"/></td>
+								<td class="celda_izquierda">Contraseña:</td><td class="celda_derecha"><input class="inp" type="text" name="pass"/></td>
 							</tr>
 							<tr>
-								<td class="celda_izquierda boton_enviar"><input class="boton" type="submit" name="enviar" value="Enviar"/></td><td class="celda_derecha"><input class="boton" type="reset" name="borrar" value="Borrar"/></td>
+								<td class="celda_izquierda boton_enviar"><input class="boton" type="submit" name="enviar" value="Vender"/></td><td class="celda_derecha"><input class="boton" type="reset" name="borrar" value="Borrar"/></td>
 							</tr>					
 						</table>
 					</form>
