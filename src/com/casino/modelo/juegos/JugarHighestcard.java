@@ -1,10 +1,6 @@
 package com.casino.modelo.juegos;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Random;
 
 import javax.servlet.ServletException;
@@ -14,15 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.casino.dataService.DameConexion;
+import com.casino.dao.ConsultasJuego;
 
 /**
  * Servlet implementation class JugarHighestcard
  */
 @WebServlet("/JugarHighestcard")
 public class JugarHighestcard extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
-       
+	private Random generador;
+	private int cartaCliente;
+	private int cartaCasino;
+	private int paloCliente;
+	private int paloCasino;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -31,6 +33,11 @@ public class JugarHighestcard extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+    @Override
+    public void init() {
+    	generador = new Random();
+    }
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -42,39 +49,21 @@ public class JugarHighestcard extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//System.out.println("Hola");
+
 		HttpSession  session = request.getSession();
 		if(!session.isNew()) {
 			
 			int apuesta = Integer.parseInt(request.getParameter("apuesta"));
 			session = request.getSession();
-			String login = (String) session.getAttribute("nombre");
+			String login = (String) session.getAttribute("nombre");	
+				
+			int puntosActuales = ConsultasJuego.getInstancia().damePuntosCliente(login);
+			if(puntosActuales > apuesta) {
 			
-			DameConexion instancia = DameConexion.getInstancia();
-			Connection conexion = instancia.getConexion();
-			
-			try {
-				Statement oStmt = conexion.createStatement();
-			
-				ResultSet rs = oStmt.executeQuery("SELECT id_balance "+ 
-												"FROM Caja WHERE login='"+login+"'");
-				rs.next();
-				
-				String id_balance = rs.getString("id_balance");
-				
-				/*ResultSet rsPuntos = oStmt.executeQuery("SELECT puntos "+ 
-						"FROM Cuenta WHERE login='"+login+"'");
-				rsPuntos.next();*/
-				
-				/*int puntos = Integer.parseInt(rsPuntos.getString("puntos"));
-				if(puntos < 0) {*/
-				
-					Random generador = new Random();
-					
-					int cartaCliente = generador.nextInt(12);
-					int cartaCasino = generador.nextInt(12);
-					int paloCliente = generador.nextInt(4);
-					int paloCasino = generador.nextInt(4);
+					cartaCliente = generador.nextInt(12);
+					cartaCasino = generador.nextInt(12);
+					paloCliente = generador.nextInt(4);
+					paloCasino = generador.nextInt(4);
 					
 					request.setAttribute("jugado", "si");
 					request.setAttribute("cartaCasino", cartaCasino);
@@ -83,36 +72,23 @@ public class JugarHighestcard extends HttpServlet {
 					request.setAttribute("paloCasino", paloCasino);
 					
 					
+					int id_balance = ConsultasJuego.getInstancia().obtenerBalance(login);
 					if(cartaCliente > cartaCasino) {
 						request.setAttribute("mensajeFinalCartaAlta", "GANA EL CLIENTE :(");
-						oStmt.executeUpdate("INSERT INTO balance(id_balance, puntos, fecha, id_juego) "
-								+"values("+id_balance+", "+(apuesta)+", sysdate, 3)");
-						
-						oStmt.executeUpdate("UPDATE cuenta "+
-												"SET puntos = puntos +"+apuesta+
-												"WHERE login = '"+login+"'");
+						ConsultasJuego.getInstancia().actualizarPuntosCuentaHC(id_balance, login, apuesta);
 					}
 					else  {
 						request.setAttribute("mensajeFinalCartaAlta", "GANA EL CASINO :)");
-						oStmt.executeUpdate("INSERT INTO balance(id_balance, puntos, fecha, id_juego) "
-								+"values("+id_balance+", "+(apuesta*(-1))+", sysdate, 3)");
-						
-						oStmt.executeUpdate("UPDATE cuenta "+
-								"SET puntos = puntos -"+apuesta+
-								"WHERE login = '"+login+"'");
+						ConsultasJuego.getInstancia().actualizarPuntosCuentaHC(id_balance, login, -apuesta);
 					}
-				/*}
-				else {
-					request.setAttribute("mensajeFinalCartaAlta", "No tienes puntos perderdor");
-				}*/
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}		
+		
+			} else {
+				request.setAttribute("mensajeSinPuntos", "Te has quedad sin puntos, compra mas");
+			}
 			
 			request.getRequestDispatcher("/WEB-INF/juegos/Highestcard.jsp").forward(request, response);
 		}
 	}
+
 
 }

@@ -85,7 +85,7 @@ public class JugarBlackjack extends HttpServlet {
 						if(cuenta > 21) {
 							request.setAttribute("final", "si");
 							int id_balance = ConsultasJuego.getInstancia().obtenerBalance(login);
-							ConsultasJuego.getInstancia().actualizarPuntosCuenta(id_balance, login, -cantidadApostada);
+							ConsultasJuego.getInstancia().actualizarPuntosCuentaBJ(id_balance, login, -cantidadApostada);
 						} else {
 							request.setAttribute("final", "no");
 						}
@@ -162,36 +162,36 @@ public class JugarBlackjack extends HttpServlet {
 						request.setAttribute("jugadaCasinoTerminada", "si");
 						
 						int id_balance = ConsultasJuego.getInstancia().obtenerBalance(login);
-						
+						System.out.println(listaCartasCliente.size());
 						//Aqui se actualizan la base de datos de acuerdo con los resultados
 						if(cuenta == 21 && listaCartasCliente.size() == 2) {
 							//ganas
 							int extra = (int) (cantidadApostada*1.5);
-							ConsultasJuego.getInstancia().actualizarPuntosCuenta(id_balance, login, cantidadApostada+extra);
+							ConsultasJuego.getInstancia().actualizarPuntosCuentaBJ(id_balance, login, cantidadApostada+extra);
 							request.setAttribute("mensajeFin", "Tienes black jack!! ganas "+(cantidadApostada+extra)+" puntos");
 						} 
 						else if(cuenta == 21) {
 							//ganas
-							ConsultasJuego.getInstancia().actualizarPuntosCuenta(id_balance, login, cantidadApostada);
+							ConsultasJuego.getInstancia().actualizarPuntosCuentaBJ(id_balance, login, cantidadApostada);
 							request.setAttribute("mensajeFin", "Tienes 21! ganas "+cantidadApostada+" puntos");
 						}
 						else if(cuentaCasino > 21 && cuenta < 21) {
 							//ganas
-							ConsultasJuego.getInstancia().actualizarPuntosCuenta(id_balance, login, cantidadApostada);
+							ConsultasJuego.getInstancia().actualizarPuntosCuentaBJ(id_balance, login, cantidadApostada);
 							request.setAttribute("mensajeFin", "Has ganado "+cantidadApostada+" puntos");
 						}
 						else if(cuentaCasino > 21 && cuenta > 21) {
 							//empate
-							ConsultasJuego.getInstancia().actualizarPuntosCuenta(id_balance, login, 0);
+							ConsultasJuego.getInstancia().actualizarPuntosCuentaBJ(id_balance, login, 0);
 							request.setAttribute("mensajeFin", "Empate, no ganas nada");
 						}
 						else if(cuenta > cuentaCasino) {
 							//ganas
-							ConsultasJuego.getInstancia().actualizarPuntosCuenta(id_balance, login, cantidadApostada);
+							ConsultasJuego.getInstancia().actualizarPuntosCuentaBJ(id_balance, login, cantidadApostada);
 							request.setAttribute("mensajeFin", "Has ganado "+cantidadApostada+" puntos");
 						} else {
 							//pierdes
-							ConsultasJuego.getInstancia().actualizarPuntosCuenta(id_balance, login, -cantidadApostada);
+							ConsultasJuego.getInstancia().actualizarPuntosCuentaBJ(id_balance, login, -cantidadApostada);
 							request.setAttribute("mensajeFin", "Has perdido "+cantidadApostada+" puntos");
 						}
 					}
@@ -227,7 +227,7 @@ public class JugarBlackjack extends HttpServlet {
 					if(cuenta > 21) {
 						request.setAttribute("final", "si");
 						int id_balance = ConsultasJuego.getInstancia().obtenerBalance(login);
-						ConsultasJuego.getInstancia().actualizarPuntosCuenta(id_balance, login, -cantidadApostada);
+						ConsultasJuego.getInstancia().actualizarPuntosCuentaBJ(id_balance, login, -cantidadApostada);
 					} else {
 						request.setAttribute("final", "no");
 					}
@@ -246,7 +246,7 @@ public class JugarBlackjack extends HttpServlet {
 					if(cuenta > 21) {
 						request.setAttribute("final", "si");
 						int id_balance = ConsultasJuego.getInstancia().obtenerBalance(login);
-						ConsultasJuego.getInstancia().actualizarPuntosCuenta(id_balance, login, -cantidadApostada);
+						ConsultasJuego.getInstancia().actualizarPuntosCuentaBJ(id_balance, login, -cantidadApostada);
 					} else {
 						request.setAttribute("final", "no");
 					}

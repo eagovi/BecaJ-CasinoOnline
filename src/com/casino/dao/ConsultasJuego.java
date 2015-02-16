@@ -45,7 +45,7 @@ public class ConsultasJuego {
 		return -1;
 	}
 	
-	public void actualizarPuntosCuenta(int id_balance, String login, int apuesta) {
+	public void actualizarPuntosCuentaBJ(int id_balance, String login, int apuesta) {
 		Statement oStmt;
 		try {
 			oStmt = pedirConexion().createStatement();
@@ -62,6 +62,23 @@ public class ConsultasJuego {
 		}
 	}
 
+	public void actualizarPuntosCuentaHC(int id_balance, String login, int apuesta) {
+		Statement oStmt;
+		try {
+			oStmt = pedirConexion().createStatement();
+		
+			oStmt.executeUpdate("INSERT INTO balance(id_balance, puntos, fecha, id_juego) "
+								+"values("+id_balance+", "+apuesta+", sysdate, 3)");
+		
+			oStmt.executeUpdate("UPDATE cuenta "+
+								"SET puntos = puntos +"+apuesta+
+								"WHERE login = '"+login+"'");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	//Devuelve el nombre la imagen y los puntos del cliente
 	public HashMap<String, String> dameInfoCliente(String login) {
 		Statement oStmt;
