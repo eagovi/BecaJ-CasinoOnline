@@ -146,7 +146,7 @@ public class JugarBlackjack extends HttpServlet {
 					request.setAttribute("listaCartasCasino", listaCartasCasino);
 					
 					if(baraja.valor(cartaCasino) == 0) {
-						if(cuentaCasino + 11 < 21) {
+						if(cuentaCasino + 11 <= 21) {
 							cuentaCasino = cuentaCasino + 11;
 						} else {
 							cuentaCasino = cuentaCasino +1;
@@ -162,6 +162,7 @@ public class JugarBlackjack extends HttpServlet {
 						request.setAttribute("jugadaCasinoTerminada", "si");
 						
 						int id_balance = ConsultasJuego.getInstancia().obtenerBalance(login);
+						System.out.println(listaCartasCasino.size());
 						
 						//Aqui se actualizan la base de datos de acuerdo con los resultados
 						if(cuenta == 21 && listaCartasCasino.size() == 2) {
