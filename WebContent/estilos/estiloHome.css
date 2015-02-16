@@ -250,3 +250,24 @@ body {
 	width:50%;
 	
 }
+
+.tablaDatosAdmin{
+	margin-left:4%;
+	width:30%;
+	padding:20px;
+	background-color: silver;
+	float:left;
+	font-family:arial;
+	border-radius:5px;
+}
+
+.graficos {
+	float:right;
+	position:relative;
+	width:50%;
+	margin-right:4%;
+	padding:0 40px 40px 40px;
+	background-color: silver;
+	margin-bottom:40px;
+	border-radius:5px;
+}

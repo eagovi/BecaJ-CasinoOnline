@@ -59,7 +59,7 @@
 			        width: 450,
 			        height: 300,
 			        bar: {groupWidth: "95%"},
-			        legend: { position: "none" },
+			        legend: { position: "none", textStyle: {color: 'black', fontSize: 14}},
 			      };
 			      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
 			      chart.draw(view, options);
@@ -95,7 +95,7 @@
 			    var options = {
 			      	title: 'Tipo de cuentas',
 			      	backgroundColor: 'transparent',
-			      	legend: {position: 'rigth', textStyle: {color: 'white', fontSize: 14}},
+			      	legend: {position: 'rigth', textStyle: {color: 'black', fontSize: 14}},
 			      	width: 450,
 			      	height: 300
 			    };
@@ -124,31 +124,18 @@
 			</div>
 			
 			<div class="informacion">
-				<table class="graficoRedondo">
-				<tr>
-					<td>
-						<%
-							/*rs = oStmt.executeQuery("SELECT login "+ 
-									"FROM Usuario WHERE tipo_user = 2");
-							rs.next();
-							String admin = (String) rs.getString("login");*/
-						%>
-						<p>Hola </p>
-					</td>
-				</tr>
-					<tr>
-						<td>
-						 	<div id="piechart" style="width: 600px; height: 300px;"></div>
-						</td>
+			
+				<table class="tablaDatosAdmin">
+					<tr class="cabezaTabla" style="font-family:october;">
+						<td colspan="2">Hola administrador</td>
 					</tr>
 				</table>
-				<table class="graficoBarras">
-					<tr>
-						<td>
-							<div id="columnchart_values" style="width: 600px; height: 300px;"> </div>
-						</td>
-					</tr>
-				</table>
+				<div class="graficos">
+					<div id="piechart" style="width: 600px; height: 300px;"></div>
+
+					<div id="columnchart_values" style="width: 600px; height: 300px;"> </div>
+				</div>
+						
 			</div>
 			<div class="pie">
 				<img class="pieImagen" src="imagenes/pie.png">
