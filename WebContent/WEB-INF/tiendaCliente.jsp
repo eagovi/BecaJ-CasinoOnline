@@ -28,97 +28,83 @@
 					<a class="enlace" href="Salir"><li>Log out</li></a>
 				</ul>
 			</div><!-- FIN MENU-->
+			
 			<div class="informacion">
-				<table style="margin-left: 200px;">
+				<div id="formularioComprar">
+					<form action="ComprarPuntos" method="POST">
+					<table class="tablasform">
+						<tr>
+							<td colspan="2" class="titulo" style="text-align: center;">Comprar</td>
+						</tr>
+						<tr>
+							<td class="celda_izquierda">Puntos:</td>
+							<td class="celda_derecha">
+									<select name="puntos" multiple> 
+									<option value=100> 100 puntos - 10 Euros</option>
+									<option value=300> 300 puntos - 30 Euros</option>
+									<option selected value=500> 500 puntos - 45 Euros</option>
+									<option value=1000> 1000 puntos - 90 Euros</option>
+									</select> 
+							</td>
+						</tr>
+						<tr>
+							<td class="celda_izquierda">Usuario:</td><td class="celda_derecha"><input class="inp" type="text" name="tarjeta"/></td>
+						</tr>
+						<tr>
+							<td class="celda_izquierda">Contraseña:</td><td class="celda_derecha"><input class="inp" type="text" name="titular"/></td>
+						</tr>
+						<tr>
+							<td class="celda_izquierda boton_enviar"><input class="boton" type="submit" name="enviar" value="Enviar"/></td><td class="celda_derecha"><input class="boton" type="reset" name="borrar" value="Borrar"/></td>
+						</tr>					
+					</table>
+					</form>
+				</div>
+
 				
-				<tr>
-					<td>
-					
-					<div id="formularioComprar">
-						<form action="ComprarPuntos" method="POST">
-						<table style="color:white; background-color:rgba(55,62,64,1);">
+				<div id="formularioVender">
+					<form action="VenderPuntos" method="POST">
+						<table class="tablasform">
 							<tr>
-								<td colspan="2" class="titulo" style="text-align: center;">Comprar</td>
+								<td colspan="2" class="titulo" style="text-align: center;">Vender</td>
 							</tr>
 							<tr>
 								<td class="celda_izquierda">Puntos:</td>
 								<td class="celda_derecha">
-										<select name="puntos" multiple> 
-										<option value=100> 100 puntos - 10 Euros</option>
-										<option value=300> 300 puntos - 30 Euros</option>
-										<option selected value=500> 500 puntos - 45 Euros</option>
-										<option value=1000> 1000 puntos - 90 Euros</option>
-										</select> 
+									<input class="inp" type="text" name="puntos"/>		
 								</td>
 							</tr>
 							<tr>
-								<td class="celda_izquierda">Tarjeta bancaria:</td><td class="celda_derecha"><input class="inp" type="text" name="tarjeta"/></td>
+								<td class="celda_izquierda">Usuario:</td><td class="celda_derecha"><input class="inp" type="text" name="tarjeta"/></td>
 							</tr>
 							<tr>
-								<td class="celda_izquierda">Titular:</td><td class="celda_derecha"><input class="inp" type="text" name="titular"/></td>
-							</tr>
-							<tr>
-								<td class="celda_izquierda">Numero de seguridad:</td><td class="celda_derecha"><input class="inp" type="text" name="numero_seguridad"/></td>
+								<td class="celda_izquierda">Contraseña:</td><td class="celda_derecha"><input class="inp" type="text" name="titular"/></td>
 							</tr>
 							<tr>
 								<td class="celda_izquierda boton_enviar"><input class="boton" type="submit" name="enviar" value="Enviar"/></td><td class="celda_derecha"><input class="boton" type="reset" name="borrar" value="Borrar"/></td>
 							</tr>					
 						</table>
-						</form>
-					</div>
-					</td>
-					<td>
-					
-					<div id="formularioVender">
-						<form action="VenderPuntos" method="POST">
-							<table style="color:white; background-color:rgba(55,62,64,1);">
-								<tr>
-									<td colspan="2" class="titulo" style="text-align: center;">Vender</td>
-								</tr>
-								<tr>
-									<td class="celda_izquierda">Puntos:</td>
-									<td class="celda_derecha">
-										<input class="inp" type="text" name="puntos"/>		
-									</td>
-								</tr>
-								<tr>
-									<td class="celda_izquierda">Tarjeta bancaria:</td><td class="celda_derecha"><input class="inp" type="text" name="tarjeta"/></td>
-								</tr>
-								<tr>
-									<td class="celda_izquierda">Titular:</td><td class="celda_derecha"><input class="inp" type="text" name="titular"/></td>
-								</tr>
-								<tr>
-									<td class="celda_izquierda">Numero de seguridad:</td><td class="celda_derecha"><input class="inp" type="text" name="numero_seguridad"/></td>
-								</tr>
-								<tr>
-									<td class="celda_izquierda boton_enviar"><input class="boton" type="submit" name="enviar" value="Enviar"/></td><td class="celda_derecha"><input class="boton" type="reset" name="borrar" value="Borrar"/></td>
-								</tr>					
-							</table>
-						</form>
-					</div>
-					
-					<div id="cambiarpremium">
-						<form action="ComprarPremium" method="POST">
-						<table style="color:white; background-color:rgba(55,62,64,1);">
-							<tr>
-								<td colspan="2" class="titulo" style="text-align: center;">Cambiar a premium</td>
-							</tr>
-							<tr>
-								<td class="celda_izquierda">Premium:</td>
-								<td class="celda_derecha">
-								<input class="inp" type="text" name="premium" value="100" disabled>puntos premium
-								</td>
-								
-							</tr>
-							<tr>
-								<td class="celda_izquierda boton_enviar"><input class="boton" type="submit" name="enviar" value="Enviar"/></td><td class="celda_derecha"><input class="boton" type="reset" name="borrar" value="Borrar"/></td>
-							</tr>	
-						</table>
-						</form>
-					</div>
-					</td>
-				</tr>
-				</table>
+					</form>
+				</div>
+				
+				<div id="cambiarpremium">
+					<form action="ComprarPremium" method="POST">
+					<table class="tablasform">
+						<tr>
+							<td colspan="2" class="titulo" style="text-align: center;">Cambiar a premium</td>
+						</tr>
+						<tr>
+							<td class="celda_izquierda">Premium:</td>
+							<td class="celda_derecha">
+							<input class="inp" type="text" name="premium" value="100" size="5" disabled/> Puntos
+							</td>
+							
+						</tr>
+						<tr>
+							<td class="celda_izquierda boton_enviar"><input class="boton" type="submit" name="Enviar" value="Comprar"/></td>
+						</tr>	
+					</table>
+					</form>
+				</div>
 			</div><!--FIN INFORMACION-->
 			
 			<div class="pie">
