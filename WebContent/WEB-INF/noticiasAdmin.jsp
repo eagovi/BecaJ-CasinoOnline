@@ -8,7 +8,7 @@
 	<body>
 		<div class="contenedor">
 			<div class="cabecera">
-					<a href="home.html"><img class="logo" src="imagenes/logo.png" alt="logo"/></a>
+					<a href="FrontControllerAdmin?accion=homeAdmin"><img class="logo" src="imagenes/logo.png" alt="logo"/></a>
 					<p>Bienvenido</p>
 			</div><!-- FIN CABECERA-->	
 			<div class="menu">
