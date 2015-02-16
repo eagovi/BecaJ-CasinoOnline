@@ -18,7 +18,7 @@
 			google.setOnLoadCallback(graficoTipoCuenta);
 			function graficoTipoCuenta() {
 				
-				<% 
+					<% 
 					DameConexion instancia = DameConexion.getInstancia();
 					Connection conexion = instancia.getConexion();
 					
@@ -33,7 +33,7 @@
 							"FROM Cuenta WHERE tipo_cuenta = 2");
 					rs.next();
 					int premium = Integer.parseInt((String) rs.getString("cuenta"));
-				%>
+					%>
 				
 				var normales = <%=normales%>
 				var premium = <%=premium%>
@@ -56,7 +56,6 @@
 			    chart.draw(data, options);
 			  }
 		</script>
-		
 		<script>				
 			    google.load('visualization', '1.1', {packages: ['bar']});
 				google.setOnLoadCallback(drawChart);
@@ -112,7 +111,6 @@
 
 					  chart.draw(data, google.charts.Bar.convertOptions(options));
 					}
-			  }
 		</script>
 	</head>
 	
