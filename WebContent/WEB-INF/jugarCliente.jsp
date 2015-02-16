@@ -68,7 +68,7 @@
 	<body>
 		<div class="contenedor">
 			<div class="cabecera">
-				<a href="homeCliente.jsp"><img class="logo" src="imagenes/logo.png" alt="logo"/></a>
+				<a href="FrontControllerCliente?accion=homeCliente"><img class="logo" src="imagenes/logo.png" alt="logo"/></a>
 				<img class="gif" src="imagenes/gifjuega.gif" alt="GIF"/>
 			</div><!-- FIN CABECERA-->
 			<div class="menu">

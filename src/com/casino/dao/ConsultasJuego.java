@@ -121,4 +121,22 @@ public class ConsultasJuego {
 		
 		return -1;
 	}
+	
+	public int dameNumeroPartidas(int juego, int balance) {
+		Statement oStmt;
+		
+		try {
+			oStmt = pedirConexion().createStatement();
+			ResultSet rs = oStmt.executeQuery("SELECT count(1) as total"+ 
+					" FROM Balance WHERE id_balance="+balance+" AND id_juego = "+juego);
+			
+			rs.next();
+			return Integer.parseInt(rs.getString("total"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		}
+		
+		return -1;
+	}
 }

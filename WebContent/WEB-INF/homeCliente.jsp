@@ -5,18 +5,64 @@
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="com.casino.dataService.DameConexion"%>
+<%@page import="com.casino.dao.ConsultasJuego" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>Home</title>
 		<link rel="StyleSheet" type="text/css" href="estilos/estiloCliente.css"/>
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<script type="text/javascript">
+		    google.load("visualization", "1", {packages:["corechart"]});
+		    google.setOnLoadCallback(drawChart);
+		    function drawChart() {
+		    	<% 
+		    		String login = (String)session.getAttribute("nombre");
+		    		
+					int idBalance = ConsultasJuego.getInstancia().obtenerBalance(login);
+					
+					int partidasBlackJack = ConsultasJuego.getInstancia().dameNumeroPartidas(1, idBalance);
+					int partidasHighestCard = ConsultasJuego.getInstancia().dameNumeroPartidas(3, idBalance);
+					int partidasDados = 0;
+				%>
+				var partidasBlackJack = <%=partidasBlackJack%>
+				var partidasHighestCard = <%=partidasHighestCard%>
+				var partidasDados = <%=partidasDados%>
+		    	
+			      var data = google.visualization.arrayToDataTable([
+			        ["Element", "Numero", { role: "style" } ],
+			        ["Dados", partidasDados, "grey"],
+			        ["Carta alta", partidasHighestCard, "gold"],
+			        ["BlackJack", partidasBlackJack, "#394bf2"],
+			      ]);
+			
+			      var view = new google.visualization.DataView(data);
+			      view.setColumns([0, 1,
+			                       { calc: "stringify",
+			                         sourceColumn: 1,
+			                         type: "string",
+			                         role: "annotation" },
+			                       2]);
+			
+			      var options = {
+			        title: "Numero de partidas",
+			        backgroundColor: 'transparent',
+			        width: 450,
+			        height: 300,
+			        bar: {groupWidth: "95%"},
+			        legend: { position: "none" },
+			      };
+			      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+			      chart.draw(view, options);
+	  		}
+	  </script>
 	</head>
 	
 	<body>
 		<div class="contenedor"><!-- Inicio del contenedor-->
 			<div class="cabecera">
-				<a href="./homeCliente.jsp"><img class="logo" src="imagenes/logo.png" alt="logo"/></a>
+				<a href="FrontControllerCliente?accion=homeCliente"><img class="logo" src="imagenes/logo.png" alt="logo"/></a>
 					<img class="gif" src="imagenes/gifjuega.gif" alt="GIF"/>
 			</div><!-- FIN CABECERA-->
 			<div class="menu">
@@ -39,7 +85,7 @@
 						Statement oStmtPuntos = conexion.createStatement();
 						Statement oStmtTipo = conexion.createStatement();
 						session = request.getSession();
-						String login = (String) session.getAttribute("nombre");
+						
 					
 						ResultSet rs = oStmt.executeQuery("SELECT login, nombre, apellido, fecha_nac, mail, imagen "+ 
 																	"FROM Cliente WHERE login='"+login+"'");
@@ -98,6 +144,12 @@
 					}
 					contadorNoticias++;
 					} %>
+				</div>
+				
+				<div class="graficoUsuario">
+					<h4>Tus estadisticas</h4>
+					<div id="columnchart_values">
+					</div>					
 				</div>
 				
 			</div>
