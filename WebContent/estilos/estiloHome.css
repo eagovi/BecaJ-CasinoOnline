@@ -251,7 +251,27 @@ body {
 	
 }
 
-.tablaDatosAdmin{
+.tablaDatosAdmin {
+	margin-left:8%;
+	width:35%;
+	padding:20px;
+	background-color: rgba(186,186,186,.8);
+	float:left;
+	font-family:arial;
+	border-radius:5px;
+}
+
+.tablaDatosAdmin th{
+	margin-left:8%;
+	width:35%;
+	padding:20px;
+	background-color: rgba(186,186,186,.8);
+	float:left;
+	font-family:arial;
+	border-radius:5px;
+}
+
+.tablaDatosAdmin td{
 	margin-left:8%;
 	width:35%;
 	padding:20px;

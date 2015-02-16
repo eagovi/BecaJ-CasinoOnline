@@ -5,6 +5,7 @@
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="com.casino.dataService.DameConexion"%>
+<%@page import="com.casino.dao.Consultas" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -16,23 +17,10 @@
 		    google.load("visualization", "1", {packages:["corechart"]});
 		    google.setOnLoadCallback(drawChart);
 		    function drawChart() {
-		    	<% 
-				DameConexion instancia = DameConexion.getInstancia();
-				Connection conexion = instancia.getConexion();
-				Statement oStmtPartidasporjuego = conexion.createStatement();
-				
-				ResultSet rs2 = oStmtPartidasporjuego.executeQuery("SELECT count(1) as partidasHighestCard FROM Balance WHERE id_juego=3");
-				rs2.next();
-				int partidasHighestCard = Integer.parseInt((String) rs2.getString("partidasHighestCard"));
-				
-				rs2 = oStmtPartidasporjuego.executeQuery("SELECT count(1) as partidasBlackJack FROM Balance WHERE id_juego=1");
-				rs2.next();
-				int partidasBlackJack = Integer.parseInt((String) rs2.getString("partidasBlackJack"));
-				
-				rs2 = oStmtPartidasporjuego.executeQuery("SELECT count(1) as partidasDados FROM Balance WHERE id_juego=2");
-				rs2.next();
-				int partidasDados = Integer.parseInt((String) rs2.getString("partidasDados"));
-									
+		    	<%
+				int partidasHighestCard = Consultas.getInstancia().numeroPartidas(3);
+				int partidasBlackJack = Consultas.getInstancia().numeroPartidas(1);
+				int partidasDados =  Consultas.getInstancia().numeroPartidas(2);			
 				%>
 				var partidasBlackJack = <%=partidasBlackJack%>
 				var partidasHighestCard = <%=partidasHighestCard%>
@@ -68,22 +56,10 @@
 	  <script>
 			google.setOnLoadCallback(graficoTipoCuenta);
 			function graficoTipoCuenta() {
-				
-					<% 
-					
-					Statement oStmt = conexion.createStatement();
-					
-					ResultSet rs = oStmt.executeQuery("SELECT count(1) as cuenta "+ 
-							"FROM Cuenta WHERE tipo_cuenta = 1");
-					rs.next();
-					int normales = Integer.parseInt((String) rs.getString("cuenta"));
-					
-					rs = oStmt.executeQuery("SELECT count(1) as cuenta "+ 
-							"FROM Cuenta WHERE tipo_cuenta = 2");
-					rs.next();
-					int premium = Integer.parseInt((String) rs.getString("cuenta"));
-					%>
-				
+				<% 
+				int normales = Consultas.getInstancia().numeroCuentas(1);
+				int premium = Consultas.getInstancia().numeroCuentas(2);
+				%>
 				var normales = <%=normales%>
 				var premium = <%=premium%>
 			    var data1 = google.visualization.arrayToDataTable([
@@ -129,6 +105,27 @@
 					<tr class="cabezaTabla" style="font-family:october;">
 						<td colspan="2">Hola administrador</td>
 					</tr>
+					<tr>
+						<td>Numero de clientes: </td>
+						<td><%=Consultas.getInstancia().totalUsuarios()%></td>
+					</tr>
+					<tr>
+						<td>Puntos comprados este mes: </td>
+						<td><%=Consultas.getInstancia().totalUsuarios()%></td>
+					</tr>
+					<tr>
+						<td>Puntos vendido este mes: </td>
+						<td><%=Consultas.getInstancia().totalUsuarios()%></td>
+					</tr>
+					<tr>
+						<td>Ganados este mes con Blackjack: </td>
+						<td><%=Consultas.getInstancia().totalUsuarios()%></td>
+					</tr>
+					<tr>
+						<td>Ganados este mes con HighestCard: </td>
+						<td><%=Consultas.getInstancia().totalUsuarios()%></td>
+					</tr>
+					
 				</table>
 				<div class="graficos">
 					<div id="piechart" style="width: 600px; height: 300px;"></div>
