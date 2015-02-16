@@ -99,8 +99,39 @@ body {
 
 .informacion{
 	position:relative;
-	width:100%;
-	margin:40px 0;
+	float:left;
+	margin: 2% 0 4% 3%;
+	width: 100%;
+}
+
+.tablasform{
+	line-height:24px;
+	font-family:arial;
+	color:rgba(0,0,0,1);
+	text-align:center;
+	background-color:rgba(186,186,186,.8);
+	padding: 2%;
+	border-radius: 5px;
+}
+
+#formularioComprar{
+	position:relative;
+	float:left;
+	width: 30%;
+	padding: 0.5%;
+}
+
+#formularioVender{
+	position:relative;
+	float:left;
+	width: 30%;
+	padding: 0.5%;
+}
+
+#cambiarpremium{
+	position:relative;
+	float:left;
+	padding: 0.5%;
 }
 
 .pie{
@@ -383,4 +414,26 @@ body {
 	width:66%;
 	text-align:justify;
 	color:rgba(0,0,0,1);
+}
+
+.graficoUsuario{
+	position:relative;
+	float:left;
+	margin-left: 2%;
+}
+
+#promos{
+	position: relative;
+	float: left;
+	margin-bottom: 25%;
+	width: 100%;
+}
+#sinpromos{
+	padding: 1% 2% 1% 2%;
+	background-color: rgba(55,62,64,1);
+	color: rgba(0,0,0,1);
+	float: left;
+	margin-left: 25%;
+	text-align: center;
+	vertical-align: center;
 }
