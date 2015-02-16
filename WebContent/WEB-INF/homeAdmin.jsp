@@ -37,7 +37,7 @@
 				
 				var normales = <%=normales%>
 				var premium = <%=premium%>
-			    var data = google.visualization.arrayToDataTable([
+			    var data1 = google.visualization.arrayToDataTable([
 			      ['Cuenta', 'Clientes'],
 			      ['Normal', normales],
 			      ['Premium', premium]
@@ -53,14 +53,19 @@
 	
 			    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 	
-			    chart.draw(data, options);
+			    chart.draw(data1, options);
 			  }
+<<<<<<< .mine
+			
+			
+=======
 		</script>
 		<script>				
+>>>>>>> .r97
 			    google.load('visualization', '1.1', {packages: ['bar']});
-				google.setOnLoadCallback(drawChart);
+				google.setOnLoadCallback(graficoPartidas);
 
-					function drawChart() {
+					function graficoPartidas() {
 						<% 				
 						Statement oStmtPartidasporjuego = conexion.createStatement();
 						
@@ -81,19 +86,19 @@
 					var partidasHighestCard = <%=partidasHighestCard%>
 					var partidasDados = <%=partidasDados%>
 					
-					var data = google.visualization.arrayToDataTable([
+					var data2 = google.visualization.arrayToDataTable([
 						['Juego', 'Partidas'],
 					]);
 					
-					var data = new google.visualization.DataTable();
-					data.addColumn('string', 'Juego');
-					data.addColumn('number', 'Partidas Dados');
-					data.addColumn('number', 'Partidas Blackjack');
-					data.addColumn('number', 'Partidas HighestCard');
+					var data2 = new google.visualization.DataTable();
+					data2.addColumn('string', 'Juego');
+					data2.addColumn('number', 'Partidas Dados');
+					data2.addColumn('number', 'Partidas Blackjack');
+					data2.addColumn('number', 'Partidas HighestCard');
 					
 					 
-					data.addRows([
-						['Partidas Jugadas', 1, 2, 3],
+					data2.addRows([
+						['Partidas Jugadas', partidasDados, partidasBlackJack, partidasHighestCard],
 					]);
 
 					  var options = {
@@ -108,9 +113,8 @@
 					  };
 
 					  var chart = new google.charts.Bar(document.getElementById('barChart'));
-
-					  chart.draw(data, google.charts.Bar.convertOptions(options));
-					}
+					  chart.draw(data2, google.charts.Bar.convertOptions(options));
+				
 		</script>
 	</head>
 	
@@ -130,7 +134,7 @@
 			</div>
 			
 			<div class="informacion">
-				<table>
+				<table class="graficoRedondo">
 				<tr>
 					<td>
 						<%
@@ -147,6 +151,8 @@
 						 	<div id="piechart" style="width: 900px; height: 500px;"></div>
 						</td>
 					</tr>
+				</table>
+				<table class="graficoBarras">
 					<tr>
 						<td>
 							<div id="barChart" style="width: 900px; height: 500px;"> </div>
