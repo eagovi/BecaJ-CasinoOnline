@@ -7,20 +7,69 @@
 <%@page import="com.casino.dataService.DameConexion"%>
 <!DOCTYPE html>
 <html>
-	</head>
+	<head>
 		<meta charset="ISO-8859-1">
 		<title>Home</title>
 		<link rel="StyleSheet" type="text/css" href="estilos/estiloHome.css"/>
-		<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
-		
-		<script>
-			google.load('visualization', '1', {packages: ['corechart']});
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<script type="text/javascript">
+		    google.load("visualization", "1", {packages:["corechart"]});
+		    google.setOnLoadCallback(drawChart);
+		    function drawChart() {
+		    	<% 
+				DameConexion instancia = DameConexion.getInstancia();
+				Connection conexion = instancia.getConexion();
+				Statement oStmtPartidasporjuego = conexion.createStatement();
+				
+				ResultSet rs2 = oStmtPartidasporjuego.executeQuery("SELECT count(1) as partidasHighestCard FROM Balance WHERE id_juego=3");
+				rs2.next();
+				int partidasHighestCard = Integer.parseInt((String) rs2.getString("partidasHighestCard"));
+				
+				rs2 = oStmtPartidasporjuego.executeQuery("SELECT count(1) as partidasBlackJack FROM Balance WHERE id_juego=1");
+				rs2.next();
+				int partidasBlackJack = Integer.parseInt((String) rs2.getString("partidasBlackJack"));
+				
+				rs2 = oStmtPartidasporjuego.executeQuery("SELECT count(1) as partidasDados FROM Balance WHERE id_juego=2");
+				rs2.next();
+				int partidasDados = Integer.parseInt((String) rs2.getString("partidasDados"));
+									
+				%>
+				var partidasBlackJack = <%=partidasBlackJack%>
+				var partidasHighestCard = <%=partidasHighestCard%>
+				var partidasDados = <%=partidasDados%>
+		    	
+			      var data = google.visualization.arrayToDataTable([
+			        ["Element", "Numero", { role: "style" } ],
+			        ["Dados", partidasDados, "grey"],
+			        ["Carta alta", partidasHighestCard, "gold"],
+			        ["BlackJack", partidasBlackJack, "green"],
+			      ]);
+			
+			      var view = new google.visualization.DataView(data);
+			      view.setColumns([0, 1,
+			                       { calc: "stringify",
+			                         sourceColumn: 1,
+			                         type: "string",
+			                         role: "annotation" },
+			                       2]);
+			
+			      var options = {
+			        title: "Numero de partidas",
+			        backgroundColor: 'transparent',
+			        width: 600,
+			        height: 400,
+			        bar: {groupWidth: "95%"},
+			        legend: { position: "none" },
+			      };
+			      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+			      chart.draw(view, options);
+	  		}
+	  </script>
+	  <script>
 			google.setOnLoadCallback(graficoTipoCuenta);
 			function graficoTipoCuenta() {
 				
 					<% 
-					DameConexion instancia = DameConexion.getInstancia();
-					Connection conexion = instancia.getConexion();
 					
 					Statement oStmt = conexion.createStatement();
 					
@@ -55,66 +104,7 @@
 	
 			    chart.draw(data1, options);
 			  }
-<<<<<<< .mine
 			
-			
-=======
-		</script>
-		<script>				
->>>>>>> .r97
-			    google.load('visualization', '1.1', {packages: ['bar']});
-				google.setOnLoadCallback(graficoPartidas);
-
-					function graficoPartidas() {
-						<% 				
-						Statement oStmtPartidasporjuego = conexion.createStatement();
-						
-						ResultSet rs2 = oStmtPartidasporjuego.executeQuery("SELECT count(1) as partidasHighestCard FROM Balance WHERE id_juego=3");
-						rs2.next();
-						int partidasHighestCard = Integer.parseInt((String) rs2.getString("partidasHighestCard"));
-						
-						rs2 = oStmtPartidasporjuego.executeQuery("SELECT count(1) as partidasBlackJack FROM Balance WHERE id_juego=1");
-						rs2.next();
-						int partidasBlackJack = Integer.parseInt((String) rs2.getString("partidasBlackJack"));
-						
-						rs2 = oStmtPartidasporjuego.executeQuery("SELECT count(1) as partidasDados FROM Balance WHERE id_juego=2");
-						rs2.next();
-						int partidasDados = Integer.parseInt((String) rs2.getString("partidasDados"));
-											
-					%>
-					var partidasBlackJack = <%=partidasBlackJack%>
-					var partidasHighestCard = <%=partidasHighestCard%>
-					var partidasDados = <%=partidasDados%>
-					
-					var data2 = google.visualization.arrayToDataTable([
-						['Juego', 'Partidas'],
-					]);
-					
-					var data2 = new google.visualization.DataTable();
-					data2.addColumn('string', 'Juego');
-					data2.addColumn('number', 'Partidas Dados');
-					data2.addColumn('number', 'Partidas Blackjack');
-					data2.addColumn('number', 'Partidas HighestCard');
-					
-					 
-					data2.addRows([
-						['Partidas Jugadas', partidasDados, partidasBlackJack, partidasHighestCard],
-					]);
-
-					  var options = {
-						width: 1000,
-						height: 563,
-						hAxis: {
-						  title: 'Juegos',
-						},
-						vAxis: {
-						  title: 'Numero de partidas'
-						}
-					  };
-
-					  var chart = new google.charts.Bar(document.getElementById('barChart'));
-					  chart.draw(data2, google.charts.Bar.convertOptions(options));
-				
 		</script>
 	</head>
 	
@@ -138,12 +128,12 @@
 				<tr>
 					<td>
 						<%
-							rs = oStmt.executeQuery("SELECT login "+ 
+							/*rs = oStmt.executeQuery("SELECT login "+ 
 									"FROM Usuario WHERE tipo_user = 2");
 							rs.next();
-							String admin = (String) rs.getString("login");
+							String admin = (String) rs.getString("login");*/
 						%>
-						<p>Hola <%=admin%></p>
+						<p>Hola </p>
 					</td>
 				</tr>
 					<tr>
@@ -155,7 +145,7 @@
 				<table class="graficoBarras">
 					<tr>
 						<td>
-							<div id="barChart" style="width: 900px; height: 500px;"> </div>
+							<div id="columnchart_values" style="width: 900px; height: 500px;"> </div>
 						</td>
 					</tr>
 				</table>

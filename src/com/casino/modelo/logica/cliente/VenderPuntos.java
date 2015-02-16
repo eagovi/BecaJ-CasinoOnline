@@ -1,10 +1,6 @@
 package com.casino.modelo.logica.cliente;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,8 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.core.MediaType;
 
-import com.casino.dataService.DameConexion;
+import com.casino.dao.CompraVentaPuntos;
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.api.client.config.ClientConfig;
+import com.sun.jersey.api.client.config.DefaultClientConfig;
 
 /**
  * Servlet implementation class VenderPuntos
@@ -21,6 +22,7 @@ import com.casino.dataService.DameConexion;
 @WebServlet("/VenderPuntos")
 public class VenderPuntos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	static final String REST_URI = "http://172.22.7.10:8080/FriedBaconBank/rest/servicio/ingreso";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -47,43 +49,30 @@ public class VenderPuntos extends HttpServlet {
 			
 			String login = (String) session.getAttribute("nombre");
 			
-			DameConexion instancia = DameConexion.getInstancia();
+			//WebService
+			ClientConfig 	config  = new DefaultClientConfig();
+			Client			client  = Client.create(config);
+			WebResource		service	= client.resource(REST_URI);
+			String respuesta;
 			
-			Statement oStmt = null;
-			String sSQL = null;
-			String sSQLIdVenta = null;
-			Connection miConexion=null;
-			ResultSet rs = null;
-			int id_venta = 0;
-			String puntosVendidos = request.getParameter("puntos");
+			respuesta = service.queryParam("user", login)
+							   .queryParam("pass", "1234")
+							   .queryParam("amount", "40")
+							   .accept(MediaType.TEXT_PLAIN)
+							   .get(String.class);	
 			
-			sSQLIdVenta = "SELECT id_transaccion FROM Caja WHERE login = '"+login+"'";
-			
-			try {
-				miConexion = instancia.getConexion();
-				oStmt = miConexion.createStatement();
-			
-				rs = oStmt.executeQuery(sSQLIdVenta);
-				rs.next();
-				id_venta = Integer.parseInt(rs.getString("id_transaccion"));
+			if(respuesta.equals("Ingreso correcto")) {
+				//Modificaciones sobre la base de datos
+				int puntosComprados = Integer.parseInt(request.getParameter("puntos"));
 				
-				sSQL = "INSERT INTO Venta_Puntos " +
-						"(id_transaccion, fecha, puntos) " +
-						"VALUES ("+id_venta+", sysdate, "+puntosVendidos+")";
+				int id_transaccion = CompraVentaPuntos.getInstancia().dameIdTransaccion(login);
 				
-				oStmt.executeUpdate(sSQL);
+				CompraVentaPuntos.getInstancia().restarPuntos(login, id_transaccion, puntosComprados);
 				
-				sSQL = "UPDATE Cuenta " +
-						"SET puntos = puntos - "+puntosVendidos +
-						"WHERE login = '"+login+"'";
-				
-				oStmt.executeUpdate(sSQL);
-				
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}		
-			
-			request.getRequestDispatcher("/WEB-INF/homeCliente.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/homeCliente.jsp").forward(request, response);
+			} else {
+				System.out.println(respuesta);
+			}
 		}
 	}
 
