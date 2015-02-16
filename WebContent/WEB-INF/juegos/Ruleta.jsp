@@ -16,7 +16,7 @@
 		<div id="promos">
 			<div id="sinpromos">
 				<h1>Juego no disponible aun</h1>
-				<a href="FrontControllerCliente?accion=homeCliente" class="enlacevolver">Volver</a>
+				<a href="FrontControllerCliente?accion=homeCliente" class="enlaceVolver">Volver</a>
 			</div>
 		</div>
 		
