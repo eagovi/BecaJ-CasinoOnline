@@ -19,7 +19,7 @@ public class CompraVentaPuntos {
 		
 	}
 	
-	private Connection pedirConexion() {
+	private Connection pedirConexion() throws SQLException {
 		return DameConexion.getInstancia().getConexion();
 	}
 	

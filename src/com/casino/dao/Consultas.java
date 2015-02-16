@@ -1,6 +1,7 @@
 package com.casino.dao;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import com.casino.dataService.DameConexion;
 
@@ -15,7 +16,7 @@ public class Consultas {
 		
 	}
 	
-	private Connection pedirConexion() {
+	private Connection pedirConexion() throws SQLException {
 		return DameConexion.getInstancia().getConexion();
 	}
 	

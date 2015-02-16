@@ -20,7 +20,7 @@ public class ConsultasJuego {
 		
 	}
 	
-	private Connection pedirConexion() {
+	private Connection pedirConexion() throws SQLException {
 		return DameConexion.getInstancia().getConexion();
 	}
 	
@@ -31,14 +31,21 @@ public class ConsultasJuego {
 	public int obtenerBalance(String login) {
 		
 		try {
-			Statement oStmt = pedirConexion().createStatement();
+			Connection conexion = pedirConexion();
+			Statement oStmt = conexion.createStatement();
 			ResultSet rs = oStmt.executeQuery("SELECT id_balance "+ 
 					"FROM Caja WHERE login='"+login+"'");
 			rs.next();
 			
-			return Integer.parseInt(rs.getString("id_balance"));
+			int balance = Integer.parseInt(rs.getString("id_balance"));
 			
-		} catch (SQLException e) {
+			oStmt.close();
+			conexion.close();
+			
+			return balance;
+			
+		} 
+		catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
@@ -60,6 +67,7 @@ public class ConsultasJuego {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 	public void actualizarPuntosCuentaHC(int id_balance, String login, int apuesta) {

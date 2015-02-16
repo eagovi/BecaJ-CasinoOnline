@@ -48,9 +48,10 @@ public class Validar extends HttpServlet {
 		String pass = request.getParameter("password");
 		
 		ResultSet rs = null;
-		Connection conexion = instancia.getConexion();
+		
 		
 		try {
+			Connection conexion = instancia.getConexion();
 			Statement oStmt = conexion.createStatement();
 			rs = oStmt.executeQuery("SELECT * FROM Usuario WHERE login='"+login+"' AND pass='"+pass+"'");
 			

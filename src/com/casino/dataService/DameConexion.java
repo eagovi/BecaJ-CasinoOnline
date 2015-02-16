@@ -11,33 +11,28 @@ import javax.sql.DataSource;
 public class DameConexion {
 
 	private static final DameConexion instancia;
-	private Connection conexion;
+	private Context ic;
+	private DataSource miDS;
+	
 	static {
 		instancia = new DameConexion();
 	}
 	
 	private DameConexion() {		
 		try {
-			Context ic = new InitialContext();
-			DataSource miDS = (DataSource) ic.lookup("java:comp/env/jdbc/DataSourceLocal1");
-			setConexion(miDS.getConnection());
+			ic = new InitialContext();
+			miDS = (DataSource) ic.lookup("java:comp/env/jdbc/DataSourceLocal1");
 			
 		} catch (NamingException e1) {
 			e1.printStackTrace();
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		} 
+		}
 	}
 	
 	public static synchronized DameConexion getInstancia() {
 		return instancia;
 	}
 
-	public Connection getConexion() {
-		return conexion;
-	}
-
-	public void setConexion(Connection conexion) {
-		this.conexion = conexion;
+	public Connection getConexion() throws SQLException {
+		return miDS.getConnection();
 	}
 }

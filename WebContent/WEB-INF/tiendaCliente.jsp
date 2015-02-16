@@ -90,6 +90,11 @@
 					<form action="ComprarPremium" method="POST">
 					<table class="tablasform">
 						<tr>
+							<%if(request.getAttribute("CuentaPremium") != null) {%>
+								<td class="celda_derecha"><%=request.getAttribute("CuentaPremium") %></td>
+							<%} %>
+						</tr>
+						<tr>
 							<td colspan="2" class="titulo" style="text-align: center;">Cambiar a premium</td>
 						</tr>
 						<tr>

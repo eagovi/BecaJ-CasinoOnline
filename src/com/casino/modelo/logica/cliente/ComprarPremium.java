@@ -59,23 +59,25 @@ public class ComprarPremium extends HttpServlet {
 				
 				ResultSet espremium = oStmt.executeQuery("SELECT TIPO_CUENTA FROM CUENTA WHERE LOGIN='"+login+"'");
 				espremium.next();
+				
 				int premium =espremium.getInt("TIPO_CUENTA");
-				if(premium!=2){
-					//TERMINAR SI NO ES PREMIUM O ES PREMIUM
+				if(premium==2){
+					request.setAttribute("CuentaPremium", "Tu cuenta ya es premium");
+					request.getRequestDispatcher("/WEB-INF/tiendaCliente.jsp").forward(request, response);
 				}
 				else{
-				sSQL = "UPDATE Cuenta " +
-						"SET puntos = puntos - 100, Tipo_Cuenta = 2 "+
-						"WHERE LOGIN='"+login+'"';
-				}
-				
-				oStmt.executeUpdate(sSQL);
-				
+					sSQL = "UPDATE Cuenta " +
+							"SET puntos = puntos - 100, Tipo_Cuenta = 2 "+
+							"WHERE LOGIN='"+login+'"';
+					oStmt.executeUpdate(sSQL);
+					
+					request.getRequestDispatcher("/WEB-INF/homeCliente.jsp").forward(request, response);
+				}		
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}		
 			
-			request.getRequestDispatcher("/WEB-INF/homeCliente.jsp").forward(request, response);
+			
 		}
 	}
 
