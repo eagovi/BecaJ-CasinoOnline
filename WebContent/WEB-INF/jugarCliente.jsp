@@ -9,7 +9,7 @@
 <html>
 	<head>
 		<meta charset="ISO-8859-1">
-		<title>Tienda</title>
+		<title>Jugar</title>
 		<link rel="StyleSheet" type="text/css" href="estilos/estiloCliente.css"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script>
