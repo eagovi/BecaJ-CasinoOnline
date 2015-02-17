@@ -111,19 +111,19 @@
 					</tr>
 					<tr>
 						<td>Puntos comprados este mes: </td>
-						<td><%=Consultas.getInstancia().totalUsuarios()%></td>
+						<td>90000</td>
 					</tr>
 					<tr>
 						<td>Puntos vendido este mes: </td>
-						<td><%=Consultas.getInstancia().totalUsuarios()%></td>
+						<td>50000</td>
 					</tr>
 					<tr>
 						<td>Ganados este mes con Blackjack: </td>
-						<td><%=Consultas.getInstancia().totalUsuarios()%></td>
+						<td>42300</td>
 					</tr>
 					<tr>
 						<td>Ganados este mes con HighestCard: </td>
-						<td><%=Consultas.getInstancia().totalUsuarios()%></td>
+						<td>25100</td>
 					</tr>
 					
 				</table>

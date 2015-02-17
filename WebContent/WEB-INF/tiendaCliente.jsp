@@ -51,7 +51,7 @@
 							<td class="celda_izquierda">Usuario:</td><td class="celda_derecha"><input class="inp" type="text" name="usuario"/></td>
 						</tr>
 						<tr>
-							<td class="celda_izquierda">Contraseña:</td><td class="celda_derecha"><input class="inp" type="text" name="pass"/></td>
+							<td class="celda_izquierda">Contraseña:</td><td class="celda_derecha"><input class="inp" type="password" name="pass"/></td>
 						</tr>
 						<tr>
 							<td class="celda_izquierda boton_enviar"><input class="boton" type="submit" name="enviar" value="Comprar"/></td><td class="celda_derecha"><input class="boton" type="reset" name="borrar" value="Borrar"/></td>
@@ -82,7 +82,7 @@
 								<td class="celda_izquierda">Usuario:</td><td class="celda_derecha"><input class="inp" type="text" name="usuario"/></td>
 							</tr>
 							<tr>
-								<td class="celda_izquierda">Contraseña:</td><td class="celda_derecha"><input class="inp" type="text" name="pass"/></td>
+								<td class="celda_izquierda">Contraseña:</td><td class="celda_derecha"><input class="inp" type="password" name="pass"/></td>
 							</tr>
 							<tr>
 								<td class="celda_izquierda boton_enviar"><input class="boton" type="submit" name="enviar" value="Vender"/></td><td class="celda_derecha"><input class="boton" type="reset" name="borrar" value="Borrar"/></td>

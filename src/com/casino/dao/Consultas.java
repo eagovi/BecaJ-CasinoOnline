@@ -98,4 +98,9 @@ public class Consultas {
 		
 		return -1;
 	}
+	
+	public int puntosCompradosMes() {
+		
+		return -1;
+	}
 }

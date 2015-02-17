@@ -22,7 +22,7 @@ import com.sun.jersey.api.client.config.DefaultClientConfig;
 @WebServlet("/ComprarPuntos")
 public class ComprarPuntos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	static final String REST_URI = "http://172.22.7.10:8080/FriedBaconBank/rest/servicio/payday";
+	static final String REST_URI = "http://172.22.7.6:8080/FriedBaconBank/rest/servicio/payday";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -57,11 +57,29 @@ public class ComprarPuntos extends HttpServlet {
 			
 			String usuario = request.getParameter("usuario");
 			String clave = request.getParameter("pass");
-			String cantidad = request.getParameter("puntos");
+			int puntos = Integer.parseInt(request.getParameter("puntos"));
+			int cantidad = 0;
+			
+			switch (puntos) {
+			case 100:
+				cantidad = 10;
+			break;
+			case 300:
+				cantidad = 30;
+			break;
+			case 500:
+				cantidad = 45;
+			break;
+			case 1000:
+				cantidad = 90;
+			break;
+			default:
+				break;
+			}
 			
 			respuesta = service.queryParam("user", usuario)
 							   .queryParam("pass", clave)
-							   .queryParam("amount", cantidad)
+							   .queryParam("amount", cantidad+"")
 							   .accept(MediaType.TEXT_PLAIN)
 							   .get(String.class);	
 			

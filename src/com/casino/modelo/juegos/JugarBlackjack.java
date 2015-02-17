@@ -162,7 +162,6 @@ public class JugarBlackjack extends HttpServlet {
 						request.setAttribute("jugadaCasinoTerminada", "si");
 						
 						int id_balance = ConsultasJuego.getInstancia().obtenerBalance(login);
-						System.out.println(listaCartasCliente.size());
 						//Aqui se actualizan la base de datos de acuerdo con los resultados
 						if(cuenta == 21 && listaCartasCliente.size() == 2) {
 							//ganas
