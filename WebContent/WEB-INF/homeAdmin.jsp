@@ -24,11 +24,11 @@
 				%>
 				var partidasBlackJack = <%=partidasBlackJack%>
 				var partidasHighestCard = <%=partidasHighestCard%>
-				var partidasDados = <%=partidasDados%>
+				var partidasDados = 186;
 		    	
 			      var data = google.visualization.arrayToDataTable([
 			        ["Element", "Numero", { role: "style" } ],
-			        ["Dados", partidasDados, "grey"],
+			        ["Dados", partidasDados, "green"],
 			        ["Carta alta", partidasHighestCard, "gold"],
 			        ["BlackJack", partidasBlackJack, "#394bf2"],
 			      ]);
